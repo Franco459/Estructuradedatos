@@ -45,4 +45,10 @@ public class Helper {
         }
         return N;
     }
+    public static void showFinalResults(String msg) {
+        System.out.println("************FIN DE EJECUCION************");
+        System.out.println("Se mostraran resultados finales: ");
+        System.out.println(msg);
+        System.out.println("******************FIN******************");
+    }
 }

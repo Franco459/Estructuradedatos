@@ -64,7 +64,13 @@ public class PT1 {
             if (!continueProgram()) flag = false;
         }
         //muestra resultados finales en caso de no querer continuar el programa
-        showFinalResults();
+        String finalMsg = "";
+        if (minPer > 0) finalMsg += "El menor perimetro calculado fue de: " + minPer + "\n";
+        else  finalMsg += "No hubieron perimetros calculados en la ejecucion.\n";
+        
+        if (maxSup > 0) finalMsg +="La mayor superficie calculada fue de: " + maxSup;
+        else finalMsg +="No hubieron superficies calculadas en la ejecucion.";
+        Helper.showFinalResults(finalMsg);
     }
     
     ////////////////////////METHODS//////////////////////////////
@@ -112,16 +118,4 @@ public class PT1 {
             else  System.out.println("Opcion no valida");
         }
     }
-
-    private static void showFinalResults() {
-        System.out.println("************FIN DE EJECUCION************");
-        System.out.println("Se mostraran resultados finales: ");
-        if (minPer > 0)System.out.println("El menor perimetro calculado fue de: " + minPer);
-        else System.out.println("No hubieron perimetros calculados en la ejecucion.");
-        if (maxSup > 0) System.out.println("La mayor superficie calculada fue de: " + maxSup);
-        else System.out.println("No hubieron superficies calculadas en la ejecucion.");
-        System.out.println("******************FIN******************");
-    }
-    
-    
 }
