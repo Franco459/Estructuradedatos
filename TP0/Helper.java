@@ -51,4 +51,36 @@ public class Helper {
         System.out.println(msg);
         System.out.println("******************FIN******************");
     }
+    public static int menuManualRandom() {
+        int option = 0;
+        while (true){
+            try{
+                //mostrar e ingresar valores para el menu
+                System.out.println("---------------MENU---------------");
+                System.out.println("1- Ingresar valores manuales");
+                System.out.println("2- Ingresar valores aleatorios");
+                option = Integer.parseInt(entrada.nextLine());
+                //corroborar si es correcta la opcion elegida
+                if (option != 1 && option != 2) System.out.println("Valor no contemplado en las opciones del menu");
+                else return option;
+            }
+            catch (NumberFormatException e){
+                System.out.println("Ingrese valor NUMERICO valido" + e);
+            }
+        }
+    }
+
+    public static int randomIntGenerator(int min, int max) {
+        int x = (int) ((int)(Math.random()*((max-min)+1))+min);
+	return x;
+    }
+    
+    public static boolean continueProgram(){
+        while (true){
+            System.out.println("Desea continuar con la ejecucion del programa?(S/s || N/n)");
+            String resp = entrada.nextLine();
+            if ("s".equals(resp.toLowerCase()) || "n".equals(resp.toLowerCase())) return ("s".equals(resp.toLowerCase()));
+            else  System.out.println("Opcion no valida");
+        }
+    }
 }
