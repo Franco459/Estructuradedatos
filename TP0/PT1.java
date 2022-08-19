@@ -37,8 +37,7 @@ public class PT1 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        boolean flag = true;
-        while (flag){
+        while (true){
             int i = 0;
             //fuerza entrada de enteros para los 4 lados
             String msg = "Ingrese valor ENTERO POSITIVO para el tamaño del lado numero: ";
@@ -61,7 +60,7 @@ public class PT1 {
                     break;
             }
             //pregunta para continar el programa
-            if (!continueProgram()) flag = false;
+            if (!Helper.continueProgram()) break;
         }
         //muestra resultados finales en caso de no querer continuar el programa
         String finalMsg = "";
@@ -109,13 +108,5 @@ public class PT1 {
         else if (maxSup < sup) maxSup = sup;
         return sup;
     }
-    
-    private static boolean continueProgram(){
-        while (true){
-            System.out.println("Desea continuar con la ejecucion del programa?(S/s || N/n)");
-            String resp = entrada.nextLine();
-            if ("s".equals(resp.toLowerCase()) || "n".equals(resp.toLowerCase())) return ("s".equals(resp.toLowerCase()));
-            else  System.out.println("Opcion no valida");
-        }
-    }
 }
+
