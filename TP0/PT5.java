@@ -29,12 +29,28 @@ public class PT5 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        String msg = "Ingrese numero A";
-        int a = Helper.forcePositiveIntEnter(msg);
-        msg = "Ingrese numero B";
-        int b = Helper.forcePositiveIntEnter(msg);
-        euclideanAlgorithm(a,b);
-        // System.out.println("El MCD entre los numeros" + a + " y " + b + " es: " + euclideanAlgorithm(a,b));
+        int b = 0, a = 0;
+        while (true){
+            int op = Helper.menuManualRandom();
+            switch (op){
+                case 1:
+                    String msg = "Ingrese numero A";
+                    a = Helper.forcePositiveIntEnter(msg);
+                    msg = "Ingrese numero B";
+                    b = Helper.forcePositiveIntEnter(msg);
+                    break;
+                case 2:
+                    a = Helper.randomIntGenerator(2, 9999);
+                    b = Helper.randomIntGenerator(2, 9999);
+                    System.out.println("Los numeros generados fueron:\n"
+                            + "A: " + a +"\n"
+                            + "B: " + b);
+                    break;
+            }
+            euclideanAlgorithm(a,b);
+            // System.out.println("El MCD entre los numeros" + a + " y " + b + " es: " + euclideanAlgorithm(a,b));
+            if (!Helper.continueProgram()) break;       
+        }
     }
 
     ////////////////////////METHODS//////////////////////////////
