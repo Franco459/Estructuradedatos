@@ -13,16 +13,12 @@ Indicaciones:
  */
 package TP0;
 
-import TP0.Helper;
-import java.io.Console;
-import java.util.Scanner;
 
 /**
  *
  * @author FrancoGP
  */
 public class PT1 {
-    static Scanner entrada = new Scanner(System.in);
 
     static int side1 = 0;
     static int side2 = 0;
@@ -38,7 +34,6 @@ public class PT1 {
      */
     public static void main(String[] args) {
         while (true){
-            int i = 0;
             //fuerza entrada de enteros para los 4 lados
             String msg = "Ingrese valor ENTERO POSITIVO para el tamaño del lado numero: ";
             side1 = Helper.forcePositiveIntEnter(msg + 1);

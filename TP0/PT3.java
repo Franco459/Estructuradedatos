@@ -22,7 +22,6 @@ generados aleatoriamente.
  */
 package TP0;
 
-import java.util.Scanner;
 
 /**
  *
@@ -34,7 +33,6 @@ public class PT3 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Scanner entrada = new Scanner(System.in);
         while(true){
             int op = Helper.menuManualRandom();
             int num = 0;

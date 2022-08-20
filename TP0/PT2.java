@@ -16,17 +16,12 @@ El ejercicio debe implementar un mecanismo para seleccionar el ingreso de valore
  */
 package TP0;
 
-import TP0.Helper;
-import java.io.Console;
-import java.util.Scanner;
 /**
  *
  * @author FrancoGP
  */
 public class PT2 {
-    static Scanner entrada = new Scanner(System.in);
-    static 
-    int countOHAE, countObtuse;
+    static int countOHAE, countObtuse;
     /**
      * @param args the command line arguments
      */
