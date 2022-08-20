@@ -42,12 +42,8 @@ public class PT5 {
         int i = a;
         int j = b;
         while(b>0){
-           if(a>b){
-               a-=b;
-           }
-           else{
-               b-=a;
-           }
+           if(a > b) a-=b;
+           else b-=a;
        }
         System.out.println("El MCD entre los numeros" + i + " y " + j + " es: " + a);
     }
