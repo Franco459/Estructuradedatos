@@ -45,7 +45,7 @@ public class PT5 {
            if(a > b) a-=b;
            else b-=a;
        }
-        System.out.println("El MCD entre los numeros" + i + " y " + j + " es: " + a);
+        System.out.println("El MCD entre los numeros " + i + " y " + j + " es: " + a);
     }
     //Algoritmo de euclides recursivo
     /*
