@@ -16,6 +16,10 @@ El ejercicio debe implementar un mecanismo para seleccionar el ingreso de valore
  */
 package TP0;
 
+
+///
+//// ¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡ PREGUNTAR SI DEBE ADMITIR ANGULOS NEGATIVOS ¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡ 
+////
 /**
  *
  * @author FrancoGP
@@ -116,6 +120,9 @@ public class PT2 {
 
     private static void determineAction(int type, int ang) {
         switch (type){
+            case 0:
+                System.out.println("El angulo ingresado no es obtuso ni agudo. No se realizara calculo de suplemento/complemento del mismo.");
+                break;
             case 1:
                 calculateComplement(ang);
                 break;
@@ -126,9 +133,6 @@ public class PT2 {
             case 3:
                 System.out.println("El angulo ingresado no es obtuso ni agudo. No se realizara calculo de suplemento/complemento del mismo.");
                 countOHAE++;
-                break;
-            default:
-                System.out.println("El angulo ingresado no es obtuso ni agudo. No se realizara calculo de suplemento/complemento del mismo.");
                 break;
         }
     }
