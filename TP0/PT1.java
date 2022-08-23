@@ -28,6 +28,7 @@ public class PT1 {
     static int h = 0;
     static int maxSup = 0;
     static int minPer = 0;
+    static int countErrors = 0;
 
     /**
      * @param args the command line arguments
@@ -45,6 +46,7 @@ public class PT1 {
             //dependiendo de la figura hace una calculo y muestra un mensaje
             switch(opt){
                 case 0:
+                    countErrors++;
                     System.out.println("Se trata de otro poligono o no es posible formar uno con dichas medidas.");
                     break;
                 case 1:
@@ -62,8 +64,11 @@ public class PT1 {
         if (minPer > 0) finalMsg += "El menor perimetro calculado fue de: " + minPer + "\n";
         else  finalMsg += "No hubieron perimetros calculados en la ejecucion.\n";
         
-        if (maxSup > 0) finalMsg +="La mayor superficie calculada fue de: " + maxSup;
-        else finalMsg +="No hubieron superficies calculadas en la ejecucion.";
+        if (maxSup > 0) finalMsg +="La mayor superficie calculada fue de: " + maxSup + "\n";
+        else finalMsg +="No hubieron superficies calculadas en la ejecucion. \n" ;
+
+        if (countErrors >0) finalMsg +="Las figuras que no pertenecen a un cuadrado o rectangulo fueron: "+ countErrors;
+        else finalMsg += "No se ingresaron figuras que no pertenecen a un cuadrado o rectangulo.";
         Helper.showFinalResults(finalMsg);
     }
     
