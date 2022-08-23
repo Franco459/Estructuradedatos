@@ -32,18 +32,19 @@ public class Helper {
     }
     
     public static int forceInteger(String msg){
-        int N = 0;
+        int n = 0;
         while(true){
             System.out.println(msg);
             try{
-                N = Integer.parseInt(entrada.nextLine());
-                break;
+                n = Integer.parseInt(entrada.nextLine());
+                if (n != 0) break;
+                else System.out.println("Ingrese un numero mayor a 0");
             }
             catch(NumberFormatException e){
                 System.out.println("SOLAMENTE VALIDOS NUMEROS ENTEROS. "+e);
             }
         }
-        return N;
+        return n;
     }
     public static void showFinalResults(String msg) {
         System.out.println("************FIN DE EJECUCION************");

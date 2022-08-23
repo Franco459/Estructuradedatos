@@ -37,10 +37,10 @@ public class PT1 {
         while (true){
             //fuerza entrada de enteros para los 4 lados
             String msg = "Ingrese valor ENTERO POSITIVO para el tamaño del lado numero: ";
-            side1 = Helper.forcePositiveIntEnter(msg + 1);
-            side2 = Helper.forcePositiveIntEnter(msg + 2);
-            side3 = Helper.forcePositiveIntEnter(msg + 3);
-            side4 = Helper.forcePositiveIntEnter(msg + 4);
+            side1 = Helper.forceInteger(msg + 1);
+            side2 = Helper.forceInteger(msg + 2);
+            side3 = Helper.forceInteger(msg + 3);
+            side4 = Helper.forceInteger(msg + 4);
             //descubre tipo de figura geometrica
             int opt = discoverType(side1, side2, side3, side4);
             //dependiendo de la figura hace una calculo y muestra un mensaje
