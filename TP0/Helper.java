@@ -1,7 +1,5 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ MADE BY FRANCO PISTONE 2022
  */
 package TP0;
 
@@ -31,7 +29,7 @@ public class Helper {
         return size;
     }
     
-    public static int forceInteger(String msg){
+    public static int forceIntegerWithoutZ(String msg){
         int n = 0;
         while(true){
             System.out.println(msg);
@@ -46,12 +44,29 @@ public class Helper {
         }
         return n;
     }
+
+    public static int forceInteger(String msg){
+        int n = 0;
+        while(true){
+            System.out.println(msg);
+            try{
+                n = Integer.parseInt(entrada.nextLine());
+                break;
+            }
+            catch(NumberFormatException e){
+                System.out.println("SOLAMENTE VALIDOS NUMEROS ENTEROS. "+e);
+            }
+        }
+        return n;
+    }
+
     public static void showFinalResults(String msg) {
         System.out.println("************FIN DE EJECUCION************");
         System.out.println("Se mostraran resultados finales: ");
         System.out.println(msg);
         System.out.println("******************FIN******************");
     }
+
     public static int menuManualRandom() {
         int option = 0;
         while (true){
@@ -85,3 +100,6 @@ public class Helper {
         }
     }
 }
+/*
+ MADE BY FRANCO PISTONE 2022
+ */

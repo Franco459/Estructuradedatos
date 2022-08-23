@@ -32,13 +32,13 @@ public class PT2 {
             int n = 0, ang = 0; 
             int op = Helper.menuManualRandom();
             msg = "Coloque la cantidad de angulos que desea ingresar.";
-            n = Helper.forceInteger(msg);
+            n = Helper.forcePositiveIntEnter(msg);
             switch (op){
                 //manual
                 case 1:
                     for (int i = 0; i < n ; i++){
                         msg = "Ingrese el valor del angulo N°: " + (i+1);
-                        ang = Helper.forceInteger(msg);
+                        ang = Helper.forceIntegerWithoutZ(msg);
                         int type = determineAngleType(ang);
                         if (type == 1 || type == 2 || type == 3) determineAction(type, ang);
                     }
@@ -54,9 +54,9 @@ public class PT2 {
                     }
                     break;
             }
-            
             if (!Helper.continueProgram()) break;
         }
+
         String finalMsg = "";
         if (countObtuse > 0) finalMsg += "La cantidad de angulos obtusos ingresados en el sistema fue de: " + countObtuse + "\n";
         else  finalMsg += "No hubieron angulos obtusos ingresados en el sistema.\n";

@@ -37,10 +37,14 @@ public class PT1 {
         while (true){
             //fuerza entrada de enteros para los 4 lados
             String msg = "Ingrese valor ENTERO POSITIVO para el tamaño del lado numero: ";
-            side1 = Helper.forceInteger(msg + 1);
-            side2 = Helper.forceInteger(msg + 2);
-            side3 = Helper.forceInteger(msg + 3);
-            side4 = Helper.forceInteger(msg + 4);
+            side1 = Helper.forceIntegerWithoutZ(msg + 1);
+            if (side1 < 0 ) break;
+            side2 = Helper.forceIntegerWithoutZ(msg + 2);
+            if (side2 < 0 ) break;
+            side3 = Helper.forceIntegerWithoutZ(msg + 3);
+            if (side3 < 0 ) break;
+            side4 = Helper.forceIntegerWithoutZ(msg + 4);
+            if (side4 < 0 ) break;
             //descubre tipo de figura geometrica
             int opt = discoverType(side1, side2, side3, side4);
             //dependiendo de la figura hace una calculo y muestra un mensaje
@@ -82,13 +86,13 @@ public class PT1 {
         else if ((s1 == s2 && s3 == s4) || (s1 == s4 && s2 == s3)){
             b = s1;
             h = s3;
-            System.out.println("Los lados ingresados pertenecen a un rectangulo.");
+            System.out.println("Con los valores ingresados se formaria un rectangulo.");
             return 2;
         }
         else if ((s1 == s3 && s2 == s4)){ 
             b = s1;
             h = s2;
-            System.out.println("Los lados ingresados pertenecen a un rectangulo.");
+            System.out.println("Con los valores ingresados se formaria un rectangulo.");
             return 2;
         }
         else return 0;

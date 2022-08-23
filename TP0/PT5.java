@@ -35,9 +35,9 @@ public class PT5 {
             switch (op){
                 case 1:
                     String msg = "Ingrese numero A";
-                    a = Helper.forcePositiveIntEnter(msg);
+                    a = Helper.forceInteger(msg);
                     msg = "Ingrese numero B";
-                    b = Helper.forcePositiveIntEnter(msg);
+                    b = Helper.forceInteger(msg);
                     break;
                 case 2:
                     a = Helper.randomIntGenerator(2, 9999);

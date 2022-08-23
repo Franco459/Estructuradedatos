@@ -22,7 +22,8 @@ public class PT4 {
         while (true){
             String msg = "Ingrese un numero ENTERO POSITIVO";
             int num = Helper.forcePositiveIntEnter(msg);
-            verifyCompoundNumber(num);
+            if (num != 1) verifyCompoundNumber(num);
+            else System.out.println("El numero ingresado (1) no es valido para determinar si es un numero compuesto");
             if (!Helper.continueProgram()) break;            
         }
     }
