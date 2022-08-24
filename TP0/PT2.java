@@ -16,57 +16,52 @@ El ejercicio debe implementar un mecanismo para seleccionar el ingreso de valore
  */
 package TP0;
 
-
-///
-//// ¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡ PREGUNTAR SI DEBE ADMITIR ANGULOS NEGATIVOS ¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡ 
-////
 /**
  *
  * @author FrancoGP
  */
 public class PT2 {
-    static int countOHAE, countObtuse;
+    ///////VARIABLES GLOBALS//////
+    static int countOnehundredAngles, countObtuse;
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
         String msg = "";
-        countOHAE = 0; countObtuse = 0;
+        countOnehundredAngles = 0; countObtuse = 0;
         while (true){
             int n = 0, ang = 0; 
+            //menu
             int op = Helper.menuManualRandom();
+            //mensaje y pedido de cantidad de angulos
             msg = "Coloque la cantidad de angulos que desea ingresar.";
             n = Helper.forcePositiveIntEnter(msg);
+            //opciones
             switch (op){
                 //manual
                 case 1:
                     for (int i = 0; i < n ; i++){
                         msg = "Ingrese el valor del angulo N°: " + (i+1);
-                        ang = Helper.forceIntegerWithoutZ(msg);
+                        ang = Helper.forcePositiveIntegerWithZ(msg);
                         int type = determineAngleType(ang);
-                        if (type == 1 || type == 2 || type == 3) determineAction(type, ang);
+                        determineAction(type, ang);
                     }
                     break;
                     
                 case 2: 
                     //aleatorio
                     for (int i = 0; i < n ; i++){
-                        ang = Helper.randomIntGenerator(0, 360);
+                        ang = Helper.randomIntGenerator(0, 363);
                         System.out.println("El angulo n°"+ (i+1)+" generado es de " + ang + " grados.");
                         int type = determineAngleType(ang);
-                        if (type == 1 || type == 2 || type == 3) determineAction(type, ang);
+                        determineAction(type, ang);
                     }
                     break;
             }
             if (!Helper.continueProgram()) break;
         }
 
-        String finalMsg = "";
-        if (countObtuse > 0) finalMsg += "La cantidad de angulos obtusos ingresados en el sistema fue de: " + countObtuse + "\n";
-        else  finalMsg += "No hubieron angulos obtusos ingresados en el sistema.\n";
-        
-        if (countOHAE > 0) finalMsg +="La cantidad de angulos mayores a 180° cargados fue de: " + countOHAE;
-        else finalMsg += "No hubieron angulos mayores a 180 grados cargados.";
+        String finalMsg = createFinalMessage(countObtuse, countOnehundredAngles);
         Helper.showFinalResults(finalMsg);
     }
 ///////////////////////////////////////////METHODS///////////////////////////////////////////
@@ -111,10 +106,12 @@ public class PT2 {
     }
 
     private static void calculateComplement(int ang) {
+        //calculo complemento al momento de mostrar mensaje
         System.out.println("El complemento del angulo de " + ang + " grados es: " + (90-ang));
     }
 
     private static void calculateSupplement(int ang) {
+        //calculo de suplemento al momento de mostrar mensaje
         System.out.println("El suplemento del angulo de " + ang + " grados es: " + (180-ang));
     }
 
@@ -132,8 +129,19 @@ public class PT2 {
                 break;
             case 3:
                 System.out.println("El angulo ingresado no es obtuso ni agudo. No se realizara calculo de suplemento/complemento del mismo.");
-                countOHAE++;
+                countOnehundredAngles++;
                 break;
         }
+    }
+
+    private static String createFinalMessage(int countObtuse2, int countOnehundredAngles2) {
+        //generacion de mensaje para mostrar resultados finales
+        String rtrnMsg = "";
+        if (countObtuse > 0) rtrnMsg += "La cantidad de angulos obtusos ingresados en el sistema fue de: " + countObtuse + "\n";
+        else  rtrnMsg += "No hubieron angulos obtusos ingresados en el sistema.\n";
+        
+        if (countOnehundredAngles > 0) rtrnMsg +="La cantidad de angulos mayores a 180° cargados fue de: " + countOnehundredAngles;
+        else rtrnMsg += "No hubieron angulos mayores a 180 grados cargados.";
+        return rtrnMsg;
     }
 }

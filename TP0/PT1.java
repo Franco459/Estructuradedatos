@@ -13,19 +13,19 @@ Indicaciones:
  */
 package TP0;
 
-
 /**
  *
  * @author FrancoGP
  */
+
 public class PT1 {
 
     static int side1 = 0;
     static int side2 = 0;
     static int side3 = 0;
     static int side4 = 0;
-    static int b = 0;
-    static int h = 0;
+    static int base = 0;
+    static int height = 0;
     static int maxSup = 0;
     static int minPer = 0;
     static int countErrors = 0;
@@ -37,14 +37,14 @@ public class PT1 {
         while (true){
             //fuerza entrada de enteros para los 4 lados
             String msg = "Ingrese valor ENTERO POSITIVO para el tamaño del lado numero: ";
-            side1 = Helper.forceIntegerWithoutZ(msg + 1);
-            if (side1 < 0 ) break;
-            side2 = Helper.forceIntegerWithoutZ(msg + 2);
-            if (side2 < 0 ) break;
-            side3 = Helper.forceIntegerWithoutZ(msg + 3);
-            if (side3 < 0 ) break;
-            side4 = Helper.forceIntegerWithoutZ(msg + 4);
-            if (side4 < 0 ) break;
+            side1 = Helper.forceInteger(msg + 1);
+            if (side1 <= 0 ) break;
+            side2 = Helper.forceInteger(msg + 2);
+            if (side2 <= 0 ) break;
+            side3 = Helper.forceInteger(msg + 3);
+            if (side3 <= 0 ) break;
+            side4 = Helper.forceInteger(msg + 4);
+            if (side4 <= 0 ) break;
             //descubre tipo de figura geometrica
             int opt = discoverType(side1, side2, side3, side4);
             //dependiendo de la figura hace una calculo y muestra un mensaje
@@ -64,34 +64,28 @@ public class PT1 {
             if (!Helper.continueProgram()) break;
         }
         //muestra resultados finales en caso de no querer continuar el programa
-        String finalMsg = "";
-        if (minPer > 0) finalMsg += "El menor perimetro calculado fue de: " + minPer + "\n";
-        else  finalMsg += "No hubieron perimetros calculados en la ejecucion.\n";
-        
-        if (maxSup > 0) finalMsg +="La mayor superficie calculada fue de: " + maxSup + "\n";
-        else finalMsg +="No hubieron superficies calculadas en la ejecucion. \n" ;
-
-        if (countErrors >0) finalMsg +="Las figuras que no pertenecen a un cuadrado o rectangulo fueron: "+ countErrors;
-        else finalMsg += "No se ingresaron figuras que no pertenecen a un cuadrado o rectangulo.";
+        String finalMsg = createFinalMessage(maxSup,minPer,countErrors);
         Helper.showFinalResults(finalMsg);
     }
     
     ////////////////////////METHODS//////////////////////////////
     
+    
+
     private static int discoverType(int s1, int s2, int s3, int s4) {
         if (s1 == s2 && s2 == s3 && s3 == s4){
             System.out.println("Los lados ingresados pertenecen a un cuadrado.");
             return 1;
         }
         else if ((s1 == s2 && s3 == s4) || (s1 == s4 && s2 == s3)){
-            b = s1;
-            h = s3;
+            base = s1;
+            height = s3;
             System.out.println("Con los valores ingresados se formaria un rectangulo.");
             return 2;
         }
         else if ((s1 == s3 && s2 == s4)){ 
-            b = s1;
-            h = s2;
+            base = s1;
+            height = s2;
             System.out.println("Con los valores ingresados se formaria un rectangulo.");
             return 2;
         }
@@ -107,10 +101,24 @@ public class PT1 {
     }
 
     private static int superfice() {
-        int sup = b*h;
+        int sup = base*height;
         if (maxSup == 0) maxSup = sup;
         else if (maxSup < sup) maxSup = sup;
         return sup;
+    }
+
+    private static String createFinalMessage(int maxSup2, int minPer2, int countErrors2) {
+        String rtMsg = "";
+        if (minPer > 0) rtMsg += "El menor perimetro calculado fue de: " + minPer + "\n";
+        else  rtMsg += "No hubieron perimetros calculados en la ejecucion.\n";
+        
+        if (maxSup > 0) rtMsg +="La mayor superficie calculada fue de: " + maxSup + "\n";
+        else rtMsg +="No hubieron superficies calculadas en la ejecucion. \n" ;
+
+        if (countErrors >0) rtMsg +="Las figuras que no pertenecen a un cuadrado o rectangulo fueron: "+ countErrors;
+        else rtMsg += "No se ingresaron figuras que no pertenecen a un cuadrado o rectangulo.";
+
+        return rtMsg;
     }
 }
 

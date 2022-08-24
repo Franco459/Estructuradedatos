@@ -25,29 +25,29 @@ public class PT6 {
      * @param args the command line arguments
      */
     public static void main(String[] args){
-        int a = 0, b = 0, c = 0;
+        int aSide = 0, bSide = 0, cSide = 0;
         while (true){
             try{
                 int op = Helper.menuManualRandom();
                 //seguir camino de la opcion elegida
                 switch(op){
                     case 1:
-                        a = Helper.forcePositiveIntEnter("Ingrese valor para el lado A");
-                        b = Helper.forcePositiveIntEnter("Ingrese valor para el lado B");
-                        c = Helper.forcePositiveIntEnter("Ingrese valor para el lado C");
+                        aSide = Helper.forcePositiveIntEnter("Ingrese valor para el lado A");
+                        bSide = Helper.forcePositiveIntEnter("Ingrese valor para el lado B");
+                        cSide = Helper.forcePositiveIntEnter("Ingrese valor para el lado C");
                         break;
                     case 2:
-                        a = Helper.randomIntGenerator(1, 999);
-                        b = Helper.randomIntGenerator(1, 999);
-                        c = Helper.randomIntGenerator(1, 999);
+                        aSide = Helper.randomIntGenerator(2, 999);
+                        bSide = Helper.randomIntGenerator(2, 999);
+                        cSide = Helper.randomIntGenerator(2, 999);
                         System.out.println("Los valores generados fueron: \n"
-                                + "Valor lado A: " + a + "\n"
-                                + "Valor lado B: " + b + "\n"
-                                + "Valor lado C: " + c);
+                                + "Valor lado A: " + aSide + "\n"
+                                + "Valor lado B: " + bSide + "\n"
+                                + "Valor lado C: " + cSide);
                         break;
                 
                 }
-                if (verifyTriangle(a,b,c)) verifyType(a,b,c);
+                if (isTriangle(aSide,bSide,cSide)) verifyType(aSide,bSide,cSide);
                 else System.out.println("No son las medidas adecuadas para un triangulo.");
                 
             }
@@ -59,7 +59,7 @@ public class PT6 {
     }
     
     
-///////////////////////METHODS////////////////////////////
+///////////////////////////////////////////METHODS///////////////////////////////////////////
 
     private static void verifyType(int a, int b, int c) {
         if ((a==b)&&(b==c)){
@@ -71,7 +71,7 @@ public class PT6 {
         }
     }
 
-    private static boolean verifyTriangle(int a, int b, int c) {
+    private static boolean isTriangle(int a, int b, int c) {
         //realiza las operaciones logicas y devuelve un valor logico
         //teorema de desigualdad del triangulo
         boolean result = ((a+b>c) && (a+c>b) && (b+c>a));

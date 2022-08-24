@@ -29,39 +29,39 @@ public class PT5 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        int b = 0, a = 0;
+        int numA = 0, numB = 0;
         while (true){
             int op = Helper.menuManualRandom();
             switch (op){
                 case 1:
                     String msg = "Ingrese numero A";
-                    a = Helper.forcePositiveIntEnter(msg);
+                    numA = Helper.forcePositiveIntEnter(msg);
                     msg = "Ingrese numero B";
-                    b = Helper.forcePositiveIntEnter(msg);
+                    numB = Helper.forcePositiveIntEnter(msg);
                     break;
                 case 2:
-                    a = Helper.randomIntGenerator(2, 9999);
-                    b = Helper.randomIntGenerator(2, 9999);
+                    numA = Helper.randomIntGenerator(2, 9999);
+                    numB = Helper.randomIntGenerator(2, 9999);
                     System.out.println("Los numeros generados fueron:\n"
-                            + "A: " + a +"\n"
-                            + "B: " + b);
+                            + "A: " + numA +"\n"
+                            + "B: " + numB);
                     break;
             }
-            euclideanAlgorithm(a,b);
+            euclideanAlgorithm(numA,numB);
             // System.out.println("El MCD entre los numeros" + a + " y " + b + " es: " + euclideanAlgorithm(a,b));
             if (!Helper.continueProgram()) break;       
         }
     }
 
-    ////////////////////////METHODS//////////////////////////////
+///////////////////////////////////////////METHODS///////////////////////////////////////////
     private static void euclideanAlgorithm(int a, int b) {
-        int i = a;
-        int j = b;
+        int aNum = a;
+        int bNum = b;
         while(b>0){
            if(a > b) a-=b;
            else b-=a;
        }
-        System.out.println("El MCD entre los numeros " + i + " y " + j + " es: " + a);
+        System.out.println("El MCD entre los numeros " + aNum + " y " + bNum + " es: " + a);
     }
     //Algoritmo de euclides recursivo
     /*

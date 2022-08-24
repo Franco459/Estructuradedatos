@@ -60,6 +60,22 @@ public class Helper {
         return n;
     }
 
+    public static int forcePositiveIntegerWithZ(String msg){
+        int n = 0;
+        while(true){
+            System.out.println(msg);
+            try{
+                n = Integer.parseInt(entrada.nextLine());
+                if (n >=0) break;
+                else System.out.println("Ingrese un numero mayor o igual a 0");
+            }
+            catch(NumberFormatException e){
+                System.out.println("SOLAMENTE VALIDOS NUMEROS ENTEROS. "+e);
+            }
+        }
+        return n;
+    }
+
     public static void showFinalResults(String msg) {
         System.out.println("************FIN DE EJECUCION************");
         System.out.println("Se mostraran resultados finales: ");
