@@ -93,7 +93,7 @@ public class Helper {
     
     public static boolean continueProgram(){
         while (true){
-            System.out.println("Desea continuar con la ejecucion del programa?(S/s || N/n)");
+            System.out.println("Desea continuar con la ejecucion del programa? Opciones validas: (S/s || N/n)");
             String resp = entrada.nextLine();
             if ("s".equals(resp.toLowerCase()) || "n".equals(resp.toLowerCase())) return ("s".equals(resp.toLowerCase()));
             else  System.out.println("Opcion no valida");
