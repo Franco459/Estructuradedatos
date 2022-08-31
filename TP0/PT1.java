@@ -70,8 +70,8 @@ public class PT1 {
     
     ////////////////////////METHODS//////////////////////////////
     
-    
 
+    //s es la abreviacion de "side"
     private static int discoverType(int s1, int s2, int s3, int s4) {
         if (s1 == s2 && s2 == s3 && s3 == s4){
             System.out.println("Los lados ingresados pertenecen a un cuadrado.");
@@ -93,6 +93,7 @@ public class PT1 {
     }
 
     
+    //llama a variables globales
     private static int perimeter(int sides) {
         sides*=4;
         if (minPer == 0) minPer = sides;
@@ -100,13 +101,14 @@ public class PT1 {
         return sides;
     }
 
+    //llama a variables globales
     private static int superfice() {
         int sup = base*height;
         if (maxSup == 0) maxSup = sup;
         else if (maxSup < sup) maxSup = sup;
         return sup;
     }
-
+    
     private static String createFinalMessage(int maxSup2, int minPer2, int countErrors2) {
         String rtMsg = "";
         if (minPer > 0) rtMsg += "El menor perimetro calculado fue de: " + minPer + "\n";
