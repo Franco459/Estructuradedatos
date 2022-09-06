@@ -107,14 +107,14 @@ public class PT1 {
 
     private static void showArrays(int[] compuestos, int[] deficientes, int[] diferencia, int ratio) {
         
-        String textBefore = "Se procederá a mostrar los datos del arreglo de DIFERENCIAS mayores a la media: ";
-        String textAfter = "***********************************************************************************";
+        String textBefore = "Se procederá a mostrar los datos del arreglo de DIFERENCIAS mayores a la media: \n ";
+        String textAfter = "\n ***********************************************************************************\n ";
         Helper.printOneDimensionArray(textBefore, diferencia, textAfter);
 
         textBefore = "Se procederá a mostrar los datos del arreglo de DEFICIENTES mayores a la media: ";
         Helper.printArrayWithNumberCondition(textBefore, deficientes, ratio, true);
         
-        textBefore = ". Se procederá a mostrar los datos del arreglo de COMPUESTOS menores a la media: ";
+        textBefore = "\n Se procederá a mostrar los datos del arreglo de COMPUESTOS menores a la media: ";
         Helper.printArrayWithNumberCondition(textBefore, compuestos, ratio, false);
     }
 
