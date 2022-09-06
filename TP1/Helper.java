@@ -62,7 +62,7 @@ public class Helper {
     }
 
     //USADO EN PT1
-    static void printOneDimensionArray(String textBefore, Object[] array, String textAfter) {
+    static void printOneDimensionArray(String textBefore, int[] array, String textAfter) {
         System.out.print(textBefore);
         System.out.print("[" + array[0]);
         for (int i = 1; i < array.length; ++i) {
@@ -71,6 +71,8 @@ public class Helper {
         System.out.print("]");
         System.out.print(textAfter);
     }
+    
+    //USADO EN PT1
     static void printArrayWithNumberCondition(String textBefore, int[] array, int condition, Boolean isOverCondition) {
         System.out.print(textBefore);
         System.out.print("[" + array[0]);

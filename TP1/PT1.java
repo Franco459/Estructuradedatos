@@ -19,6 +19,9 @@ El ejercicio debe implementar un mecanismo para seleccionar el ingreso de valore
 generados aleatoriamente.
  */
 package TP1;
+
+import javax.print.DocFlavor.STRING;
+
 /**
  *
  * @author FrancoGP
@@ -40,7 +43,7 @@ public class PT1 {
                 System.out.println("Ha elegido la opcion MANUAL.");
 
                 System.out.println("****** CARGAR NUMEROS DEFICIENTES ******");
-                deficientes = generateArrays(deficientes, true, false, arraySize);  
+                deficientes = generateArrays(deficientes, true, true, arraySize);  
 
                 System.out.println("****** CARGAR NUMEROS COMPUESTOS ******");
                 compuestos = generateArrays(compuestos, true, false, arraySize);
@@ -50,15 +53,16 @@ public class PT1 {
             case 2:
                 System.out.println("Ha elegido la opcion AUTOMATICA.");
                 
-                deficientes = generateArrays(deficientes, false, false, arraySize);   
+                deficientes = generateArrays(deficientes, false, true, arraySize);   
 
                 compuestos = generateArrays(compuestos, false, false, arraySize);
 
                 diferencia = createArrayDiferencia(diferencia, deficientes, compuestos, arraySize);
             break;
         }
+
         int ratio = calculateRatio(deficientes, arraySize);
-        showArrays(compuestos, deficientes, ratio);
+        showArrays(compuestos, deficientes, diferencia, ratio);
     }
 
     ////////////////////////METHODS//////////////////////////////
@@ -88,7 +92,8 @@ public class PT1 {
                 }
             }
             
-            System.out.println("Numero: '"+ num +"', añadido exitosamente en COMPUESTOS.");
+            if (deficient) System.out.println("Numero: '"+ num +"', añadido exitosamente en DEFICIENTES.");
+            else System.out.println("Numero: '"+ num +"', añadido exitosamente en COMPUESTOS.");
             arraySelected[i] = num;
         }
         return arraySelected;
@@ -100,12 +105,16 @@ public class PT1 {
         return ratio;
     }
 
-    private static void showArrays(int[] compuestos, int[] deficientes, int ratio) {
+    private static void showArrays(int[] compuestos, int[] deficientes, int[] diferencia, int ratio) {
         
-        String textBefore = "Se procederá a mostrar los datos del arreglo de DEFICIENTES mayores a la media: ";
+        String textBefore = "Se procederá a mostrar los datos del arreglo de DIFERENCIAS mayores a la media: ";
+        String textAfter = "***********************************************************************************";
+        Helper.printOneDimensionArray(textBefore, diferencia, textAfter);
+
+        textBefore = "Se procederá a mostrar los datos del arreglo de DEFICIENTES mayores a la media: ";
         Helper.printArrayWithNumberCondition(textBefore, deficientes, ratio, true);
         
-        textBefore = "Se procederá a mostrar los datos del arreglo de COMPUESTOS menores a la media: ";
+        textBefore = ". Se procederá a mostrar los datos del arreglo de COMPUESTOS menores a la media: ";
         Helper.printArrayWithNumberCondition(textBefore, compuestos, ratio, false);
     }
 
@@ -130,7 +139,7 @@ public class PT1 {
         else num = Helper.randomIntGenerator(2, 99);
         while(true){
             boolean isCompound = false;
-            for (int i = 2; i <= num; i++){
+            for (int i = 2; i < num; i++){
                 if (num % i == 0){ 
                     isCompound = true;
                     break;
@@ -138,8 +147,10 @@ public class PT1 {
             }
             if (isCompound) return num;
             else{ 
-                System.out.println("El numero ingresado NO es un numero compuesto.\n Volverá a cargar el numero para verificar");
-                if (isManual) num = Helper.forcePositiveIntEnter(msg);
+                if (isManual) {
+                    System.out.println("El numero ingresado NO es un numero compuesto.\n Volverá a cargar el numero para verificar");
+                    num = Helper.forcePositiveIntEnter(msg);
+                }
                 else num = Helper.randomIntGenerator(2, 99);
             }
         }
@@ -158,8 +169,10 @@ public class PT1 {
             }
             if ( divSum < num ) return num;
             else{
-                System.out.println("El numero ingresado no es DEFICIENTE.\n Volverá a cargar el numero para verificar");
-                if(isManual) num = forceValidNumber(msg);
+                if(isManual){
+                    System.out.println("El numero ingresado no es DEFICIENTE.\n Volverá a cargar el numero para verificar");
+                    num = forceValidNumber(msg);
+                }
                 else num = Helper.randomIntGenerator(2, 99);
             } 
         }
