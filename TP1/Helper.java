@@ -71,7 +71,7 @@ public class Helper {
         System.out.print("]");
         System.out.print(textAfter);
     }
-    static void printOneNumericDimensionArrayWithNumberCondition(String textBefore, int[] array, int condition, Boolean isOverCondition) {
+    static void printArrayWithNumberCondition(String textBefore, int[] array, int condition, Boolean isOverCondition) {
         System.out.print(textBefore);
         System.out.print("[" + array[0]);
         if (isOverCondition) {
