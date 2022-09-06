@@ -29,8 +29,7 @@ public class PT1 {
         int[] deficientes; 
         int[] compuestos;
         int[] diferencia;
-        int num;
-        String msg = "Ingrese tamaño del arreglo a cargar";
+        String msg = "Ingrese tamaño deseado del arreglo";
         int arraySize = Helper.forcePositiveIntEnter(msg);
         deficientes = new int[arraySize];
         compuestos = new int[arraySize];
@@ -39,26 +38,23 @@ public class PT1 {
         switch(option){
             case 1:
                 System.out.println("Ha elegido la opcion MANUAL.");
+
                 System.out.println("****** CARGAR NUMEROS DEFICIENTES ******");
-                for (int i = 0; i < arraySize ; i++){
-                    msg = "Ingrese el numero para la posicion " + (i+1);
-                    num = verifyDeficentNumber(msg);
-                    System.out.println("Numero ingresado: '"+ num +"', añadido exitosamente.");
-                    deficientes[i] = num;
-                }
-                System.out.println("****** CARGAR NUMEROS DEFICIENTES ******");
-                for (int i = 0; i < arraySize ; i++){
-                    msg = "Ingrese el numero para la posicion " + (i+1);
-                    num = forceCompoundNumber(msg);
-                    System.out.println("Numero ingresado: '"+ num +"', añadido exitosamente.");
-                    compuestos[i] = num;
-                }
+                deficientes = generateArrays(deficientes, true, false, arraySize);  
+
+                System.out.println("****** CARGAR NUMEROS COMPUESTOS ******");
+                compuestos = generateArrays(compuestos, true, false, arraySize);
+
                 diferencia = createArrayDiferencia(diferencia, deficientes, compuestos, arraySize);
             break;
             case 2:
-            /****************************************
-                        FALTA PARTE AUTOMATICA
-             *****************************************/
+                System.out.println("Ha elegido la opcion AUTOMATICA.");
+                
+                deficientes = generateArrays(deficientes, false, false, arraySize);   
+
+                compuestos = generateArrays(compuestos, false, false, arraySize);
+
+                diferencia = createArrayDiferencia(diferencia, deficientes, compuestos, arraySize);
             break;
         }
         int ratio = calculateRatio(deficientes, arraySize);
@@ -67,7 +63,36 @@ public class PT1 {
 
     ////////////////////////METHODS//////////////////////////////
     
-
+    private static int[] generateArrays(int[] arraySelected, boolean manual, boolean deficient, int size){
+        int num;
+        String msg;
+        for (int i = 0; i < size; i++){
+            if (deficient){
+                if (manual) { 
+                    msg = "Ingrese el numero para la posicion " + (i+1);
+                    num = verifyDeficentNumber(msg, true);
+                }
+                else{ 
+                    msg = "******GENERANDO NUMERO VALIDO******";
+                    num = verifyDeficentNumber(msg, false);
+                }
+            }
+            else{
+                if (manual) { 
+                    msg = "Ingrese el numero para la posicion " + (i+1);
+                    num = forceCompoundNumber(msg, true);
+                }
+                else{ 
+                    msg = "******GENERANDO NUMERO VALIDO******";
+                    num = forceCompoundNumber(msg, false);
+                }
+            }
+            
+            System.out.println("Numero: '"+ num +"', añadido exitosamente en COMPUESTOS.");
+            arraySelected[i] = num;
+        }
+        return arraySelected;
+    }
     private static int calculateRatio(int[] deficientes, int arraySize) {
         
         int ratio = calculateAll(deficientes) / arraySize;
@@ -78,10 +103,10 @@ public class PT1 {
     private static void showArrays(int[] compuestos, int[] deficientes, int ratio) {
         
         String textBefore = "Se procederá a mostrar los datos del arreglo de DEFICIENTES mayores a la media: ";
-        Helper.printOneNumericDimensionArrayWithNumberCondition(textBefore, deficientes, ratio, true);
+        Helper.printArrayWithNumberCondition(textBefore, deficientes, ratio, true);
         
         textBefore = "Se procederá a mostrar los datos del arreglo de COMPUESTOS menores a la media: ";
-        Helper.printOneNumericDimensionArrayWithNumberCondition(textBefore, compuestos, ratio, false);
+        Helper.printArrayWithNumberCondition(textBefore, compuestos, ratio, false);
     }
 
     private static int calculateAll(int[] deficientes) {
@@ -99,9 +124,10 @@ public class PT1 {
         return diferencia;
     }
 
-    private static int forceCompoundNumber(String msg){
+    private static int forceCompoundNumber(String msg, boolean isManual){
         int num = 0;
-        num = Helper.forcePositiveIntEnter(msg);
+        if (isManual) num = Helper.forcePositiveIntEnter(msg);
+        else num = Helper.randomIntGenerator(2, 99);
         while(true){
             boolean isCompound = false;
             for (int i = 2; i <= num; i++){
@@ -113,14 +139,16 @@ public class PT1 {
             if (isCompound) return num;
             else{ 
                 System.out.println("El numero ingresado NO es un numero compuesto.\n Volverá a cargar el numero para verificar");
-                num = Helper.forcePositiveIntEnter(msg);
+                if (isManual) num = Helper.forcePositiveIntEnter(msg);
+                else num = Helper.randomIntGenerator(2, 99);
             }
         }
     }
 
-    private static int verifyDeficentNumber(String msg) {
+    private static int verifyDeficentNumber(String msg, boolean isManual) {
         int num;
-        num = forceValidNumber(msg);
+        if(isManual) num = forceValidNumber(msg);
+        else num = Helper.randomIntGenerator(2, 99);
         while (true){
             int divSum = 0;
             for (int i = 1; i < num; i++){
@@ -131,7 +159,8 @@ public class PT1 {
             if ( divSum < num ) return num;
             else{
                 System.out.println("El numero ingresado no es DEFICIENTE.\n Volverá a cargar el numero para verificar");
-                num = forceValidNumber(msg);
+                if(isManual) num = forceValidNumber(msg);
+                else num = Helper.randomIntGenerator(2, 99);
             } 
         }
     }
