@@ -31,7 +31,7 @@ public class PT4 {
 ///////////////////////////////////////////METHODS///////////////////////////////////////////
     private static void verifyCompoundNumber(int num) {
         boolean isCompound = false;
-        for (int i = 2; i <= num; i++){
+        for (int i = 2; i < num; i++){
             if (num % i == 0){ 
                 isCompound = true;
                 break;
