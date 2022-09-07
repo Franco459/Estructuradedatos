@@ -24,7 +24,21 @@ public class Helper {
         }
         return size;
     }
- 
+    //USADO EN PT2
+    public static int forceInteger(String msg){
+        int n = 0;
+        while(true){
+            System.out.println(msg);
+            try{
+                n = Integer.parseInt(entrada.nextLine());
+                break;
+            }
+            catch(NumberFormatException e){
+                System.out.println("SOLAMENTE VALIDOS NUMEROS ENTEROS. "+e);
+            }
+        }
+        return n;
+    }
 
     public static boolean continueProgram(){
         while (true){
@@ -71,7 +85,7 @@ public class Helper {
         System.out.print("]");
         System.out.print(textAfter);
     }
-    
+
     //USADO EN PT1
     static void printArrayWithNumberCondition(String textBefore, int[] array, int condition, Boolean isOverCondition) {
         System.out.print(textBefore);
