@@ -50,14 +50,12 @@ public class Helper {
     }
 
     //USADO EN PT1
-    public static int menuManualRandom() {
+    public static int menuTwoOptions(String msg) {
         int option = 0;
         while (true){
             try{
                 //mostrar e ingresar valores para el menu
-                System.out.println("---------------MENU---------------");
-                System.out.println("1- Ingresar valores manuales");
-                System.out.println("2- Ingresar valores aleatorios");
+                System.out.println(msg);
                 option = Integer.parseInt(entrada.nextLine());
                 //corroborar si es correcta la opcion elegida
                 if (option != 1 && option != 2) System.out.println("Valor no contemplado en las opciones del menu");
@@ -103,4 +101,25 @@ public class Helper {
         System.out.print("]");
         
     }
+
+    //PT3
+    static void printTwoDimensionArray(String textBefore, Object[][] array, String textAfter) {
+        System.out.print(textBefore);
+        System.out.print("[[" + array[0][0]);
+        for (int j = 1; j < array[0].length; ++j) {
+            System.out.print("," + array[0][j]);
+        }
+        System.out.print("]");
+ 
+        for (int i = 1; i < array.length; ++i) {
+            System.out.print(",[" + array[i][0]);
+            for (int j = 1; j < array[i].length; ++j) {
+                System.out.print("," + array[i][j]);
+            }
+            System.out.print("]");
+        }
+        System.out.print("]");
+        System.out.print(textAfter);
+    }
+    
 }
