@@ -20,7 +20,6 @@ generados aleatoriamente.
  */
 package TP1;
 
-import javax.print.DocFlavor.STRING;
 
 /**
  *
@@ -37,7 +36,10 @@ public class PT1 {
         deficientes = new int[arraySize];
         compuestos = new int[arraySize];
         diferencia = new int[arraySize];
-        int option = Helper.menuManualRandom();
+        msg = "---------------MENU--------------- \n"
+        +    "1- Ingresar valores manuales \n"
+        +    "2- Ingresar valores aleatorios ";
+        int option = Helper.menuTwoOptions(msg);
         switch(option){
             case 1:
                 System.out.println("Ha elegido la opcion MANUAL.");
@@ -61,7 +63,7 @@ public class PT1 {
             break;
         }
 
-        int ratio = calculateRatio(deficientes, arraySize);
+        int ratio = calculateRatio(diferencia, arraySize);
         showArrays(compuestos, deficientes, diferencia, ratio);
     }
 
