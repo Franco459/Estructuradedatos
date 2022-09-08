@@ -27,7 +27,10 @@ public class PT2 {
         int[] lowerNumArray;
         String msg = "Ingrese tamaño deseado del arreglo";
         int arraySize = Helper.forcePositiveIntEnter(msg);
-        int option = Helper.menuManualRandom();
+        msg = "---------------MENU--------------- \n"
+        +    "1- Ingresar valores manuales \n"
+        +    "2- Ingresar valores aleatorios ";
+        int option = Helper.menuTwoOptions(msg);
         allNumsArray = new int[arraySize];
         switch (option){
             case 1:
@@ -36,23 +39,20 @@ public class PT2 {
                     allNumsArray[i] = num;
                 }
                 //showArrayNums(allNumsArray); FALTA
-                msg = "Ingrese numero para dividir los numeros ya ingresados.";
+                msg = "Ingrese un numero X para dividir los numeros ya ingresados.";
                 int numberX = Helper.forcePositiveIntEnter(msg);
-                msg = "Ingrese numero para dividir los numeros ya ingresados.";
+                msg = "Ingrese un numero Y para dividir los numeros ya ingresados.";
                 int numberY = Helper.forcePositiveIntEnter(msg);
                 overNumArray = createLowerNumberArray(numberX, allNumsArray, false);
                 lowerNumArray = createLowerNumberArray(numberY, allNumsArray, true);
-                showAllArrays(overNumArray, lowerNumArray);
+               //lñlamar al del helper showAllArrays(overNumArray, lowerNumArray);
+               //revertir
             break;
             case 2:
             break;
         }
     }
     ////////////////////////METHODS//////////////////////////////
-
-    private static void showAllArrays(int[] overNumArray, int[] lowerNumArray) {
-        
-    }
 
     private static int[] createLowerNumberArray(int number, int[] allNumsArray, boolean isLower) {
         int[] aux = new int[allNumsArray.length];
