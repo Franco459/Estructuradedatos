@@ -44,7 +44,7 @@ public class Helper {
         while (true){
             System.out.println("Desea continuar con la ejecucion del programa? Opciones validas: (S/s || N/n)");
             String resp = entrada.nextLine();
-            if ("s".equals(resp.toLowerCase()) || "n".equals(resp.toLowerCase())) return ("s".equals(resp.toLowerCase()));
+            if ("s".equalsIgnoreCase(resp) || "n".equalsIgnoreCase(resp)) return ("s".equalsIgnoreCase(resp));
             else  System.out.println("Opcion no valida");
         }
     }
@@ -103,7 +103,7 @@ public class Helper {
     }
 
     //PT3
-    static void printTwoDimensionArray(String textBefore, Object[][] array, String textAfter) {
+    static void printTwoDimensionArray(String textBefore, int[][] array, String textAfter) {
         System.out.print(textBefore);
         System.out.print("[[" + array[0][0]);
         for (int j = 1; j < array[0].length; ++j) {
@@ -112,7 +112,7 @@ public class Helper {
         System.out.print("]");
  
         for (int i = 1; i < array.length; ++i) {
-            System.out.print(",[" + array[i][0]);
+            System.out.print("\n[" + array[i][0]);
             for (int j = 1; j < array[i].length; ++j) {
                 System.out.print("," + array[i][j]);
             }
