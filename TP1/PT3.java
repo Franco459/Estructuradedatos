@@ -60,11 +60,11 @@ public class PT3 {
                     case 1:
                     
                         selectedColumn = selectRowOrColumn(transMatrix.length, msg);
-                        resultOfAction = aditionInArray(matrix, selectedColumn, row);
+                        resultOfAction = multiplyInArray(matrix, selectedColumn, row, true);
                     break;
                     case 2:
                         selectedColumn = selectRowOrColumn(matrix.length, msg);
-                        resultOfAction = aditionInArray(transMatrix, selectedColumn, column);
+                        resultOfAction = multiplyInArray(transMatrix, selectedColumn, column, true);
                     break;
                 }
             break;
@@ -73,11 +73,11 @@ public class PT3 {
                 switch(optionTwo){
                     case 1:
                         selectedRow = selectRowOrColumn(matrix.length, msg);  
-                        resultOfAction = multiplyInArray(matrix, selectedRow, column);
+                        resultOfAction = multiplyInArray(matrix, selectedRow, column, false);
                     break;
                     case 2:
                         selectedRow = selectRowOrColumn(transMatrix.length, msg);
-                        resultOfAction = multiplyInArray(transMatrix, selectedRow, row);
+                        resultOfAction = multiplyInArray(transMatrix, selectedRow, row, false);
                     break;
                 }
             break;
@@ -87,6 +87,7 @@ public class PT3 {
     }
     }
 
+    ////////////////////////METHODS//////////////////////////////
     private static int selectRowOrColumn(int length, String msg) {
         int size = 0;
         while(true){
@@ -102,12 +103,14 @@ public class PT3 {
         }
     }
 
-    private static int multiplyInArray(int[][] selectedMatrix, int selectedRow, int column) {
+    private static int multiplyInArray(int[][] selectedMatrix, int selectedRowOrCol, int colOrRow, boolean isAdition) {
         int prod = 1;
-        for (int i = 0; i < column; i++){
-            prod *= selectedMatrix[selectedRow-1][i];
+        int sum = 0;
+        for (int i = 0; i < colOrRow; i++){
+            if (!isAdition) prod *= selectedMatrix[selectedRowOrCol-1][i];
+            else sum += selectedMatrix[i][selectedRowOrCol-1];
         }
-        return prod;
+        return (sum == 0)? prod : sum;
     }
 
     private static int[][] createTransposedMatrix(int[][] matrix, int row, int column) {
@@ -120,18 +123,11 @@ public class PT3 {
         return aux;
     }
 
-    private static int aditionInArray(int[][] selectedMatrix, int selectedColumn, int rows) {
-        int sum = 0;
-        for (int i = 0; i < rows; i++){
-            sum += selectedMatrix[i][selectedColumn-1];
-        }
-        return sum;
-    }
-
     private static int[][] createTwoDimensionArray(int[][] matrix, int row, int column, boolean manual) {
         String msgCreate = "Ingrese valor ENTERO para adicionar en la matriz";
         for (int[] is : matrix) {
             for(int k = 0; k < is.length; k++ ){
+                //para que no sean muy grandes el limite
                 if (!manual) is[k] = Helper.randomIntGenerator(3, 9);
                 else is[k] = Helper.forceInteger(msgCreate);
             }
