@@ -18,9 +18,12 @@ public class Libro {
         this.yearOfRelease = yearOfRelease;
         this.price = price;
     }
-
+    @Override
+    public String toString() {
+        return "** Titulo de libro: "+title+"\n[Autor: "+ author+", editorial: "+editorial+", año de lanzamiento: "+ yearOfRelease+", precio: "+ price+"]\n";
+    }
     /***************/
-
+    
     public String getTitle(){
         return this.title;
     }
