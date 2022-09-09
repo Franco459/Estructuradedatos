@@ -1,12 +1,13 @@
 package TP1;
 
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
 
 public class Helper {
     
     static Scanner entrada = new Scanner(System.in);
-
+    static Random rnd = new Random();
     ///////////Methods///////////
 
     //USADO EN: PT1
@@ -139,4 +140,57 @@ public class Helper {
         System.out.println("[" + itemsArrayList + "]");
     }
     
+    // PT5 Y 6
+    public static Float getFloat(Scanner entrada, String inputMessage, String errorMessage) {
+        Float floatValue = 0f;
+        while (true) {
+            try {
+                System.out.print(inputMessage);
+                floatValue = Float.parseFloat(entrada.nextLine());
+                return floatValue;
+            }
+            catch (Exception exception) {
+                System.out.println(errorMessage);
+            }
+        }
+    }
+    public static Float getFloat(Scanner entrada, String inputMessage) {
+        return getFloat(entrada, inputMessage, "Ingrese un número válido");
+    }
+    public static Float getFloat(String inputMessage, String errorMessage) {
+        return getFloat(Helper.entrada, inputMessage, errorMessage);
+    }
+    public static Float getFloat(String inputMessage) {
+        return getFloat(Helper.entrada, inputMessage, "Ingrese un número válido");
+    }
+
+    // PT5 Y 6
+    public static String getValidsString(String msg){
+        while(true){
+            try{
+                System.out.println(msg);
+                String rtnString = entrada.nextLine();
+                if (rtnString.isEmpty() || rtnString.charAt(0) == ' ') Integer.parseInt("s");
+                return rtnString;
+            }
+            catch(Exception e){
+                System.out.println("Ingrese una cadena valida. Sin espacios al comienzo.");
+            }
+        }
+    }
+    
+    // PT5 Y 6
+    public static String generateRandomNames(int op){
+        String[] authors = {"Luis Borges", "J. K. Rowling", "Julio Cortazar", "Stephen King", "Charles Bukowski"};
+        String[] editorials = {"Mansalva", "Utopía", "The scotts", "For fun", "Dior"};
+        String[] titles = {"Sicko mode", "Harry Potter", "Garfield", "IT", "La maquina de hacer pajaros"};
+        if (op == 1) return authors[randomIntGenerator(0, 4)].toString();
+        else if (op == 2) return editorials[randomIntGenerator(0, 4)].toString();
+        else return titles[randomIntGenerator(0, 4)].toString();
+    }
+
+    //PT5 Y 6
+    public static float generateRandomFloatInRange(int min, int max){
+        return  min + rnd.nextFloat() * (max - min);
+    }
 }
