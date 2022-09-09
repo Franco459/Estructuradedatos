@@ -43,8 +43,8 @@ public class PT2 {
                 int numberX = Helper.forcePositiveIntEnter(msg);
                 msg = "Ingrese un numero Y para dividir los numeros ya ingresados.";
                 int numberY = Helper.forcePositiveIntEnter(msg);
-                overNumArray = createLowerNumberArray(numberX, allNumsArray, false);
-                lowerNumArray = createLowerNumberArray(numberY, allNumsArray, true);
+                overNumArray = createLowerUpperNumberArray(numberX, allNumsArray, false);
+                lowerNumArray = createLowerUpperNumberArray(numberY, allNumsArray, true);
                //lñlamar al del helper showAllArrays(overNumArray, lowerNumArray);
                //revertir
             break;
@@ -54,7 +54,7 @@ public class PT2 {
     }
     ////////////////////////METHODS//////////////////////////////
 
-    private static int[] createLowerNumberArray(int number, int[] allNumsArray, boolean isLower) {
+    private static int[] createLowerUpperNumberArray(int number, int[] allNumsArray, boolean isLower) {
         int[] aux = new int[allNumsArray.length];
         int j = 0;
         for (int i = 0; i < allNumsArray.length; i++){
