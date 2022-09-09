@@ -1,5 +1,6 @@
 package TP1;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Helper {
@@ -120,6 +121,22 @@ public class Helper {
         }
         System.out.print("]");
         System.out.print(textAfter);
+    }
+
+    //PT4
+    public static void printArrayList(ArrayList<Integer> auxArray, String msg) {
+        System.out.println(msg);
+        String itemsArrayList = "";
+        boolean firstItem = true;
+        for (Integer in : auxArray) {
+            if (firstItem){
+                itemsArrayList += in;
+                firstItem = false;
+            }
+            else itemsArrayList += ", " + in;
+            
+        }
+        System.out.println("[" + itemsArrayList + "]");
     }
     
 }
