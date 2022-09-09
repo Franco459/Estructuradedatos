@@ -71,7 +71,7 @@ public class PT4 {
 
     private static ArrayList<Integer> fibonacciMethod() {
         ArrayList<Integer> auxArray = new ArrayList<>();
-        int itemCount = 2, first, second, auxNumber;
+        int itemCount = 2, first, second;
 
         auxArray = initializeArray();
         while (true){
