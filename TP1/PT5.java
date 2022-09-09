@@ -35,14 +35,14 @@ public class PT5 {
                     author = verifyName(2);
                     editorial = verifyName(3);
                     yearOfRelease = verifyYear();
-                    price = verifyPrice();
+                    price = verifyPrice(true);
                 break;
                 case 2:
-                    titleName = verifyName(1);
-                    author = verifyName(2);
-                    editorial = verifyName(3);
-                    yearOfRelease = verifyYear();
-                    price = verifyPrice();
+                    titleName = Helper.generateRandomNames(3);
+                    author = Helper.generateRandomNames(1);
+                    editorial = Helper.generateRandomNames(2);
+                    yearOfRelease = Helper.randomIntGenerator(1799, 2023);
+                    price = verifyPrice(false);
                 break;
             }
             libros.add(createNewLibro(titleName, author, editorial, yearOfRelease, price));
@@ -77,9 +77,9 @@ deberá mostrar los libros cuyo autor o editorial correspondan a los indicados. 
 
     private static void showAmountLowerPrice(ArrayList<Libro> libros) {
         int count = 0;
-        float priceSelected = verifyPrice();
+        float priceSelected = verifyPrice(true);
         for (Libro eachLibro : libros) {
-            if(eachLibro.getPrice() < (priceSelected)) count++;
+            if(eachLibro.getPrice() < (priceSelected)) count+=1;
         }
         if(count == 0) System.out.println("No se han encontrado libros con un precio menor al elegido.");
         else System.out.println("La cantidad de libros menores al precio ingresado (" + priceSelected + ") son: " + count);
@@ -90,7 +90,7 @@ deberá mostrar los libros cuyo autor o editorial correspondan a los indicados. 
     private static void searchByAuthor(ArrayList<Libro> libros, String authorSearch) {
         boolean found = false;
         for (Libro eachLibro : libros) {
-            if(eachLibro.getAuthor().equals(authorSearch)) {
+            if(eachLibro.getAuthor().equalsIgnoreCase(authorSearch)) {
                 found = true;
                 System.out.println(eachLibro.toString());   
             }
@@ -103,7 +103,7 @@ deberá mostrar los libros cuyo autor o editorial correspondan a los indicados. 
     private static void searchByEditorial(ArrayList<Libro> libros, String editorialSearch) {
         boolean found = false;
         for (Libro eachLibro : libros) {
-            if(eachLibro.getEditorial().equals(editorialSearch)) {
+            if(eachLibro.getEditorial().equalsIgnoreCase(editorialSearch)) {
                 found = true;
                 System.out.println(eachLibro.toString());   
             }
@@ -121,11 +121,13 @@ deberá mostrar los libros cuyo autor o editorial correspondan a los indicados. 
 
 
 
-    private static float verifyPrice() {
+    private static float verifyPrice(boolean manual) {
        while(true){
         try{
             String inputMsg = "Ingrese el precio del libro";
-            float rtnPrice = Helper.getFloat(inputMsg);
+            float rtnPrice;
+            if (manual) rtnPrice = Helper.getFloat(inputMsg);
+            else rtnPrice = Helper.generateRandomFloatInRange(1, 100000);
             //forzar error en caso de no cumplir la condicion
             if (rtnPrice <= 0) Integer.parseInt("a");
             return rtnPrice;
@@ -141,7 +143,7 @@ deberá mostrar los libros cuyo autor o editorial correspondan a los indicados. 
             try{
                 String inputMsg = "Ingrese el año de lanzamiento";
                 int year = Helper.forceInteger(inputMsg);
-                if (year < 1899 || year > 2022) Integer.parseInt("s"); 
+                if (year < 1799 || year > 2022) Integer.parseInt("s"); 
                 return year;
             }
             catch(Exception e){
