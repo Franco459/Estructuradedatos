@@ -1,5 +1,6 @@
 package TP1;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
@@ -42,9 +43,10 @@ public class Helper {
         return n;
     }
 
-    public static boolean continueProgram(){
+    public static boolean continueProgram(String msg){
         while (true){
-            System.out.println("Desea continuar con la ejecucion del programa? Opciones validas: (S/s || N/n)");
+            if (msg.isEmpty()) msg = "Desea continuar con la ejecucion del programa? Opciones validas: (S/s || N/n)";
+            System.out.println(msg);
             String resp = entrada.nextLine();
             if ("s".equalsIgnoreCase(resp) || "n".equalsIgnoreCase(resp)) return ("s".equalsIgnoreCase(resp));
             else  System.out.println("Opcion no valida");
@@ -142,12 +144,13 @@ public class Helper {
     
     // PT5 Y 6
     public static Float getFloat(Scanner entrada, String inputMessage, String errorMessage) {
-        Float floatValue = 0f;
+        Float floatValuer = 0f;
         while (true) {
             try {
                 System.out.print(inputMessage);
-                floatValue = Float.parseFloat(entrada.nextLine());
-                return floatValue;
+                floatValuer = Float.parseFloat(entrada.nextLine());
+                // return BigDecimal.valueOf(d).setScale(decimalPlace,BigDecimal.ROUND_HALF_UP).floatValue();
+                return ((int) ((floatValuer + 0.005f) * 100)) / 100f;
             }
             catch (Exception exception) {
                 System.out.println(errorMessage);
@@ -155,13 +158,13 @@ public class Helper {
         }
     }
     public static Float getFloat(Scanner entrada, String inputMessage) {
-        return getFloat(entrada, inputMessage, "Ingrese un número válido");
+        return getFloat(entrada, inputMessage, "Ingrese un número válido\n");
     }
     public static Float getFloat(String inputMessage, String errorMessage) {
         return getFloat(Helper.entrada, inputMessage, errorMessage);
     }
     public static Float getFloat(String inputMessage) {
-        return getFloat(Helper.entrada, inputMessage, "Ingrese un número válido");
+        return getFloat(Helper.entrada, inputMessage, "Ingrese un número válido\n");
     }
 
     // PT5 Y 6
@@ -192,5 +195,10 @@ public class Helper {
     //PT5 Y 6
     public static float generateRandomFloatInRange(int min, int max){
         return  min + rnd.nextFloat() * (max - min);
+    }
+
+    public static char randomCharGenerator() {
+        char c = (char)(rnd.nextInt(26) + 'a');
+        return c;
     }
 }
