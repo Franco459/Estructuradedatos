@@ -47,7 +47,8 @@ public class PT5 {
             }
             libros.add(createNewLibro(titleName, author, editorial, yearOfRelease, price));
             System.out.println(libros.toString());
-            if (!Helper.continueProgram()) break;
+            String showMsg = "Desea agregar/generar otro libro?";
+            if (!Helper.continueProgram(showMsg)) break;
         }
         /*luego el usuario podrá indicar un autor o una editorial y el programa
 deberá mostrar los libros cuyo autor o editorial correspondan a los indicados. */
@@ -123,18 +124,18 @@ deberá mostrar los libros cuyo autor o editorial correspondan a los indicados. 
 
     private static float verifyPrice(boolean manual) {
        while(true){
-        try{
-            String inputMsg = "Ingrese el precio del libro";
-            float rtnPrice;
-            if (manual) rtnPrice = Helper.getFloat(inputMsg);
-            else rtnPrice = Helper.generateRandomFloatInRange(1, 100000);
-            //forzar error en caso de no cumplir la condicion
-            if (rtnPrice <= 0) Integer.parseInt("a");
-            return rtnPrice;
-        }
-        catch(Exception e){
-            System.out.println("El numero ingresado debe ser mayor que 0");
-        }
+            try{
+                String inputMsg = "Ingrese el precio del libro\n";
+                float rtnPrice;
+                if (manual) rtnPrice = Helper.getFloat(inputMsg);
+                else rtnPrice = Helper.generateRandomFloatInRange(1, 100000);
+                //forzar error en caso de no cumplir la condicion
+                if (rtnPrice <= 0) Integer.parseInt("a");
+                return rtnPrice;
+            }
+            catch(Exception e){
+                System.out.println("El numero ingresado debe ser mayor que 0");
+            }
        }
     }
 
