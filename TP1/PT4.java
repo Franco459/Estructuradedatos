@@ -98,8 +98,9 @@ public class PT4 {
     }
 
     private static boolean stopProgram(int itemsC) {
-        System.out.println("Cantidad de items generados hasta el momento: " + itemsC);
-        return  (Helper.continueProgram())? false : true;
+        System.out.println("Cantidad de items generados y almacenados hasta el momento: " + itemsC);
+        String showMsg = "Desea generar y almacenar mas items?";
+        return  (Helper.continueProgram(showMsg))? false : true;
     }
     
 }
