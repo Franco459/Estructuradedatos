@@ -25,7 +25,7 @@ public class LibroMod {
         @Override
         public String toString() {
             String genre = (getLiteraryGenre() == 'd')? "dramático" : (getLiteraryGenre() == 'l')? "lirico" : "narrativo";
-            return "** Titulo de libro: " + title + " **\n[Autor: " + authors + ", editorial/es: " + editorial + ", año de lanzamiento: " + yearOfRelease + ", precio: " + price 
+            return "** Titulo de libro: " + title + " **\n[Autor/es: " + authors + ", editorial: " + editorial + ", año de lanzamiento: " + yearOfRelease + ", precio: " + price 
             + ", genero: " + genre +"]\n";
         }
         /***************/
