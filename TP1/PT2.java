@@ -16,22 +16,116 @@ El ejercicio debe implementar un mecanismo para seleccionar el ingreso de valore
 generados aleatoriamente.
  */
 package TP1;
+
 /**
  *
  * @author FrancoGP
  */
 public class PT2 {
     public static void main(String[] args) {
-        int[] allNumsArray;
-        int[] overNumArray;
-        int[] lowerNumArray;
+        int[] allNumbsArray;
+        int[] upperNumberArray;
+        int[] lowerNumberArray;
         String msg = "Ingrese tamaño deseado del arreglo";
         int arraySize = Helper.forcePositiveIntEnter(msg);
         msg = "---------------MENU--------------- \n"
         +    "1- Ingresar valores manuales \n"
         +    "2- Ingresar valores aleatorios ";
         int option = Helper.menuTwoOptions(msg);
-        allNumsArray = new int[arraySize];
+        allNumbsArray = new int[arraySize];
+        switch(option){
+            case 1:
+                for(int i = 0; i < arraySize; i++){
+                    int numberSelected = getCorrectNumber(true);
+                    allNumbsArray[i] = numberSelected; 
+                }
+            break;
+            case 2:
+                for(int i = 0; i < arraySize; i++){
+                    int numberSelected = getCorrectNumber(false);
+                    allNumbsArray[i] = numberSelected; 
+                }
+            break;
+        }
+        //TODO :  Mostrar el array generado o ingresado manualmente arriba en el switch
+        //showArraySelected(allNumbsArray);
+        msg = "Ingrese numero X para separar un arreglo con valores mayores a este.";
+        int xNumber = Helper.forcePositiveIntEnter(msg);
+        upperNumberArray = splitArrays(xNumber, true, allNumbsArray);
+        msg = "Ingrese numero Y para separar un arreglo con valores menores a este.";
+        int yNumber = Helper.forcePositiveIntEnter(msg);
+        lowerNumberArray = splitArrays(yNumber, false, allNumbsArray);
+        //TODO :  Mostrar los array generados upper y lower
+        //showArraySelected(upperNumberArray, msg);
+        //showArraySelected(lowerNumberArray, msg);
+        upperNumberArray = reverseArray(upperNumberArray);
+        lowerNumberArray = reverseArray(lowerNumberArray);
+        //TODO :  Mostrar los array revertidos upper y lower
+        //showArraySelected(upperNumberArray, msg);
+        //showArraySelected(lowerNumberArray, msg);
+
+    }
+
+    ////////////////////////METHODS//////////////////////////////
+
+    private static int[] reverseArray(int[] selectedArray) {
+        int size = selectedArray.length;
+        int[] auxArray = new int[size];
+        int position = 0;
+        for(int i = size-1; i >= 0; i--){
+            auxArray[position] = selectedArray[i];
+            position++;
+        }
+        return auxArray;
+    }
+
+    private static int[] splitArrays(int conditionalNumber, boolean createUpper, int[] allNumbsArray) {
+        //createUpper es para saber si comparar con el signo de mayor que o menor que
+        int size = allNumbsArray.length, position = 0;
+        int[] auxArray = new int[size];
+        for(int i = 0; i < size; i++){
+
+            if(createUpper && allNumbsArray[i] > conditionalNumber){
+                auxArray[position] = allNumbsArray[i];
+                position++;
+            }
+            else if (allNumbsArray[i] < conditionalNumber) {
+                auxArray[position] = allNumbsArray[i];
+                position++;
+            }
+        }
+        return auxArray;
+    }
+
+    private static int getCorrectNumber(boolean isManual) {
+        String showMsg = "Ingrese un numero: ";
+        int selectedValue;
+        while(true){
+            try {
+                if (isManual) selectedValue = Helper.forcePositiveIntEnter(showMsg);
+                else selectedValue = Helper.randomIntGenerator(1, 99);
+                if (isPrimo(selectedValue)) return selectedValue; 
+                else if (isManual) Integer.parseInt("s"); //forzar error para mostrar mensaje y pedir de nuevo ingreso
+            } catch (Exception e) {
+                System.out.println("El numero ingresado NO es primo. Cargará de nuevo un valor.");
+            }
+        }
+    }
+
+    private static boolean isPrimo(int value) {
+        if (value == 1 || value == 4) return false;
+        for (int i = 2 ; i < value; i++){
+            if (value % i == 0){
+                return false;
+            }
+        }
+        return true;
+    }
+}
+    ////////////////////////METHODS//////////////////////////////
+/*
+
+allNumsArray = new int[arraySize];
         switch (option){
             case 1:
                 for (int i = 0; i < arraySize; i++){
@@ -50,10 +144,7 @@ public class PT2 {
             break;
             case 2:
             break;
-        }
-    }
-    ////////////////////////METHODS//////////////////////////////
-
+////////////////////////////////////////////////////////////////////////////////////////////////////////
     private static int[] createLowerUpperNumberArray(int number, int[] allNumsArray, boolean isLower) {
         int[] aux = new int[allNumsArray.length];
         int j = 0;
@@ -97,6 +188,6 @@ public class PT2 {
             catch(Exception e){
                 System.out.println("Debe ser un numero ENTERO POSITIVO mayor que 0.\n Volverá a cargar el numero para verificar");
             }
-        }
+        } 
     }
-}
+}*/
