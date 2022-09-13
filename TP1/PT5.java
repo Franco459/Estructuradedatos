@@ -52,10 +52,25 @@ public class PT5 {
         }
         /*luego el usuario podrá indicar un autor o una editorial y el programa
 deberá mostrar los libros cuyo autor o editorial correspondan a los indicados. */
-        msg = "---------------MENU--------------- \n"
+        
+        /*Además, se deberá informar
+        la cantidad de libros guardados que tienen un precio menor a un valor X dado. */
+        searchMenuAndAction(libros);
+
+
+        showAmountLowerPrice(libros);
+    }
+
+
+    
+    ////////////////////////METHODS//////////////////////////////
+
+
+    private static void searchMenuAndAction(ArrayList<Libro> libros){
+        String msg = "---------------MENU--------------- \n"
         +    "1- Buscar libros por editorial \n"
         +    "2- Buscar libros por autor ";
-        option = Helper.menuTwoOptions(msg);
+        int option = Helper.menuTwoOptions(msg);
         switch(option){
             case 1:
                 String editorialSearch = verifyName(3);
@@ -66,16 +81,8 @@ deberá mostrar los libros cuyo autor o editorial correspondan a los indicados. 
                 searchBySelectedOption(libros, authorSearch, true);
             break;
         }
-        /*Además, se deberá informar
-        la cantidad de libros guardados que tienen un precio menor a un valor X dado. */
-        showAmountLowerPrice(libros);
     }
-
-
     
-    ////////////////////////METHODS//////////////////////////////
-
-
     private static void showAmountLowerPrice(ArrayList<Libro> libros) {
         int count = 0;
         System.out.println("****Busqueda de libro por precio menor.****");
