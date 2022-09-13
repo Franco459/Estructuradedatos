@@ -85,7 +85,7 @@ deberá mostrar los libros cuyo autor o editorial correspondan a los indicados. 
 
     private static void showAmountLowerPrice(ArrayList<Libro> libros) {
         int count = 0;
-        System.out.println("****Busqueda de libro por precio menor.****");
+        System.out.println("****Busqueda de libro por precio menor a:****");
         float priceSelected = verifyPrice(true);
         for (Libro eachLibro : libros) {
             if(eachLibro.getPrice() < (priceSelected)) count+=1;
@@ -152,14 +152,29 @@ deberá mostrar los libros cuyo autor o editorial correspondan a los indicados. 
     }
 
     private static String verifyName(int op) {
-        String msg = "";
+        String msg = "", nameInput;
 
         switch (op){
             case 1: msg = "Ingrese nombre del titulo.";break;
             case 2: msg = "Ingrese nombre del autor.";break;
             case 3: msg = "Ingrese nombre de la editorial.";break;
         }
-        String nameInput = Helper.getValidsString(msg);
+        if (op == 2){
+            while(true){
+                try {
+                    nameInput = Helper.getValidsString(msg);
+                    for(int i = 0; i<nameInput.length(); i++){
+                        //forzar error
+                        if(Character.isDigit(nameInput.charAt(i))) Integer.parseInt("s");
+                        break;
+                    }
+                } catch (Exception e) {
+                    System.out.println("El nombre de autor NO puede contener numeros.");
+                }
+            }
+            
+        }
+        else nameInput = Helper.getValidsString(msg);
         return nameInput;
     }
     
