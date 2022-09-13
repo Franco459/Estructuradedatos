@@ -47,7 +47,7 @@ public class PT5 {
             }
             libros.add(createNewLibro(titleName, author, editorial, yearOfRelease, price));
             System.out.println(libros.toString());
-            String showMsg = "Desea agregar/generar otro libro?";
+            String showMsg = "Desea agregar/generar otro libro? (S/s || N/n)";
             if (!Helper.continueProgram(showMsg)) break;
         }
         /*luego el usuario podrá indicar un autor o una editorial y el programa
@@ -82,7 +82,7 @@ deberá mostrar los libros cuyo autor o editorial correspondan a los indicados. 
             break;
         }
     }
-    
+
     private static void showAmountLowerPrice(ArrayList<Libro> libros) {
         int count = 0;
         System.out.println("****Busqueda de libro por precio menor.****");
