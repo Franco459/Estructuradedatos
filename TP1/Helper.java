@@ -214,18 +214,18 @@ public class Helper {
     }
 
     //recibe todos los parametros y hace la eleccion de que mensaje mostrar dependiendo del arreglo y su contenido
-    private static String showArraySignature(int[] selectedArray, String previousMsg, String emptyArray) {
+    private static String showArraySignature(int[] selectedArray, String previousMsg, String errorEmptyArray) {
         String arrayMsg = "[" + selectedArray[0];
-        Boolean isEmpty = true;
+        Boolean varIsEmpty = true;
         //Un solo recorrido para saber si esta vacio y si no lo está que vaya concatenando para el retorno final del metodo
         for (int i = 1; i < selectedArray.length; i ++) {
             if (selectedArray[i] != 0){
-                if(isEmpty) isEmpty = false;
+                if(varIsEmpty) varIsEmpty = false;
                 arrayMsg += ", " + selectedArray[i];
             }
         }
         
-        if(!isEmpty) return (previousMsg + arrayMsg + "]");
-        else return emptyArray;
+        if(!varIsEmpty) return (previousMsg + arrayMsg + "]");
+        else return errorEmptyArray;
     }
 }
