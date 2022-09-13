@@ -50,21 +50,21 @@ public class PT2 {
         //TODO :  Mostrar el array generado o ingresado manualmente arriba en el switch
         System.out.println(Helper.showArraySignature(allNumbsArray));
         
+
         msg = "Ingrese numero X para separar un arreglo con valores mayores a este.";
         int xNumber = Helper.forcePositiveIntEnter(msg);
         upperNumberArray = splitArrays(xNumber, true, allNumbsArray);
+
         msg = "Ingrese numero Y para separar un arreglo con valores menores a este.";
         int yNumber = Helper.forcePositiveIntEnter(msg);
         lowerNumberArray = splitArrays(yNumber, false, allNumbsArray);
 
-        //TODO :  Mostrar los array generados upper y lower
-        System.out.println("Arreglo generado con valores mayores a " + xNumber);       
-        System.out.println(Helper.showArraySignature(upperNumberArray));    
-        System.out.println("Arreglo generado con valores menores a " + yNumber);
-        Helper.showArraySignature(lowerNumberArray);
+        //TODO :  Mostrar los array generados upper y lower ,lowerNumberArray
+        showUpperAndLowerArrays(xNumber, true, upperNumberArray);
+        showUpperAndLowerArrays(yNumber, false, lowerNumberArray);
 
         System.out.println("***Mostrando arreglos revertidos***");
-        System.out.println(upperNumberArray = reverseArray(upperNumberArray));
+        upperNumberArray = reverseArray(upperNumberArray);
         lowerNumberArray = reverseArray(lowerNumberArray);
         //TODO :  Mostrar los array revertidos upper y lower
         System.out.println(Helper.showArraySignature(upperNumberArray));    
@@ -72,14 +72,21 @@ public class PT2 {
     }
 
     ////////////////////////METHODS//////////////////////////////
-
+    private static void showUpperAndLowerArrays(int number, Boolean isUpper, int[] selectedArray){
+        if (isUpper) System.out.println("Arreglo generado con valores MAYORES a " + number);
+        else System.out.println("Arreglo generado con valores MENORES a " + number);
+        System.out.println(Helper.showArraySignature(selectedArray));
+    }
+    
     private static int[] reverseArray(int[] selectedArray) {
         int size = selectedArray.length;
         int[] auxArray = new int[size];
         int position = 0;
         for(int i = size-1; i >= 0; i--){
-            auxArray[position] = selectedArray[i];
-            position++;
+            if (selectedArray[i] != 0){
+                auxArray[position] = selectedArray[i];
+                position++;
+            }
         }
         return auxArray;
     }
@@ -90,11 +97,7 @@ public class PT2 {
         int[] auxArray = new int[size];
         for(int i = 0; i < size; i++){
 
-            if(createUpper && allNumbsArray[i] > conditionalNumber){
-                auxArray[position] = allNumbsArray[i];
-                position++;
-            }
-            else if (allNumbsArray[i] < conditionalNumber) {
+            if(createUpper && allNumbsArray[i] > conditionalNumber || !createUpper && allNumbsArray[i] < conditionalNumber){
                 auxArray[position] = allNumbsArray[i];
                 position++;
             }
