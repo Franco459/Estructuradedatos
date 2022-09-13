@@ -78,6 +78,7 @@ deberá mostrar los libros cuyo autor o editorial correspondan a los indicados. 
 
     private static void showAmountLowerPrice(ArrayList<Libro> libros) {
         int count = 0;
+        System.out.println("****Busqueda de libro por precio menor.****");
         float priceSelected = verifyPrice(true);
         for (Libro eachLibro : libros) {
             if(eachLibro.getPrice() < (priceSelected)) count+=1;
