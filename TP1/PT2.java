@@ -35,10 +35,15 @@ public class PT2 {
         int option = Helper.menuTwoOptions(msg);
         allNumbsArray = new int[arraySize];
         for(int i = 0; i < arraySize; i++){
-            if (option == 1)  numberSelected = getCorrectNumber(true); 
-            else  numberSelected = getCorrectNumber(false);
+            if (option == 1) {
+                numberSelected = getCorrectNumber(true);
+            } 
+            else{  
+                numberSelected = getCorrectNumber(false);
+            } 
             allNumbsArray[i] = numberSelected;
         }
+
         //Mostrar arreglo general
         callSignatureShowArray(allNumbsArray);
         
@@ -56,14 +61,16 @@ public class PT2 {
         showUpperAndLowerArrays(yNumber, false, lowerNumberArray);
 
         //Zona arreglos reveritods
-        System.out.println("***Mostrando arreglos revertidos***");
         upperNumberArray = reverseArray(upperNumberArray);
         lowerNumberArray = reverseArray(lowerNumberArray);
-        callSignatureShowArray(upperNumberArray);    
-        callSignatureShowArray(lowerNumberArray);
+        System.out.println("***Mostrando arreglos revertidos***");
+        showUpperAndLowerArrays(xNumber, true, upperNumberArray);
+        showUpperAndLowerArrays(yNumber, false, lowerNumberArray);
     }
 
     ////////////////////////METHODS//////////////////////////////
+
+
     private static void callSignatureShowArray(int[] selectedArray){
         System.out.println(Helper.showArraySignature(selectedArray));
     }
@@ -93,8 +100,7 @@ public class PT2 {
         int size = allNumbsArray.length, position = 0;
         int[] auxArray = new int[size];
         for(int i = 0; i < size; i++){
-
-            if(createUpper && allNumbsArray[i] > conditionalNumber || !createUpper && allNumbsArray[i] < conditionalNumber){
+            if((createUpper && allNumbsArray[i] > conditionalNumber) || (!createUpper && allNumbsArray[i] < conditionalNumber)){
                 auxArray[position] = allNumbsArray[i];
                 position++;
             }

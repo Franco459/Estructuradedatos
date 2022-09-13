@@ -163,11 +163,11 @@ deberá mostrar los libros cuyo autor o editorial correspondan a los indicados. 
             while(true){
                 try {
                     nameInput = Helper.getValidsString(msg);
-                    for(int i = 0; i<nameInput.length(); i++){
+                    for(int i = 0; i < nameInput.length(); i++){
                         //forzar error
                         if(Character.isDigit(nameInput.charAt(i))) Integer.parseInt("s");
-                        break;
                     }
+                    break;
                 } catch (Exception e) {
                     System.out.println("El nombre de autor NO puede contener numeros.");
                 }
