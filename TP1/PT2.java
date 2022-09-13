@@ -23,6 +23,7 @@ package TP1;
  */
 public class PT2 {
     public static void main(String[] args) {
+        int numberSelected = 0;
         int[] allNumbsArray;
         int[] upperNumberArray;
         int[] lowerNumberArray;
@@ -33,22 +34,13 @@ public class PT2 {
         +    "2- Ingresar valores aleatorios ";
         int option = Helper.menuTwoOptions(msg);
         allNumbsArray = new int[arraySize];
-        switch(option){
-            case 1:
-                for(int i = 0; i < arraySize; i++){
-                    int numberSelected = getCorrectNumber(true);
-                    allNumbsArray[i] = numberSelected; 
-                }
-            break;
-            case 2:
-                for(int i = 0; i < arraySize; i++){
-                    int numberSelected = getCorrectNumber(false);
-                    allNumbsArray[i] = numberSelected; 
-                }
-            break;
+        for(int i = 0; i < arraySize; i++){
+            if (option == 1)  numberSelected = getCorrectNumber(true); 
+            else  numberSelected = getCorrectNumber(false);
+            allNumbsArray[i] = numberSelected;
         }
         //Mostrar arreglo general
-        System.out.println(Helper.showArraySignature(allNumbsArray));
+        callSignatureShowArray(allNumbsArray);
         
         //Zona dividir arreglos
         msg = "Ingrese numero X para separar un arreglo con valores mayores a este.";
@@ -67,15 +59,20 @@ public class PT2 {
         System.out.println("***Mostrando arreglos revertidos***");
         upperNumberArray = reverseArray(upperNumberArray);
         lowerNumberArray = reverseArray(lowerNumberArray);
-        System.out.println(Helper.showArraySignature(upperNumberArray));    
-        System.out.println(Helper.showArraySignature(lowerNumberArray));
+        callSignatureShowArray(upperNumberArray);    
+        callSignatureShowArray(lowerNumberArray);
     }
 
     ////////////////////////METHODS//////////////////////////////
+    private static void callSignatureShowArray(int[] selectedArray){
+        System.out.println(Helper.showArraySignature(selectedArray));
+    }
+
+
     private static void showUpperAndLowerArrays(int number, Boolean isUpper, int[] selectedArray){
         if (isUpper) System.out.println("Arreglo generado con valores MAYORES a " + number);
         else System.out.println("Arreglo generado con valores MENORES a " + number);
-        System.out.println(Helper.showArraySignature(selectedArray));
+        callSignatureShowArray(selectedArray);
     }
     
     private static int[] reverseArray(int[] selectedArray) {
