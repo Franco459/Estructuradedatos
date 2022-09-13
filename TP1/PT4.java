@@ -38,8 +38,8 @@ public class PT4 {
 
     private static void showOverRatio(ArrayList<Integer> fibonacciArray, double ratio) {
         ArrayList<Integer> auxArray = new ArrayList<>();
-        for (Integer in : fibonacciArray) {
-            if (in > ratio) auxArray.add(in);
+        for (Integer intFibonacciArr : fibonacciArray) {
+            if (intFibonacciArr > ratio) auxArray.add(intFibonacciArr);
         }
         String msg = "Mostrando elementos mayores a la media: " + ratio;
         Helper.printArrayList(auxArray, msg);
@@ -71,14 +71,14 @@ public class PT4 {
 
     private static ArrayList<Integer> fibonacciMethod() {
         ArrayList<Integer> auxArray = new ArrayList<>();
-        int itemCount = 2, first, second;
+        int itemCount = 2, firstItem, secondItem;
 
         auxArray = initializeArray();
         while (true){
             if (stopProgram(itemCount)) break;
-            first = auxArray.get(itemCount-1);
-            second = auxArray.get(itemCount-2);
-            auxArray.add(first + second);
+            firstItem = auxArray.get(itemCount-1);
+            secondItem = auxArray.get(itemCount-2);
+            auxArray.add(firstItem + secondItem);
             itemCount++;
             
             String msg = "Mostrando elementos generados hasta el momento";
@@ -90,10 +90,10 @@ public class PT4 {
 
     private static ArrayList<Integer> initializeArray() {
         ArrayList<Integer> toInitialize = new ArrayList<>();
-        int first = 0, second = 1;
-        toInitialize.add(first);
-        toInitialize.add(second);
-        System.out.println("Array inicializado con los elementos " + first +", " + second);
+        int firstFibonacciNumb = 0, secondFibonacciNumb = 1;
+        toInitialize.add(firstFibonacciNumb);
+        toInitialize.add(secondFibonacciNumb);
+        System.out.println("Array inicializado con los elementos " + firstFibonacciNumb +", " + secondFibonacciNumb);
         return toInitialize;
     }
 

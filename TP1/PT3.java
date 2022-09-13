@@ -21,7 +21,7 @@ public class PT3 {
     public static void main(String[] args) {
         
         int row, column, selectedRow = 0, selectedColumn = 0, resultOfAction = 0;
-        int[][] matrix, transMatrix;
+        int[][] matrix, transposedMatrix;
         String msg = "Ingrese cantidad de filas", textBefore, textAfter;
         row = Helper.forcePositiveIntEnter(msg);
         msg = "Ingrese cantidad de columnas";
@@ -42,13 +42,13 @@ public class PT3 {
             break;
         }
         
-        transMatrix = createTransposedMatrix(matrix, row, column);
+        transposedMatrix = createTransposedMatrix(matrix, row, column);
         textBefore = "****MOSTRANDO MATRIZ COMUN****\n";
         textAfter = "\n*******************************\n";
         Helper.printTwoDimensionArray(textBefore, matrix, textAfter);
         textBefore = "****MOSTRANDO MATRIZ TRANSPUESTA****\n";
         textAfter = "\n*******************************\n";
-        Helper.printTwoDimensionArray(textBefore, transMatrix, textAfter);
+        Helper.printTwoDimensionArray(textBefore, transposedMatrix, textAfter);
         while (true){
         int optionOne = actionMenu();
         int optionTwo = matrixMenu();
@@ -59,12 +59,12 @@ public class PT3 {
                 switch(optionTwo){
                     case 1:
                     
-                        selectedColumn = selectRowOrColumn(transMatrix.length, msg);
+                        selectedColumn = selectRowOrColumn(transposedMatrix.length, msg);
                         resultOfAction = multiplyInArray(matrix, selectedColumn, row, true);
                     break;
                     case 2:
                         selectedColumn = selectRowOrColumn(matrix.length, msg);
-                        resultOfAction = multiplyInArray(transMatrix, selectedColumn, column, true);
+                        resultOfAction = multiplyInArray(transposedMatrix, selectedColumn, column, true);
                     break;
                 }
             break;
@@ -76,8 +76,8 @@ public class PT3 {
                         resultOfAction = multiplyInArray(matrix, selectedRow, column, false);
                     break;
                     case 2:
-                        selectedRow = selectRowOrColumn(transMatrix.length, msg);
-                        resultOfAction = multiplyInArray(transMatrix, selectedRow, row, false);
+                        selectedRow = selectRowOrColumn(transposedMatrix.length, msg);
+                        resultOfAction = multiplyInArray(transposedMatrix, selectedRow, row, false);
                     break;
                 }
             break;
@@ -104,13 +104,13 @@ public class PT3 {
     }
 
     private static int multiplyInArray(int[][] selectedMatrix, int selectedRowOrCol, int colOrRow, boolean isAdition) {
-        int prod = 1;
-        int sum = 0;
+        int productRes = 1;
+        int additionRes = 0;
         for (int i = 0; i < colOrRow; i++){
-            if (!isAdition) prod *= selectedMatrix[selectedRowOrCol-1][i];
-            else sum += selectedMatrix[i][selectedRowOrCol-1];
+            if (!isAdition) productRes *= selectedMatrix[selectedRowOrCol-1][i];
+            else additionRes += selectedMatrix[i][selectedRowOrCol-1];
         }
-        return (sum == 0)? prod : sum;
+        return (additionRes == 0)? productRes : additionRes;
     }
 
     private static int[][] createTransposedMatrix(int[][] matrix, int row, int column) {

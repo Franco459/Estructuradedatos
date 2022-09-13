@@ -67,10 +67,10 @@ public class PT6 {
         while (true){
             try {
                 String showMsg = "Cuantos libros desea que se muestren: ";
-                int amount = Helper.forcePositiveIntEnter(showMsg);
-                if(libros.size() < amount) Integer.parseInt("s");
+                int amountInput = Helper.forcePositiveIntEnter(showMsg);
+                if(libros.size() < amountInput) Integer.parseInt("s");
                 else {
-                    for(int i = 0; i < amount; i++){
+                    for(int i = 0; i < amountInput; i++){
                         System.out.println(libros.get(i).toString());
                     }
                 }
@@ -105,7 +105,7 @@ public class PT6 {
                     genreChar = Character.toLowerCase( Helper.randomCharGenerator());
                 }
                 if (genreChar == ('d') || genreChar == ('l') || genreChar == ('n' )) return genreChar;
-                Integer.parseInt("s"); //forzar error para conseguir resultado esperado
+                Integer.parseInt("s"); //forzar error para mostrar mensaje de catch al no conseguir resultado esperado
             }
             catch(Exception e){
                 if (isManual) System.out.println("El genero ingresado no es valido.");
@@ -127,17 +127,17 @@ public class PT6 {
             case 2: msg = "Ingrese nombre del autor.";break;
             case 3: msg = "Ingrese nombre de la editorial.";break;
         }
-        String name = Helper.getValidsString(msg);
-        return name;
+        String nameInput = Helper.getValidsString(msg);
+        return nameInput;
     }
 
     private static int verifyYear() {
         while(true){
             try{
                 String inputMsg = "Ingrese el año de lanzamiento";
-                int year = Helper.forceInteger(inputMsg);
-                if (year < 1799 || year > 2022) Integer.parseInt("s"); 
-                return year;
+                int yearInput = Helper.forceInteger(inputMsg);
+                if (yearInput < 1799 || yearInput > 2022) Integer.parseInt("s"); 
+                return yearInput;
             }
             catch(Exception e){
                 System.out.println("El valor del año ingresado permitido es entre 1900 y 2022 incluidos.");
@@ -149,12 +149,12 @@ public class PT6 {
         while(true){
              try{
                  String inputMsg = "Ingrese el precio del libro\n";
-                 float rtnPrice;
-                 if (manual) rtnPrice = Helper.getFloat(inputMsg);
-                 else rtnPrice = Helper.generateRandomFloatInRange(1, 100000);
+                 float rtrnPrice;
+                 if (manual) rtrnPrice = Helper.getFloat(inputMsg);
+                 else rtrnPrice = Helper.generateRandomFloatInRange(1, 100000);
                  //forzar error en caso de no cumplir la condicion
-                 if (rtnPrice <= 0) Integer.parseInt("a");
-                 return rtnPrice;
+                 if (rtrnPrice <= 0) Integer.parseInt("a");
+                 return rtrnPrice;
              }
              catch(Exception e){
                  System.out.println("El numero ingresado debe ser mayor que 0");

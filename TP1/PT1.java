@@ -163,13 +163,13 @@ public class PT1 {
         if(isManual) num = forceValidNumber(msg);
         else num = Helper.randomIntGenerator(2, 99);
         while (true){
-            int divSum = 0;
+            int sumOfDiv = 0;
             for (int i = 1; i < num; i++){
                 if(num % i == 0){
-                    divSum += i;
+                    sumOfDiv += i;
                 }
             }
-            if ( divSum < num ) return num;
+            if ( sumOfDiv < num ) return num;
             else{
                 if(isManual){
                     System.out.println("El numero ingresado no es DEFICIENTE.\n Volverá a cargar el numero para verificar");

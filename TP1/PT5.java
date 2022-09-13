@@ -126,12 +126,12 @@ deberá mostrar los libros cuyo autor o editorial correspondan a los indicados. 
        while(true){
             try{
                 String inputMsg = "Ingrese el precio del libro\n";
-                float rtnPrice;
-                if (manual) rtnPrice = Helper.getFloat(inputMsg);
-                else rtnPrice = Helper.generateRandomFloatInRange(1, 100000);
+                float rtrnPrice;
+                if (manual) rtrnPrice = Helper.getFloat(inputMsg);
+                else rtrnPrice = Helper.generateRandomFloatInRange(1, 100000);
                 //forzar error en caso de no cumplir la condicion
-                if (rtnPrice <= 0) Integer.parseInt("a");
-                return rtnPrice;
+                if (rtrnPrice <= 0) Integer.parseInt("a");
+                return rtrnPrice;
             }
             catch(Exception e){
                 System.out.println("El numero ingresado debe ser mayor que 0");
@@ -143,9 +143,9 @@ deberá mostrar los libros cuyo autor o editorial correspondan a los indicados. 
         while(true){
             try{
                 String inputMsg = "Ingrese el año de lanzamiento";
-                int year = Helper.forceInteger(inputMsg);
-                if (year < 1799 || year > 2022) Integer.parseInt("s"); 
-                return year;
+                int yearInput = Helper.forceInteger(inputMsg);
+                if (yearInput < 1799 || yearInput > 2022) Integer.parseInt("s"); 
+                return yearInput;
             }
             catch(Exception e){
                 System.out.println("El valor del año ingresado permitido es entre 1900 y 2022 incluidos.");
@@ -161,8 +161,8 @@ deberá mostrar los libros cuyo autor o editorial correspondan a los indicados. 
             case 2: msg = "Ingrese nombre del autor.";break;
             case 3: msg = "Ingrese nombre de la editorial.";break;
         }
-        String name = Helper.getValidsString(msg);
-        return name;
+        String nameInput = Helper.getValidsString(msg);
+        return nameInput;
     }
     
 }
