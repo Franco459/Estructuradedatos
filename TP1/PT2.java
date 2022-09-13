@@ -47,10 +47,10 @@ public class PT2 {
                 }
             break;
         }
-        //TODO :  Mostrar el array generado o ingresado manualmente arriba en el switch
+        //Mostrar arreglo general
         System.out.println(Helper.showArraySignature(allNumbsArray));
         
-
+        //Zona dividir arreglos
         msg = "Ingrese numero X para separar un arreglo con valores mayores a este.";
         int xNumber = Helper.forcePositiveIntEnter(msg);
         upperNumberArray = splitArrays(xNumber, true, allNumbsArray);
@@ -59,14 +59,14 @@ public class PT2 {
         int yNumber = Helper.forcePositiveIntEnter(msg);
         lowerNumberArray = splitArrays(yNumber, false, allNumbsArray);
 
-        //TODO :  Mostrar los array generados upper y lower ,lowerNumberArray
+        
         showUpperAndLowerArrays(xNumber, true, upperNumberArray);
         showUpperAndLowerArrays(yNumber, false, lowerNumberArray);
 
+        //Zona arreglos reveritods
         System.out.println("***Mostrando arreglos revertidos***");
         upperNumberArray = reverseArray(upperNumberArray);
         lowerNumberArray = reverseArray(lowerNumberArray);
-        //TODO :  Mostrar los array revertidos upper y lower
         System.out.println(Helper.showArraySignature(upperNumberArray));    
         System.out.println(Helper.showArraySignature(lowerNumberArray));
     }
