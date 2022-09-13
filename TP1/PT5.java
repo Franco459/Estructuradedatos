@@ -59,11 +59,11 @@ deberá mostrar los libros cuyo autor o editorial correspondan a los indicados. 
         switch(option){
             case 1:
                 String editorialSearch = verifyName(3);
-                searchByEditorial(libros, editorialSearch);
+                searchBySelectedOption(libros, editorialSearch, false);
             break;
             case 2:
                 String authorSearch = verifyName(2);
-                searchByAuthor(libros, authorSearch);
+                searchBySelectedOption(libros, authorSearch, true);
             break;
         }
         /*Además, se deberá informar
@@ -86,31 +86,21 @@ deberá mostrar los libros cuyo autor o editorial correspondan a los indicados. 
         else System.out.println("La cantidad de libros menores al precio ingresado (" + priceSelected + ") son: " + count);
     }
 
-
-
-    private static void searchByAuthor(ArrayList<Libro> libros, String authorSearch) {
+///
+    private static void searchBySelectedOption(ArrayList<Libro> libros, String nameToFind, boolean isAuthorSelected){
         boolean found = false;
         for (Libro eachLibro : libros) {
-            if(eachLibro.getAuthor().equalsIgnoreCase(authorSearch)) {
-                found = true;
-                System.out.println(eachLibro.toString());   
+            if(isAuthorSelected && eachLibro.getAuthor().equalsIgnoreCase(nameToFind) || !isAuthorSelected && eachLibro.getEditorial().equalsIgnoreCase(nameToFind)){
+                    found = true;
+                    System.out.println(eachLibro.toString());   
             }
         }
-        if(!found) System.out.println("No se han encontrado libros con el autor elegido.");
+        if(!found && isAuthorSelected) System.out.println("No se han encontrado libros con el autor elegido.");
+        if (!found && !isAuthorSelected) System.out.println("No se han encontrado libros con la editorial elegida.");
     }
+///
 
-
-
-    private static void searchByEditorial(ArrayList<Libro> libros, String editorialSearch) {
-        boolean found = false;
-        for (Libro eachLibro : libros) {
-            if(eachLibro.getEditorial().equalsIgnoreCase(editorialSearch)) {
-                found = true;
-                System.out.println(eachLibro.toString());   
-            }
-        }
-        if(!found) System.out.println("No se han encontrado libros con la editorial elegida.");
-    }
+    
 
 
 
