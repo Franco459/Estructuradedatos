@@ -1,6 +1,5 @@
 package TP1;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
@@ -200,5 +199,33 @@ public class Helper {
     public static char randomCharGenerator() {
         char c = (char)(rnd.nextInt(26) + 'a');
         return c;
+    }
+
+    ///////////////////////////signature show array///////////////////////////
+
+    //se recibe solamente el array y se manda mensaje previo
+    public static String showArraySignature(int[] selectedArray){
+        return showArraySignature(selectedArray, "Mostrando los datos del arreglo: \n");
+    }
+
+    //se recibe el array y el mensaje previo, se crea un posible mensaje de error para mostrar
+    private static String showArraySignature(int[] selectedArray, String previousMsg) {
+        return showArraySignature(selectedArray, previousMsg, "****El arreglo esta vacio****");
+    }
+
+    //recibe todos los parametros y hace la eleccion de que mensaje mostrar dependiendo del arreglo y su contenido
+    private static String showArraySignature(int[] selectedArray, String previousMsg, String emptyArray) {
+        String arrayMsg = "[" + selectedArray[0];
+        Boolean isEmpty = true;
+        //Un solo recorrido para saber si esta vacio y si no lo está que vaya concatenando para el retorno final del metodo
+        for (int i = 1; i < selectedArray.length; i ++) {
+            if (selectedArray[i] != 0){
+                if(isEmpty) isEmpty = false;
+                arrayMsg += ", " + selectedArray[i];
+            }
+        }
+        
+        if(!isEmpty) return (previousMsg + arrayMsg + "]");
+        else return emptyArray;
     }
 }
