@@ -20,7 +20,7 @@ public class Libro {
     }
     @Override
     public String toString() {
-        return "** Titulo de libro: "+title+"\n[Autor: "+ author+", editorial: "+editorial+", año de lanzamiento: "+ yearOfRelease+", precio: "+ price+"]\n";
+        return "** Titulo de libro: "+title+"\n[Autor: "+ author+", editorial: "+editorial+", año de lanzamiento: "+ yearOfRelease+", precio: "+ String.format("%.2f", price)+"]\n";
     }
     /***************/
     

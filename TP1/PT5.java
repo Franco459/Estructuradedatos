@@ -50,11 +50,8 @@ public class PT5 {
             String showMsg = "Desea agregar/generar otro libro? (S/s || N/n)";
             if (!Helper.continueProgram(showMsg)) break;
         }
-        /*luego el usuario podrá indicar un autor o una editorial y el programa
-deberá mostrar los libros cuyo autor o editorial correspondan a los indicados. */
+
         
-        /*Además, se deberá informar
-        la cantidad de libros guardados que tienen un precio menor a un valor X dado. */
         searchMenuAndAction(libros);
 
 
@@ -106,10 +103,6 @@ deberá mostrar los libros cuyo autor o editorial correspondan a los indicados. 
         if(!found && isAuthorSelected) System.out.println("No se han encontrado libros con el autor elegido.");
         if (!found && !isAuthorSelected) System.out.println("No se han encontrado libros con la editorial elegida.");
     }
-///
-
-    
-
 
 
     private static Libro createNewLibro(String titleName, String author, String editorial, int yearOfRelease, float price) {
@@ -117,8 +110,6 @@ deberá mostrar los libros cuyo autor o editorial correspondan a los indicados. 
         System.out.println("Se ha generado el libro satisfactoriamente.");
         return newLibro;
     }
-
-
 
     private static float verifyPrice(boolean manual) {
        while(true){
@@ -142,7 +133,7 @@ deberá mostrar los libros cuyo autor o editorial correspondan a los indicados. 
             try{
                 String inputMsg = "Ingrese el año de lanzamiento";
                 int yearInput = Helper.forceInteger(inputMsg);
-                if (yearInput < 1799 || yearInput > 2022) Integer.parseInt("s"); 
+                if (yearInput < 1699 || yearInput > 2022) Integer.parseInt("s"); 
                 return yearInput;
             }
             catch(Exception e){
@@ -155,8 +146,11 @@ deberá mostrar los libros cuyo autor o editorial correspondan a los indicados. 
         String msg = "", nameInput;
 
         switch (op){
+            //titulo puede contener numeros
             case 1: msg = "Ingrese nombre del titulo.";break;
+            //autores NO pueden contener numeros
             case 2: msg = "Ingrese nombre del autor.";break;
+            //editorial puede contener numeros, ejemplo 17grises, edicionsdel1979
             case 3: msg = "Ingrese nombre de la editorial.";break;
         }
         if (op == 2){
