@@ -77,8 +77,8 @@ public class PT2 {
 
 
     private static void showUpperAndLowerArrays(int number, Boolean isUpper, int[] selectedArray){
-        if (isUpper) System.out.println("Arreglo generado con valores MAYORES a " + number);
-        else System.out.println("Arreglo generado con valores MENORES a " + number);
+        if (isUpper) System.out.println("Arreglo generado con valores UNICAMENTE MAYORES a " + number);
+        else System.out.println("Arreglo generado con valores UNICAMENTE MENORES a " + number);
         callSignatureShowArray(selectedArray);
     }
     
