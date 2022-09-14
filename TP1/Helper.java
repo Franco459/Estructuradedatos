@@ -183,8 +183,8 @@ public class Helper {
     // PT5 Y 6
     public static String generateRandomNames(int op){
         String[] authors = {"Luis Borges", "J. K. Rowling", "Julio Cortazar", "Stephen King", "Charles Bukowski"};
-        String[] editorials = {"Mansalva", "Utopía", "The scotts", "For fun", "Dior"};
-        String[] titles = {"Sicko mode", "Harry Potter", "Garfield", "IT", "La maquina de hacer pajaros"};
+        String[] editorials = {"Mansalva", "Utopia", "The scotts", "For fun", "Dior"};
+        String[] titles = {"Sicko mode", "Harry Potter", "Garfield", "IT", "La maquina de humo"};
         if (op == 1) return authors[randomIntGenerator(0, 4)].toString();
         else if (op == 2) return editorials[randomIntGenerator(0, 4)].toString();
         else return titles[randomIntGenerator(0, 4)].toString();
