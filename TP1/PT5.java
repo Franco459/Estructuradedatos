@@ -133,11 +133,11 @@ public class PT5 {
             try{
                 String inputMsg = "Ingrese el año de lanzamiento";
                 int yearInput = Helper.forceInteger(inputMsg);
-                if (yearInput < 1699 || yearInput > 2022) Integer.parseInt("s"); 
+                if (yearInput < 1700 || yearInput > 2022) Integer.parseInt("s"); 
                 return yearInput;
             }
             catch(Exception e){
-                System.out.println("El valor del año ingresado permitido es entre 1900 y 2022 incluidos.");
+                System.out.println("El valor del año ingresado permitido es entre 1700 y 2022 incluidos.");
             }
         }
     }
@@ -154,22 +154,29 @@ public class PT5 {
             case 3: msg = "Ingrese nombre de la editorial.";break;
         }
         if (op == 2){
-            while(true){
-                try {
-                    nameInput = Helper.getValidsString(msg);
-                    for(int i = 0; i < nameInput.length(); i++){
-                        //forzar error
-                        if(Character.isDigit(nameInput.charAt(i))) Integer.parseInt("s");
-                    }
-                    break;
-                } catch (Exception e) {
-                    System.out.println("El nombre de autor NO puede contener numeros.");
-                }
-            }
+           nameInput = verifyNoNumbersString(msg);
             
         }
         else nameInput = Helper.getValidsString(msg);
         return nameInput;
+    }
+
+
+
+    private static String verifyNoNumbersString(String showMsg) {
+        String nameInput;
+        while(true){
+            try {
+                nameInput = Helper.getValidsString(showMsg);
+                for(int i = 0; i < nameInput.length(); i++){
+                    //forzar error
+                    if(Character.isDigit(nameInput.charAt(i))) Integer.parseInt("s");
+                }
+                return nameInput;
+            } catch (Exception e) {
+                System.out.println("El nombre de autor NO puede contener numeros.");
+            }
+        }
     }
     
 }
