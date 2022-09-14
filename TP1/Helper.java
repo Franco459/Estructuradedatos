@@ -148,7 +148,6 @@ public class Helper {
             try {
                 System.out.print(inputMessage);
                 floatValuer = Float.parseFloat(entrada.nextLine());
-                // return BigDecimal.valueOf(d).setScale(decimalPlace,BigDecimal.ROUND_HALF_UP).floatValue();
                 return ((int) ((floatValuer + 0.005f) * 100)) / 100f;
             }
             catch (Exception exception) {
@@ -202,7 +201,7 @@ public class Helper {
     }
 
     ///////////////////////////signature show array///////////////////////////
-    
+
     //se recibe solamente el array y se manda mensaje previo
     public static String showArraySignature(int[] selectedArray){
         return showArraySignature(selectedArray, "Mostrando los datos del arreglo: \n");

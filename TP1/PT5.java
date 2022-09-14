@@ -114,7 +114,7 @@ public class PT5 {
     private static float verifyPrice(boolean manual) {
        while(true){
             try{
-                String inputMsg = "Ingrese el precio del libro\n";
+                String inputMsg = "Ingrese el precio del libro (se redondeará y truncará a 2 decimales el valor ingresado.)\n";
                 float rtrnPrice;
                 if (manual) rtrnPrice = Helper.getFloat(inputMsg);
                 else rtrnPrice = Helper.generateRandomFloatInRange(1, 100000);
