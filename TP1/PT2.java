@@ -63,7 +63,7 @@ public class PT2 {
         //Zona arreglos reveritods
         upperNumberArray = reverseArray(upperNumberArray);
         lowerNumberArray = reverseArray(lowerNumberArray);
-        System.out.println("***Mostrando arreglos revertidos***");
+        System.out.println("-----Mostrando arreglos revertidos----- ");
         showUpperAndLowerArrays(xNumber, true, upperNumberArray);
         showUpperAndLowerArrays(yNumber, false, lowerNumberArray);
     }
