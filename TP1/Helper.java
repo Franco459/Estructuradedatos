@@ -159,10 +159,10 @@ public class Helper {
         return getFloat(entrada, inputMessage, "Ingrese un número válido\n");
     }
     public static Float getFloat(String inputMessage, String errorMessage) {
-        return getFloat(Helper.entrada, inputMessage, errorMessage);
+        return getFloat(entrada, inputMessage, errorMessage);
     }
     public static Float getFloat(String inputMessage) {
-        return getFloat(Helper.entrada, inputMessage, "Ingrese un número válido\n");
+        return getFloat(entrada, inputMessage, "Ingrese un número válido\n");
     }
 
     // PT5 Y 6
