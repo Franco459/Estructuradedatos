@@ -101,6 +101,21 @@ public class Helper {
     }
 
 
+    //PT1
+    public static String getValidsString(String msg){
+        while(true){
+            try{
+                System.out.println(msg);
+                String rtnString = entrada.nextLine();
+                if (rtnString.isEmpty() || rtnString.charAt(0) == ' ') Integer.parseInt("s");
+                return rtnString;
+            }
+            catch(Exception e){
+                System.out.println("Ingrese una cadena valida. Sin espacios al comienzo.");
+            }
+        }
+    }
+
     // SHOW STACK SECTION
     public static void showIntegerStack(Stack<Integer> stack) {
         System.out.println("La pila resultante de las acciones anteriores ha sido: ");
