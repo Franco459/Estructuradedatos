@@ -59,6 +59,10 @@ public class Helper {
         return n;
     }
 
+    public static String obtainRandomWord(){
+        String[] palindromos = {"oso", "somos", "reconocer", "anita lava la tina", "animales","foco","casa", "dia", "martes", "neuquen"};
+        return palindromos[generateRandomIntegerInRange(0, 10)].toString();
+    }
     //PT
     public static int generateRandomIntegerInRange(int min, int max){
         return  min + (int)(Math.random() * max);
