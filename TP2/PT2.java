@@ -27,7 +27,8 @@ public class PT2 {
                 inputString = Helper.getValidsString(msg);
             break;
             case 2:
-                //TODO randomVersion
+                inputString = Helper.obtainRandomWord();
+                System.out.println("Se genero la siguiente cadena: " + inputString);
             break;
         }
 
