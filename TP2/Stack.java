@@ -1,23 +1,3 @@
-//
-// Created by Julio Tentor <jtentor@fi.unju.edu.ar>
-//
-
-
-/*
-The Stack class represents a last-in-first-out (LIFO) stack of objects.
-
-The usual push and pop operations are provided, as well as a method to
-peek at the top item on the stack, a method to test for whether the
-stack is empty, and a method to search the stack for an item and discover
-how far it is from the top.
-
-When a stack is first created, it contains no items.
-
-from https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/util/Stack.html
-from https://docs.oracle.com/en/java/javase/14/docs/api/java.base/java/util/Stack.html
-from https://docs.oracle.com/en/java/javase/15/docs/api/java.base/java/util/Stack.html
-
- */
 package TP2;
 
 public class Stack<ELEMENT> {
