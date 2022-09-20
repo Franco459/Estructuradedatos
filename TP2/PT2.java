@@ -40,7 +40,7 @@ public class PT2 {
     }
 
     private static boolean isPalindrome(String reverseString, String inputString) {
-        return (reverseString.equalsIgnoreCase(inputString));
+        return (reverseString.equalsIgnoreCase(inputString.replaceAll("\\s+","")));
     }
 
     private static String reverseStack(Stack<Character> stack) {
@@ -55,7 +55,7 @@ public class PT2 {
     private static Stack<Character> createStack(String inputString) {
         Stack<Character> auxStack = new Stack<>(inputString.length());
         for (int i = 0; i < inputString.length(); i++) {
-            auxStack.push(inputString.charAt(i));
+            if (inputString.charAt(i) != ' ')auxStack.push(inputString.charAt(i));
         }
         return auxStack;
     }
