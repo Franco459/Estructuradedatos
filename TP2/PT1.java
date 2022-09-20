@@ -13,27 +13,26 @@ Se espera una correcta modularización entre el código que realiza el ingreso y
 respecto del código que hace lo que se solicita en el ejercicio.
 El ejercicio debe implementar un mecanismo para seleccionar el ingreso de valores por consola o
 generados aleatoriamente.
-*/package TP2;
-
+*/
+package TP2;
 
 public class PT1 {
     /**
      * @param args
      */
+
     public static void main(String[] args) {
-        
         // definicion de variables 
-        Stack<Character> stack;
+        Stack_pt1<Character> stack;
         String msg;
         int stackSize, option; 
         Character actualValue, newValue;
         char charInput;
         // fin definicion de variables 
-
         msg = "Ingrese tamaño deseado del arreglo";
         stackSize = Helper.forcePositiveIntEnter(msg);
 
-        stack = new Stack<>(stackSize);
+        stack = new Stack_pt1<>(stackSize);
 
         msg = "---------------MENU--------------- \n"
         +    "1- Ingresar valores manuales \n"
@@ -57,63 +56,18 @@ public class PT1 {
 
             stack.push(charInput);
         }
-        do{
-            Helper.showCharStack(stack);
+        System.out.println("El stack generado es: " + stack.toString());
+        msg = "Ingrese el valor a buscar para ser reemplazado.";
+        actualValue = returnCharacter(msg);
 
-            msg = "Ingrese el valor a buscar para ser reemplazado.";
-            actualValue = returnCharacter(msg);
-
-            msg = "Ingrese el valor a reemplazar por el valor a buscar";
-            newValue = returnCharacter(msg);
-
-            createFinalStack(stack, newValue, actualValue);
-
-            msg = "";
-        }while(Helper.continueProgram(msg));
-
+        msg = "Ingrese el valor a reemplazar por el valor a buscar";
+        newValue = returnCharacter(msg);
+        
+        System.out.println("La cantidad de cambios es: " + stack.valueCountChange(actualValue, newValue));
+        System.out.println("El stack final es: " + stack.toString());
     }
-
 
     
-    ////////////////////////METHODS//////////////////////////////
-
-
-
-    private static void createFinalStack(Stack<Character> stack, Character newValue, Character actualValue) {
-        Stack<Character> auxStack = new Stack<>(stack.size());
-        int count = 0;
-
-
-        auxStack = getRevertedCharStack(stack);
-        while(!auxStack.empty()){
-            if(Character.toLowerCase(auxStack.peek()) != Character.toLowerCase(actualValue)) stack.push(auxStack.pop());
-            else{
-                stack.push(newValue);
-                count++;
-                //perdemos el valor ahora inservible 
-                auxStack.pop();
-            }
-        }
-        String msg = "La cantidad de valores cambiados fue: " + count;
-        if (count == 0) msg += ". No se cambió ningun elemento de la pila ya que no hubo valor coincidente al pretendido ('" +
-        actualValue + "')";
-        Helper.showCharStack(stack, msg);
-    }
-
-
-
-    private static Stack<Character> getRevertedCharStack(Stack<Character> stack) {
-        Stack<Character> localStack = new Stack<>(stack.size());
-
-        while(!stack.empty()){
-            localStack.push(stack.pop());
-        }
-
-        return localStack;
-    }
-
-
-
     private static char returnCharacter(String msg) {
         return Helper.getChar(msg);
     }
