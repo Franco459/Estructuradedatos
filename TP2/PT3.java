@@ -29,7 +29,7 @@ public class PT3 {
        int option;
        String msg, interfixOperation = "";
        //fin definicion de variables
-       msg = "-----------MENU PROGRAMA PALINDROMO----------- \n"
+       msg = "-----------MENU PROGRAMA INFIJA A POSFIJA----------- \n"
        +    "1- Ingresar valores manuales \n"
        +    "2- Ingresar valores aleatorios ";
        option = Helper.menuTwoOptions(msg);
