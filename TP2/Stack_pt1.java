@@ -122,17 +122,23 @@ public class Stack_pt1<ELEMENT> {
         for (int i = 0; i < this.size(); ++i) {
             if(this.data[i].toString().equalsIgnoreCase(actualValue.toString())){ 
                 countChanges++;
-                this.data[i] = newValue;
+            //  this.data[i] = newValue;
             }
         }
-
         return countChanges;
         //TODO contar
     }
 
-    public ELEMENT changeValuesInStack(){
-        //TODO change
-        return null;
+    public ELEMENT changeValuesInStack(ELEMENT actualValue, ELEMENT newValue){
+        ELEMENT [] aux = (ELEMENT []) new Object[this.size()];
+        for (int i = 0; i < this.size(); ++i) {
+            if(this.data[i].toString().equalsIgnoreCase(actualValue.toString())){ 
+                aux[i] = newValue;
+            }
+            else aux[i] = this.data[i];
+        }
+        this.data = aux;
+        return this.data[this.count-1];
     }
 
     //endregion

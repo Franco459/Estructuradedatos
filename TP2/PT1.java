@@ -64,6 +64,7 @@ public class PT1 {
         newValue = returnCharacter(msg);
         
         System.out.println("La cantidad de cambios es: " + stack.valueCountChange(actualValue, newValue));
+        stack.changeValuesInStack(actualValue, newValue);
         System.out.println("El stack final es: " + stack.toString());
     }
 
