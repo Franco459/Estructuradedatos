@@ -67,6 +67,8 @@ public class PT4 {
         stack = convertValue(inputValue, baseSelectedToMethod, stack);
         finalValue(stack, baseSelectedToMethod);
     }
+    
+    ////////////////////////METHODS//////////////////////////////
 
     private static void finalValue(Stack<Integer> stack, int baseSelectedToMethod) {
         String msgFinalValue = "", msgBase = "";
