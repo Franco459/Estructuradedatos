@@ -120,6 +120,20 @@ public class Helper {
         }
     }
 
+    //PT3
+    public static String generateRandomOperadores(){
+        String[] operadores = {"*", "+", "/", "-"};
+        return operadores[generateRandomIntegerInRange(0, 3)].toString();
+    }
+
+
+    public static int getImparNum(int minRange, int maxRange){
+        int impar = 0;
+        while (true){
+            impar = Helper.generateRandomIntegerInRange(minRange, maxRange);
+            if (impar % 2 != 0)return impar;
+        }
+    }
     // SHOW STACK SECTION
     public static void showIntegerStack(Stack<Integer> stack) {
         System.out.println("La pila resultante de las acciones anteriores ha sido: ");

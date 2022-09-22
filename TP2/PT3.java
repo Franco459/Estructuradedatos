@@ -39,7 +39,16 @@ public class PT3 {
                 interfixOperation = getStringOperation(msg);
             break;
             case 2:
-                //TODO random
+                System.out.println("Se genero su cadena INFIJA ");
+                int num=Helper.getImparNum(3, 11);
+                for(int i=0; i<num;i++){
+                    if(i%2 == 0){
+                        interfixOperation += Helper.generateRandomIntegerInRange(1,9);
+                    }else{
+                        interfixOperation += Helper.generateRandomOperadores();
+                    }
+                }
+                System.out.println(interfixOperation);
             break;
        }
        //System.out.println(interfixOperation);
