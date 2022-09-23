@@ -114,6 +114,6 @@ public class Stack<ELEMENT> {
     }
     //endregion
 
-
+    
 }
 

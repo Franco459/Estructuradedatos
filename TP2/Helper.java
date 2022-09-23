@@ -154,4 +154,29 @@ public class Helper {
         System.out.println("La pila resultante de las acciones anteriores ha sido: ");
         System.out.println(stack.toString());
     }
+
+    //PT6
+    public static Float getFloat(Scanner entrada, String inputMessage, String errorMessage) {
+        Float floatValuer = 0f;
+        while (true) {
+            try {
+                System.out.print(inputMessage);
+                floatValuer = Float.parseFloat(entrada.nextLine());
+                return ((int) ((floatValuer + 0.005f) * 100)) / 100f;
+            }
+            catch (Exception exception) {
+                System.out.println(errorMessage);
+            }
+        }
+    }
+    public static Float getFloat(Scanner entrada, String inputMessage) {
+        return getFloat(entrada, inputMessage, "Ingrese un número válido\n");
+    }
+    public static Float getFloat(String inputMessage, String errorMessage) {
+        return getFloat(entrada, inputMessage, errorMessage);
+    }
+    public static Float getFloat(String inputMessage) {
+        return getFloat(entrada, inputMessage, "Ingrese un número válido\n");
+    }
+
 }
