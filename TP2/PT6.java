@@ -43,8 +43,6 @@ asegurarse que los valores no se repitan.
 */
 package TP2;
 
-import java.util.Iterator;
-
 
 public class PT6 {
     /**
@@ -122,14 +120,15 @@ public class PT6 {
         // System.out.println(localStackOfOrders.search(nameCityValue) != -1);
         //if(localStackOfOrders.search() != -1) return true;
         boolean isDuplicate = false;
-       /*/ Stack<PuntosDeEntrega> localStack;
+       /* Stack<PuntosDeEntrega> localStack;
         if (localStackOfOrders.empty()) localStack = new Stack<>(10);
         else localStack = new Stack<>(localStackOfOrders.size());
         System.out.println("asasdsdasda");
         showOrdersInStack(localStackOfOrders);
-        System.out.println("asasdsdasda"); 
-        if (localStackOfOrders.search(nameCityValue.toUpperCase()) != -1) return true;*/
-        Iterator it = localStackOfOrders.i
+        System.out.println("asasdsdasda");
+        if (localStackOfOrders.search(nameCityValue.toUpperCase()) != -1)
+            return true;
+*/
         return isDuplicate;
     }
 
