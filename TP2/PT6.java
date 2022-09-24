@@ -7,7 +7,7 @@ Cada vez que llega a un pueblo, el preventista toma el pedido de una cantidad de
 solo negocio por pueblo y registra el importe de la deuda. (****Validar un solo pueblo****)
 
 Tras visitar el último pueblo en el cual se encuentra una de las distribuidoras de la empresa
-de gaseosas, el preventista confirma la información de las ventas  realizadas y en función de ello
+de gaseosas, el preventista confirma la información de las ventas realizadas y en función de ello
 se prepara el camión de reparto. 
 
 El repartidor deberá regresar por el mismo camino que hizo el preventista haciendo las entregas y 
@@ -43,6 +43,9 @@ asegurarse que los valores no se repitan.
 */
 package TP2;
 
+import java.util.Iterator;
+
+
 public class PT6 {
     /**
      * @param args
@@ -50,61 +53,112 @@ public class PT6 {
     public static void main(String[] args) {
         
         //definicion de variables
-        Stack<PuntosDeEntrega> stackOfOrders = new Stack<>();
-        Stack<PuntosDeEntrega> auxStackOfOrders = new Stack<>();
-        PuntosDeEntrega puntoDeEntrega;
-        float priceOfDebt = 0;
-        int firstOption, secondOption, amountOfBales = 0, amountOfOrders = 0;
-        String msg, postFixOperation = "", nameCityValue = "", storeCityValue = "";
-        //fin definicion de variables
-        msg = "-----------MENU PROGRAMA CARGA VENTAS----------- \n"
-        +    "1- Ingresar valores del pre-ventista \n"
-        +    "2- Ingresar valores del repartidor ";
-        firstOption = Helper.menuTwoOptions(msg);
-        switch(firstOption){
-            case 1:
-                amountOfOrders = Helper.forcePositiveIntEnter("Ingrese cantidad totales de pedidos");
-                stackOfOrders = new Stack<>(amountOfOrders);
-                /* Se considera que solo se pueden crear valores aleatorios para la carga de pedidos*/
-                msg = "-----------MENU MANUAL-RANDOM----------- \n"
-                +    "1- Cargar valores manuales \n"
-                +    "2- Cargar valores aleatorios";
-                secondOption = Helper.menuTwoOptions(msg);
-                if (secondOption == 1){
-                    //nombre ciudad
-                    nameCityValue = getValidsString(false, "ciudad");
-                    //nombre tienda
-                    storeCityValue = getValidsString(true, "tienda");
-                    //cantidad
-                    msg = "Ingrese cantidad de fardos: ";
-                    amountOfBales = Helper.forcePositiveIntEnter(msg);
-                    //precio
-                    priceOfDebt = Helper.getFloat("Ingrese el precio de la deuda del negocio:");
-                    //estado de la deuda, automatico
-                }
-                else{
-                    //TODO random
-                }
-                //TODO-Create new store
-                stackOfOrders.push(createNewOrder(nameCityValue, storeCityValue, amountOfBales, priceOfDebt));
-                //TODO- show all
-            break;
-            case 2:
-                while(!stackOfOrders.empty()){
-                    //TODO- show last city
-                    var statusChangeValue = showLastCity(stackOfOrders);
-                    //Cambiar estado x ciudad
-                    auxStackOfOrders = changeStatus(statusChangeValue, auxStackOfOrders);
-                }
-                System.out.println("Los estados de la deuda han sido cambiados");
 
-            break;
+        Stack<PuntosDeEntrega> stackOfOrders;
+        Stack<PuntosDeEntrega> auxStackOfOrders;
+        float priceOfDebt = 0;
+        int option, amountOfBales = 0, amountOfOrders = 0;
+        String msg, nameCityValue = "", storeCityValue = "";
+
+        //fin definicion de variables
+
+            amountOfOrders = Helper.forcePositiveIntEnter("Ingrese cantidad totales de pedidos");
+            auxStackOfOrders = new Stack<>(amountOfOrders);
+            stackOfOrders = new Stack<>(amountOfOrders);
+            /* Se considera que solo se pueden crear valores aleatorios para la carga de pedidos*/
+            msg = "-----------MENU MANUAL/RANDOM----------- \n"
+            +    "1- Cargar valores manuales \n"
+            +    "2- Cargar valores aleatorios";
+            option = Helper.menuTwoOptions(msg);
+
+        for(int i = 0; i < amountOfOrders; i++){
+            if (option == 1){
+                //nombre ciudad
+                nameCityValue = getValidString(false, "ciudad", stackOfOrders);
+                //TODO - validar una sola ciudad                
+
+                //nombre tienda
+                storeCityValue = getValidString(true, "tienda", stackOfOrders);
+                
+                //cantidad
+                msg = "Ingrese cantidad de fardos: ";
+                amountOfBales = Helper.forcePositiveIntEnter(msg);
+                
+                //precio
+                priceOfDebt = Helper.getFloat("Ingrese el precio de la deuda del negocio:");
+                
+                //estado de la deuda, automatico
+            }
+            else{
+                //TODO random
+            }
+            //Create new store-DONE
+            stackOfOrders.push(createNewOrder(nameCityValue, storeCityValue, amountOfBales, priceOfDebt));
+            //DONE- show all
+            showOrdersInStack(stackOfOrders);
         }
+        /**********************************************************************************************************************/
+        System.out.println("Se procederá a registrar los pagos del recorrido del camion de reparto.");
+                
+        while(!stackOfOrders.empty()){
+            var statusChangeValue = showLastCity(stackOfOrders);
+            //Cambiar estado x ciudad
+            if(changeDebtStatus(statusChangeValue)){
+                auxStackOfOrders = changeStatus(statusChangeValue, auxStackOfOrders);
+            }
+            else{
+                auxStackOfOrders.push(statusChangeValue);
+            }
+        }
+        System.out.println("Los estados de la deuda han sido cambiados");
+        //stackOfOrders = reverseStack(auxStackOfOrders);
+        showOrdersInStack(auxStackOfOrders);
+    }
     
+    /////////////////////////////////////////////METHODS/////////////////////////////////////////////
+
+
+    private static boolean duplicateCity(String nameCityValue, Stack<PuntosDeEntrega> localStackOfOrders) {
+        // System.out.println(localStackOfOrders.search(nameCityValue) != -1);
+        //if(localStackOfOrders.search() != -1) return true;
+        boolean isDuplicate = false;
+       /*/ Stack<PuntosDeEntrega> localStack;
+        if (localStackOfOrders.empty()) localStack = new Stack<>(10);
+        else localStack = new Stack<>(localStackOfOrders.size());
+        System.out.println("asasdsdasda");
+        showOrdersInStack(localStackOfOrders);
+        System.out.println("asasdsdasda"); 
+        if (localStackOfOrders.search(nameCityValue.toUpperCase()) != -1) return true;*/
+        Iterator it = localStackOfOrders.i
+        return isDuplicate;
     }
 
+    private static Stack<PuntosDeEntrega> reverseStack(Stack<PuntosDeEntrega> stack) {
+        Stack<PuntosDeEntrega> localStack;
+        if (stack.empty()) localStack = new Stack<>(10);
+        else localStack = new Stack<>(stack.size());
+        while (!stack.empty()) {
+            localStack.push(stack.pop());
+        }
+        return localStack;
+    }
+
+    private static boolean changeDebtStatus(PuntosDeEntrega statusChangeValue) {
+        String msg = "La deuda por $" + statusChangeValue.getDebt_price() 
+                        + ", de la tienda " + statusChangeValue.getName_store()
+                        + ", ubicada en la ciudad: " + statusChangeValue.getName_city()
+                        + " ha sido pagada? (s/S || n/N)";
+        boolean valueContinue =  Helper.continueProgram(msg);
+        return valueContinue;
+    }
+
+    private static void showOrdersInStack(Stack<PuntosDeEntrega> stackOfOrdersReceived) {
+        System.out.println(stackOfOrdersReceived.toString());
+    }
+
+
     private static PuntosDeEntrega createNewOrder(String nameCityValue, String storeCityValue, int amountOfBales, float priceOfDebt) {
-        PuntosDeEntrega newOrder = new PuntosDeEntrega(nameCityValue, storeCityValue, amountOfBales, priceOfDebt, true);
+        PuntosDeEntrega newOrder = new PuntosDeEntrega(nameCityValue, storeCityValue, amountOfBales, priceOfDebt, false);
         System.out.println("Se ha generado el pedido satisfactoriamente.");
         return newOrder;
     }
@@ -115,22 +169,22 @@ public class PT6 {
     }
 
     private static Stack<PuntosDeEntrega> changeStatus(PuntosDeEntrega statusChangeValue, Stack<PuntosDeEntrega> auxStackOfOrders) {
-        String showMsg = "Desea saldar la deuda de la ciudad mostrada anteriormente? (s/S || n/N)";
-        if (Helper.continueProgram(showMsg)){
-            statusChangeValue.setDebt_status(false);
-            auxStackOfOrders.push(statusChangeValue);
-        }
+        statusChangeValue.setDebt_status(true);
+        auxStackOfOrders.push(statusChangeValue);
         return auxStackOfOrders;
     }
 
-    private static String getValidsString(boolean allowNumbers, String selectedName) {
+    private static String getValidString(boolean allowNumbers, String selectedName, Stack<PuntosDeEntrega> stackOfOrders) {
         String returnValue;
         String msg = "Ingrese valor de la " + selectedName;
         if (!allowNumbers){
             while(true){
                 try {
-                    returnValue = Helper.getValidsString(msg);
-                    if (stringContainNumbers(returnValue)) throw new Exception("El nombre de una ciudad no puede tener numeros.");
+                    returnValue = Helper.getValidsString(msg).toUpperCase();
+                    if (stringContainNumbers(returnValue)) throw new RuntimeException("El nombre de una ciudad no puede tener numeros.");
+                    if(!stackOfOrders.empty()){ 
+                        if (duplicateCity(returnValue, stackOfOrders) && !allowNumbers )  throw new RuntimeException("La ciudad ya existe en el sistema.");
+                    }
                     return returnValue;
                 } catch (Exception e) {
                     System.out.println(e);
