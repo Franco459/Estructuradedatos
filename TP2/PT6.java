@@ -128,7 +128,15 @@ public class PT6 {
         System.out.println("asasdsdasda");
         if (localStackOfOrders.search(nameCityValue.toUpperCase()) != -1)
             return true;
-*/
+*/      
+        Stack<PuntosDeEntrega> localStack;
+        localStack = new Stack<>(localStackOfOrders.size());
+        localStack = reverseStack(localStackOfOrders);
+        while(!localStack.empty()){
+            PuntosDeEntrega obtainOrder = localStack.pop();
+            localStackOfOrders.push(obtainOrder);
+            if (obtainOrder.getName_city().equalsIgnoreCase(nameCityValue)) isDuplicate  = true ;
+        }
         return isDuplicate;
     }
 
