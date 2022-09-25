@@ -244,7 +244,7 @@ public class PT6 {
                 try {
                     if (isManual) returnValue = Helper.getValidsString(msg).toUpperCase();
                     else returnValue = "random";
-                    if (stringContainNoAlphabeticChars(returnValue)) throw new RuntimeException("El nombre de una ciudad no puede tener numeros.");
+                    if (stringContainNoAlphabeticChars(returnValue)) throw new RuntimeException("El nombre de una ciudad solo puede tener caracteres alfabeticos.");
                     if(!stackOfOrders.empty()){ 
                         if (duplicateCity(returnValue, stackOfOrders) && !allowNumbers )  throw new RuntimeException("La ciudad ya existe en el sistema.");
                     }
@@ -262,7 +262,7 @@ public class PT6 {
 
     private static boolean stringContainNoAlphabeticChars(String returnValue) {
         for(var i = 0; i < returnValue.length(); i++){
-            if(!Character.isAlphabetic(returnValue.charAt(i)) && returnValue.charAt(i) != (' ') || returnValue.charAt(i) != '.') return true;
+            if(!Character.isAlphabetic(returnValue.charAt(i)) && returnValue.charAt(i) != (' ') && returnValue.charAt(i) != '.') return true;
         }
         return false;
     }
