@@ -60,7 +60,11 @@ public class PT6 {
 
         //fin definicion de variables
 
+            System.out.println("RECOMENDACION PARA GENERAR ALEATORIOS:\n"
+                                + "solo hay 9 ciudades pre cargadas,"
+                                + " no generar mas que eso ya que no se permiten ciudades duplicadas.");
             amountOfOrders = Helper.forcePositiveIntEnter("Ingrese cantidad totales de pedidos");
+
             auxStackOfOrders = new Stack<>(amountOfOrders);
             stackOfOrders = new Stack<>(amountOfOrders);
             /* Se considera que solo se pueden crear valores aleatorios para la carga de pedidos*/
@@ -72,11 +76,11 @@ public class PT6 {
         for(int i = 0; i < amountOfOrders; i++){
             if (option == 1){
                 //nombre ciudad
-                nameCityValue = getValidString(false, "ciudad", stackOfOrders);
+                nameCityValue = getValidString(false, "ciudad", stackOfOrders, true);
                 //TODO - validar una sola ciudad                
 
                 //nombre tienda
-                storeCityValue = getValidString(true, "tienda", stackOfOrders);
+                storeCityValue = getValidString(true, "tienda", stackOfOrders, true);
                 
                 //cantidad
                 msg = "Ingrese cantidad de fardos: ";
@@ -89,6 +93,21 @@ public class PT6 {
             }
             else{
                 //TODO random
+                //Random ciudad
+                nameCityValue = randomCity(stackOfOrders);
+                System.out.println("aqui 1");
+                //random tienda
+                storeCityValue = randomStore();
+                System.out.println("aqui 2");
+
+                //random cantidad
+                amountOfBales = Helper.generateRandomIntegerInRange(1, 7);
+
+                //random precio
+                priceOfDebt = Helper.generateRandomFloatInRange(1900, 30000);
+
+                //estado de la deuda, automatico ya que el enunciado explica que el camion cobra la deuda
+            
             }
             //Create new store-DONE
             stackOfOrders.push(createNewOrder(nameCityValue, storeCityValue, amountOfBales, priceOfDebt));
@@ -96,6 +115,7 @@ public class PT6 {
             showOrdersInStack(stackOfOrders);
         }
         /**********************************************************************************************************************/
+        System.out.println("***********************************************************************");
         System.out.println("Se procederá a registrar los pagos del recorrido del camion de reparto.");
                 
         while(!stackOfOrders.empty()){
@@ -114,6 +134,26 @@ public class PT6 {
     
     /////////////////////////////////////////////METHODS/////////////////////////////////////////////
 
+
+    private static String randomStore() {
+        return Helper.getRandomNameStore();
+    }
+
+    private static String randomCity(Stack<PuntosDeEntrega> stackOfOrders) {
+        while(true){
+            
+            String cityGenerated = Helper.getRandomCity();
+            
+            System.out.println("aqui 3:" +  cityGenerated);
+            if(!stackOfOrders.empty()){
+                  if(!duplicateCity(cityGenerated, stackOfOrders)) return cityGenerated;
+            }   
+            else{
+                return cityGenerated;
+            } 
+
+        }
+    }
 
     private static float getValidFloat() {
         while(true){
@@ -139,10 +179,14 @@ public class PT6 {
         if (localStackOfOrders.search(nameCityValue.toUpperCase()) != -1)
             return true;
 */      
+        System.out.println("aqui 5");
         boolean isDuplicate = false;
         Stack<PuntosDeEntrega> localStack;
         localStack = new Stack<>(localStackOfOrders.size());
         localStack = reverseStack(localStackOfOrders);
+        
+        System.out.println("aqui 7");
+        System.out.println("aqui 6");
         while(!localStack.empty()){
             PuntosDeEntrega obtainOrder = localStack.pop();
             localStackOfOrders.push(obtainOrder);
@@ -192,14 +236,15 @@ public class PT6 {
         return auxStackOfOrders;
     }
 
-    private static String getValidString(boolean allowNumbers, String selectedName, Stack<PuntosDeEntrega> stackOfOrders) {
+    private static String getValidString(boolean allowNumbers, String selectedName, Stack<PuntosDeEntrega> stackOfOrders, boolean isManual) {
         String returnValue;
         String msg = "Ingrese valor de la " + selectedName;
         if (!allowNumbers){
             while(true){
                 try {
-                    returnValue = Helper.getValidsString(msg).toUpperCase();
-                    if (stringContainNumbers(returnValue)) throw new RuntimeException("El nombre de una ciudad no puede tener numeros.");
+                    if (isManual) returnValue = Helper.getValidsString(msg).toUpperCase();
+                    else returnValue = "random";
+                    if (stringContainNoAlphabeticChars(returnValue)) throw new RuntimeException("El nombre de una ciudad no puede tener numeros.");
                     if(!stackOfOrders.empty()){ 
                         if (duplicateCity(returnValue, stackOfOrders) && !allowNumbers )  throw new RuntimeException("La ciudad ya existe en el sistema.");
                     }
@@ -215,9 +260,9 @@ public class PT6 {
         return returnValue;
     }
 
-    private static boolean stringContainNumbers(String returnValue) {
+    private static boolean stringContainNoAlphabeticChars(String returnValue) {
         for(var i = 0; i < returnValue.length(); i++){
-            if(Character.isDigit(returnValue.charAt(i))) return true;
+            if(!Character.isAlphabetic(returnValue.charAt(i)) && returnValue.charAt(i) != (' ') || returnValue.charAt(i) != '.') return true;
         }
         return false;
     }

@@ -179,4 +179,19 @@ public class Helper {
         return getFloat(entrada, inputMessage, "Ingrese un número válido\n");
     }
 
+
+    //PT6
+    public static float generateRandomFloatInRange(int min, int max){
+        return  min + random.nextFloat() * (max - min);
+    }
+
+    public static String getRandomNameStore() {
+        String[] storeNames = {"Si Hay", "Principe", "La tiendita", "24/7", "Siempre abierto", "Super de la 30"};
+        return storeNames[generateRandomIntegerInRange(0, 5)].toString();
+    }
+
+    public static String getRandomCity() {
+        String[] cityNames = {"Palpala", "Perico", "San Pedro", "San Salvador de Jujuy", "Alto Comedero", "El Carmen", "Ledesma", "Termas de Reyes", "Pampa Blanca"};
+        return cityNames[generateRandomIntegerInRange(0, 9)].toString();
+    }
 }
