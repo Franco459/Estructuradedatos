@@ -70,6 +70,6 @@ public class PuntosDeEntrega {
     @Override
     public String toString() {
         String status_debt = (getDebt_status() == true)? "Pagada"  : "Pendiente";
-        return ("[Nombre de la ciudad: " + name_city + ", Nombre de la tienda: " +name_store + ", cantidad de fardos: " + amount_bales + ", precio de la deuda: " + debt_price + ", estado de la deuda: " + status_debt + "]");
+        return ("[Nombre de la ciudad: " + name_city + "\nNombre de la tienda: " +name_store + ", cantidad de fardos: " + amount_bales + ", precio de la deuda: " + debt_price + ", estado de la deuda: " + status_debt + "]\n");
     }
 }

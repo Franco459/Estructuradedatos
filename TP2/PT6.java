@@ -83,9 +83,9 @@ public class PT6 {
                 amountOfBales = Helper.forcePositiveIntEnter(msg);
                 
                 //precio
-                priceOfDebt = Helper.getFloat("Ingrese el precio de la deuda del negocio:");
-                
-                //estado de la deuda, automatico
+                priceOfDebt = getValidFloat();
+
+                //estado de la deuda, automatico ya que el enunciado explica que el camion cobra la deuda
             }
             else{
                 //TODO random
@@ -108,18 +108,28 @@ public class PT6 {
                 auxStackOfOrders.push(statusChangeValue);
             }
         }
-        System.out.println("Los estados de la deuda han sido cambiados");
-        //stackOfOrders = reverseStack(auxStackOfOrders);
+        System.out.println("El recorrido del repartidor y los nuevos estados de deuda son: ");
         showOrdersInStack(auxStackOfOrders);
     }
     
     /////////////////////////////////////////////METHODS/////////////////////////////////////////////
 
 
+    private static float getValidFloat() {
+        while(true){
+            try {
+                float price = Helper.getFloat("Ingrese el precio de la deuda del negocio:");
+                if (price <= 0) throw new RuntimeException("Valores mayores a 0");
+                return price;
+            } catch (Exception e) {
+                System.out.println(e);
+            }
+        }
+    }
+
     private static boolean duplicateCity(String nameCityValue, Stack<PuntosDeEntrega> localStackOfOrders) {
         // System.out.println(localStackOfOrders.search(nameCityValue) != -1);
         //if(localStackOfOrders.search() != -1) return true;
-        boolean isDuplicate = false;
        /* Stack<PuntosDeEntrega> localStack;
         if (localStackOfOrders.empty()) localStack = new Stack<>(10);
         else localStack = new Stack<>(localStackOfOrders.size());
@@ -129,6 +139,7 @@ public class PT6 {
         if (localStackOfOrders.search(nameCityValue.toUpperCase()) != -1)
             return true;
 */      
+        boolean isDuplicate = false;
         Stack<PuntosDeEntrega> localStack;
         localStack = new Stack<>(localStackOfOrders.size());
         localStack = reverseStack(localStackOfOrders);
