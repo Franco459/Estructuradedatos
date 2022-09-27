@@ -77,7 +77,6 @@ public class PT6 {
             if (option == 1){
                 //nombre ciudad
                 nameCityValue = getValidString(false, "ciudad", stackOfOrders, true);
-                //TODO - validar una sola ciudad                
 
                 //nombre tienda
                 storeCityValue = getValidString(true, "tienda", stackOfOrders, true);
@@ -92,13 +91,10 @@ public class PT6 {
                 //estado de la deuda, automatico ya que el enunciado explica que el camion cobra la deuda
             }
             else{
-                //TODO random
                 //Random ciudad
                 nameCityValue = randomCity(stackOfOrders);
-                System.out.println("aqui 1");
                 //random tienda
                 storeCityValue = randomStore();
-                System.out.println("aqui 2");
 
                 //random cantidad
                 amountOfBales = Helper.generateRandomIntegerInRange(1, 7);
@@ -144,7 +140,6 @@ public class PT6 {
             
             String cityGenerated = Helper.getRandomCity();
             
-            System.out.println("aqui 3:" +  cityGenerated);
             if(!stackOfOrders.empty()){
                   if(!duplicateCity(cityGenerated, stackOfOrders)) return cityGenerated;
             }   
@@ -168,25 +163,10 @@ public class PT6 {
     }
 
     private static boolean duplicateCity(String nameCityValue, Stack<PuntosDeEntrega> localStackOfOrders) {
-        // System.out.println(localStackOfOrders.search(nameCityValue) != -1);
-        //if(localStackOfOrders.search() != -1) return true;
-       /* Stack<PuntosDeEntrega> localStack;
-        if (localStackOfOrders.empty()) localStack = new Stack<>(10);
-        else localStack = new Stack<>(localStackOfOrders.size());
-        System.out.println("asasdsdasda");
-        showOrdersInStack(localStackOfOrders);
-        System.out.println("asasdsdasda");
-        if (localStackOfOrders.search(nameCityValue.toUpperCase()) != -1)
-            return true;
-*/      
-        System.out.println("aqui 5");
         boolean isDuplicate = false;
         Stack<PuntosDeEntrega> localStack;
         localStack = new Stack<>(localStackOfOrders.size());
         localStack = reverseStack(localStackOfOrders);
-        
-        System.out.println("aqui 7");
-        System.out.println("aqui 6");
         while(!localStack.empty()){
             PuntosDeEntrega obtainOrder = localStack.pop();
             localStackOfOrders.push(obtainOrder);
