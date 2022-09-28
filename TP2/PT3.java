@@ -16,7 +16,7 @@ generados aleatoriamente.
 */
 package TP2;
 
-
+import java.util.Stack;
 
 public class PT3 {
     /**
@@ -40,25 +40,31 @@ public class PT3 {
             break;
             case 2:
                 System.out.println("Se genero su cadena INFIJA ");
-                int num=Helper.getImparNum(3, 11);
-                for(int i=0; i<num;i++){
-                    if(i%2 == 0){
-                        interfixOperation += Helper.generateRandomIntegerInRange(1,9);
-                    }else{
-                        interfixOperation += Helper.generateRandomOperadores();
-                    }
-                }
+                interfixOperation = generateInterfix();
                 System.out.println(interfixOperation);
             break;
        }
        //System.out.println(interfixOperation);
        System.out.println("La notacion postfija es: ");
-       stack = new Stack<>(interfixOperation.length());
+       stack = new Stack<>();
        System.out.println(interfixToPostfixMethod(stack, interfixOperation));
     }
 
     ////////////////////////METHODS//////////////////////////////
 
+
+    private static String generateInterfix() {
+        String interfixString = "";
+        int num = Helper.getImparNum(3, 11);
+            for(int i=0; i<num;i++){
+                if(i%2 == 0){
+                    interfixString += Helper.generateRandomIntegerInRange(1,9);
+                }else{
+                    interfixString += Helper.generateRandomOperadores();
+            }
+        }
+        return interfixString;
+    }
 
     private static String interfixToPostfixMethod(Stack<Character> stack, String interfixOperation) {
         String finalNotation = "";
@@ -89,8 +95,11 @@ public class PT3 {
         while(true){
             try {
                 String inputString = Helper.getValidsString(msg);
+                if(!searchOperators(inputString)) throw new RuntimeException("Necesita tener al menos un operador");
+                if(inputString.length() <= 1) throw new RuntimeException("La cadena debe ser mayor que 1");
                 if(searchSpacesInString(inputString)) throw new RuntimeException("No se permiten espacios en la cadena");
-                if(searchNoValidCharacters(inputString)) throw new RuntimeException("No se permiten caracteres no validos. Solo validos: [(a-z), (0-9), (*,+,-,/)]");
+                if(searchNoValidCharacters(inputString)) throw new RuntimeException("No se permiten caracteres no validos. Solo validos: [(0-9), (*,+,-,/)]");
+                if(searchTwoOperators(inputString)) throw new RuntimeException("No ingrese mas de 2 operadores");
                 return inputString;
             } catch (Exception e) {
                 System.out.println(e);
@@ -98,19 +107,26 @@ public class PT3 {
         }
     }
 
+    private static boolean searchOperators(String inputString) {
+        for (int i = 0; i < inputString.length() - 1; i++){
+            if(isOperatorChar(inputString.charAt(i))) return true;
+        }
+        return false;
+    }
+
+    private static boolean searchTwoOperators(String inputString) {
+        for (int i = 0; i < inputString.length() - 1; i++){
+            if(isOperatorChar(inputString.charAt(i)) && isOperatorChar(inputString.charAt(i+1))) return true;
+        }
+        return false;
+    }
+
     private static boolean searchNoValidCharacters(String inputString) {
-        //Character[] validOperationChar = new Character[]{'*', '+', '-', '/'};
-        //boolean isInArray = true;
         int i = 0;
         for (i = 0; i < inputString.length(); i++){
-            if(!(Character.isDigit(inputString.charAt(i)) || Character.isAlphabetic(inputString.charAt(i)))
+            if(!(Character.isDigit(inputString.charAt(i)))
             ){
                 if(!isOperatorChar(inputString.charAt(i)))return true;
-                /*for(int j = 0; j < validOperationChar.length; j++){
-                    if (inputString.charAt(i) == validOperationChar[j]) break;
-                    if (j == validOperationChar.length - 1 ) isInArray = false;
-                }
-                if(!isInArray) return true;*/
             }
         }
         return false;
