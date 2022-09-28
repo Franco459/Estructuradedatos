@@ -126,7 +126,6 @@ public class Stack_pt1<ELEMENT> {
             }
         }
         return countChanges;
-        //TODO contar
     }
 
     public ELEMENT changeValuesInStack(ELEMENT actualValue, ELEMENT newValue){

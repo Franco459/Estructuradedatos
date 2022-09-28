@@ -69,6 +69,8 @@ public class PT1 {
     }
 
     
+    ////////////////////////METHODS//////////////////////////////
+    
     private static char returnCharacter(String msg) {
         return Helper.getChar(msg);
     }
