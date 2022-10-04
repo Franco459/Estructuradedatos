@@ -266,4 +266,12 @@ public class Queue_circular<ELEMENT> implements Iterable<ELEMENT> {
  
     //endregion
  
+    public boolean isValueInQueue(ELEMENT inputValue){
+        for (var value : this) {
+            if (value == inputValue){
+                return true;
+            }
+        }
+        return false;
+    }
 }

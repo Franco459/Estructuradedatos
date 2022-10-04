@@ -55,25 +55,19 @@ public class PT3 {
     private static Queue_circular<Integer> queueUnion(Queue_circular<Integer> first_Queue, Queue_circular<Integer> second_Queue) {
         int secondSize, firstSize; 
         Queue_circular<Integer> aux_Queue = new Queue_circular<Integer>();
-
-            firstSize = first_Queue.size();
-           //queueMaximun = 1;
-           secondSize = second_Queue.size();
-
-           // maximumSize = second_Queue.size();
-            //queueMaximun = 2;
-
-
+        firstSize = first_Queue.size();
+        secondSize = second_Queue.size();
         for (int i = 0; i < firstSize; i++){
-            System.out.println("Primer for");
             int valueToSearch = first_Queue.pool();
-            for(int j = 0; j < secondSize; j++){
-                //System.out.println("second for" + j  + " xddd "+ second_Queue.size());
+            //funciona
+            /*for(int j = 0; j < secondSize; j++){
                 int peekValue = second_Queue.pool();
                 if (peekValue != valueToSearch) second_Queue.add(peekValue);
+            }*/
+            //test funciona
+            if(!second_Queue.isValueInQueue(valueToSearch)){
+                if(!aux_Queue.isValueInQueue(valueToSearch))aux_Queue.add(valueToSearch);
             }
-            if(aux_Queue.isEmpty()) aux_Queue.add(valueToSearch);
-            if( !valueInQueue(aux_Queue, valueToSearch))aux_Queue.add(valueToSearch) ;
         }
         System.out.println(second_Queue.toString());
         
@@ -89,30 +83,9 @@ public class PT3 {
     private static Queue_circular<Integer> getQueueNoDuplicates(Queue_circular<Integer> second_Queue, Queue_circular<Integer> aux_Queue2) {
         
         for (int i = 0; i < second_Queue.size(); i++) {
-            Boolean isInQueue = false;
             var valueInQueue = second_Queue.pool();
-            for (Integer integer2 : aux_Queue2) {
-                if(valueInQueue == integer2){
-                    isInQueue = true;
-                }
-            }
-            if (!isInQueue) second_Queue.add(valueInQueue);
+            if (!aux_Queue2.isValueInQueue(valueInQueue)) second_Queue.add(valueInQueue);
         }
-        System.out.println(second_Queue + "second no dup");
         return second_Queue;
-    }
-
-    private static boolean valueInQueue(Queue_circular<Integer> queueSelected, int valueToCompare) {
-        for (Integer integer : queueSelected) {
-            if (integer == valueToCompare){
-                return true;
-            }
-        }
-        return false;
-    }
-
-    private static boolean areEqualElements(Integer firstElement, Integer secondElement) {
-        if (firstElement == secondElement) return true;
-        return false;
     }
 }
