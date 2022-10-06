@@ -69,14 +69,18 @@ public class PT3 {
         int secondSize, firstSize; 
         Queue_circular<Integer> aux_Queue = new Queue_circular<Integer>();
 
-        while(!first_Queue.isEmpty() && !second_Queue.isEmpty()){
+        while(!first_Queue.isEmpty() || !second_Queue.isEmpty()){
             int firstItem = -55, secondItem = -55;
             if(!first_Queue.isEmpty()) firstItem = first_Queue.pool();
             if(!second_Queue.isEmpty()) secondItem = second_Queue.pool();
-            
+
             if(firstItem != secondItem){
+                if (!aux_Queue.isValueInQueue(firstItem) && firstItem != -55) aux_Queue.add(firstItem);
+                if (!aux_Queue.isValueInQueue(secondItem) && secondItem != -55) aux_Queue.add(secondItem);
+            }
+            else{
+
                 if (!aux_Queue.isValueInQueue(firstItem)) aux_Queue.add(firstItem);
-                if (!aux_Queue.isValueInQueue(secondItem)) aux_Queue.add(secondItem);
             }
 
         }        
