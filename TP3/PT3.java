@@ -20,7 +20,7 @@ public class PT3 {
         //region variables
         
         String msg;
-        int option, sizeSelected;
+        int option, firstSizeSelected, secondSizeSelected;
         Queue_circular<Integer> first_Queue = new Queue_circular<Integer>();
         Queue_circular<Integer> second_Queue = new Queue_circular<Integer>();
         Queue_circular<Integer> union_Queue = new Queue_circular<Integer>();
@@ -30,20 +30,33 @@ public class PT3 {
         +    "1- Ingresar valores manuales \n"
         +    "2- Ingresar valores aleatorios ";
         option = Helper.menuTwoOptions(msg);
-        msg = "Cuantos datos desea que tenga su cola?";
-        sizeSelected = Helper.forcePositiveIntEnter(msg);
-        for(int i = 0; i < sizeSelected; i++){
-            if(option == 1){
-                //manual for integer
-                //TODO manual 
+        msg = "Cuantos datos desea que tenga la primer cola?";
+        firstSizeSelected = Helper.forcePositiveIntEnter(msg);
+        msg = "Cuantos datos desea que tenga la segunda cola?";
+        secondSizeSelected = Helper.forcePositiveIntEnter(msg);
+
+        if(option == 1){
+            //manual for integer
+            //TODO manual
+            msg = "Ingrese valor para insertar en la cola."; 
+            for(int i = 0; i < firstSizeSelected; i++){
+                first_Queue.add(Helper.forcePositiveIntEnter(msg));
             }
-            else{
+            for(int i = 0; i < secondSizeSelected; i++){
+                second_Queue.add(Helper.forcePositiveIntEnter(msg));
+            }
+        }
+        else{
+            for(int i = 0; i < firstSizeSelected; i++){
                 first_Queue.add(Helper.generateRandomIntegerInRange(1, 9));
+            }
+            for(int i = 0; i < secondSizeSelected; i++){
                 second_Queue.add(Helper.generateRandomIntegerInRange(1, 9));
             }
         }
-        System.out.println(first_Queue.toString());
-        System.out.println(second_Queue.toString());
+        System.out.println("Las colas generadas son: ");
+        System.out.println("1° cola: " + first_Queue.toString());
+        System.out.println("2° cola: " + second_Queue.toString());
         //Union of queues
         union_Queue = queueUnion(first_Queue, second_Queue);
         System.out.println("La cola final es: \n"
@@ -55,37 +68,18 @@ public class PT3 {
     private static Queue_circular<Integer> queueUnion(Queue_circular<Integer> first_Queue, Queue_circular<Integer> second_Queue) {
         int secondSize, firstSize; 
         Queue_circular<Integer> aux_Queue = new Queue_circular<Integer>();
-        firstSize = first_Queue.size();
-        secondSize = second_Queue.size();
-        for (int i = 0; i < firstSize; i++){
-            int valueToSearch = first_Queue.pool();
-            //funciona
-            /*for(int j = 0; j < secondSize; j++){
-                int peekValue = second_Queue.pool();
-                if (peekValue != valueToSearch) second_Queue.add(peekValue);
-            }*/
-            //test funciona
-            if(!second_Queue.isValueInQueue(valueToSearch)){
-                if(!aux_Queue.isValueInQueue(valueToSearch))aux_Queue.add(valueToSearch);
+
+        while(!first_Queue.isEmpty() && !second_Queue.isEmpty()){
+            int firstItem = -55, secondItem = -55;
+            if(!first_Queue.isEmpty()) firstItem = first_Queue.pool();
+            if(!second_Queue.isEmpty()) secondItem = second_Queue.pool();
+            
+            if(firstItem != secondItem){
+                if (!aux_Queue.isValueInQueue(firstItem)) aux_Queue.add(firstItem);
+                if (!aux_Queue.isValueInQueue(secondItem)) aux_Queue.add(secondItem);
             }
-        }
-        System.out.println(second_Queue.toString());
-        
-        second_Queue = getQueueNoDuplicates(second_Queue, aux_Queue);
-        second_Queue = getQueueNoDuplicates(second_Queue, second_Queue);
 
-        aux_Queue = aux_Queue.union(second_Queue);
-        
+        }        
         return aux_Queue;
-    }
-
-
-    private static Queue_circular<Integer> getQueueNoDuplicates(Queue_circular<Integer> second_Queue, Queue_circular<Integer> aux_Queue2) {
-        
-        for (int i = 0; i < second_Queue.size(); i++) {
-            var valueInQueue = second_Queue.pool();
-            if (!aux_Queue2.isValueInQueue(valueInQueue)) second_Queue.add(valueInQueue);
-        }
-        return second_Queue;
     }
 }
