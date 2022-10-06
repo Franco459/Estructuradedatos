@@ -8,9 +8,6 @@ ser de longitudes diferentes.
  */
 package TP3;
 
-import java.util.LinkedList;
-import java.util.Queue;
-
 public class PT3 {
     /**
      * @param args
@@ -66,7 +63,6 @@ public class PT3 {
     //////////////////////////////////////METHODS///////////////////////////////////////
 
     private static Queue_circular<Integer> queueUnion(Queue_circular<Integer> first_Queue, Queue_circular<Integer> second_Queue) {
-        int secondSize, firstSize; 
         Queue_circular<Integer> aux_Queue = new Queue_circular<Integer>();
 
         while(!first_Queue.isEmpty() || !second_Queue.isEmpty()){
