@@ -43,4 +43,29 @@ public class Helper {
     public static int generateRandomIntegerInRange(int min, int max){
         return  min + (int)(Math.random() * max);
     }
+
+    public static String getValidsString(String msg){
+        while(true){
+            try{
+                System.out.println(msg);
+                String rtnString = entrada.nextLine();
+                if (rtnString.length() == 0 || rtnString.charAt(0) == ' ') Integer.parseInt("s");
+                return rtnString;
+            }
+            catch(Exception e){
+                System.out.println("Ingrese una cadena valida. Sin espacios al comienzo.");
+            }
+        }
+    }
+
+
+    public static boolean continueProgram(String msg){
+        while (true){
+            if (msg.isEmpty()) msg = "Desea continuar con la ejecucion del programa? Opciones validas: (S/s || N/n)";
+            System.out.println(msg);
+            String resp = entrada.nextLine();
+            if ("s".equalsIgnoreCase(resp) || "n".equalsIgnoreCase(resp)) return ("s".equalsIgnoreCase(resp));
+            else  System.out.println("Opcion no valida");
+        }
+    }
 }
