@@ -12,10 +12,7 @@ respecto del código que hace lo que se solicita en el ejercicio.
 El ejercicio debe implementar un mecanismo para seleccionar el ingreso de valores por consola o
 generados aleatoriamente.
  */
-
 package TP3;
-
-import javax.naming.AuthenticationException;
 
 public class PT4 {
     /**
@@ -23,80 +20,92 @@ public class PT4 {
      */
     public static void main(String[] args) {
         //region variables
-        Boolean continueExcecution = false;
-        String msg, stringToEncrypt, encryptedString;
-        int optionAction, keyCodeSize, secondSizeSelected, optionGenerateValues;
+        String msg, stringToEncrypt;
+        int optionAction, keyCodeSize, optionGenerateValues;
         Queue_circular<Integer> keyCodeQueue;
         //end region variables
 
-        msg = "---------------MENU ELECCION ACCION PUNTO 4--------------- \n"
-        +    "1- Codificar cadena \n"
-        +    "2- Decodificar cadena ";
-        optionAction = Helper.menuTwoOptions(msg);
+         //region eleccion codificar/decodificar cadena
+         msg = "---------------MENU ELECCION ACCION PUNTO 4--------------- \n"
+         +    "1- Codificar cadena \n"
+         +    "2- Decodificar cadena \n"
+         +    "***AVISO: Para decodificar cadenas aleatorias recomendamos elegir claves de cifrado [1,2,3] || [9,7,6,2] || [5,8]\n"
+         +    " para mayor posibilidad de descubrir el mensaje oculto***";
+         optionAction = Helper.menuTwoOptions(msg);
+         //end region eleccion codificar/decodificar cadena
+
+            /********separador**********/
+
+         //region clave de cifrado
+        msg = "---------------MENU CREAR CLAVE DE CIFRADO PUNTO 4--------------- \n"
+        +    "1- Crear clave con valores manuales \n"
+        +    "2- Crear clave con valores aleatorios ";
+        optionGenerateValues = Helper.menuTwoOptions(msg);
 
         msg = "Ingrese tamaño de la clave de cifrado: ";
         keyCodeSize = Helper.forcePositiveIntEnter(msg);
-        
-        switch(optionAction){
-            case 1:
-                msg = "---------------MENU CIFRAR CADENA PUNTO 4--------------- \n"
-                +    "1- Ingresar valores manuales \n"
-                +    "2- Ingresar valores aleatorios ";
-                optionGenerateValues = Helper.menuTwoOptions(msg);
 
-                if (optionGenerateValues == 1){
-                    msg = "Ingrese una cadena para cifrar: ";
-                    keyCodeQueue = createKeyCode(keyCodeSize, true);
-                    System.out.println("La clave de cifrado a utilizar será: " + keyCodeQueue.toString());
         
-                    stringToEncrypt = Helper.getValidsString(msg);
-                }
-                else{
-                    keyCodeQueue = createKeyCode(keyCodeSize, false);
-                    System.out.println("La clave de cifrado a utilizar será: " + keyCodeQueue.toString());
-        
-                    stringToEncrypt = "";
-                }
-                
-                encryptedString = encryptMethod(keyCodeQueue, stringToEncrypt);
-                System.out.println("La cadena codificada es: " + encryptedString);
-                msg = "Desea decodificar la cadena generada? (s/S || n/N)";
-                if (!Helper.continueProgram(msg)) break;
-                else continueExcecution = true;
-            case 2:
-
-            break;
-        }
-       /* 
-        
-        
-        msg = "---------------MENU CIFRAR CADENA PUNTO 4--------------- \n"
-        +    "1- Ingresar valores manuales \n"
-        +    "2- Ingresar valores aleatorios ";
-        optionGenerateValues = Helper.menuTwoOptions(msg);
-
-
         if (optionGenerateValues == 1){
-            msg = "Ingrese una cadena para cifrar: ";
             keyCodeQueue = createKeyCode(keyCodeSize, true);
-            System.out.println("La clave de cifrado a utilizar será: " + keyCodeQueue.toString());
-
-            stringToEncrypt = Helper.getValidsString(msg);
         }
         else{
             keyCodeQueue = createKeyCode(keyCodeSize, false);
-            System.out.println("La clave de cifrado a utilizar será: " + keyCodeQueue.toString());
+        }
+        //end region clave de cifrado
 
+            /********separador**********/
+
+        //region cadena para realizar accion
+        msg = "---------------MENU CREAR CADENA PARA CIFRADO PUNTO 4--------------- \n"
+        +    "1- Crear cadena valor manual \n"
+        +    "2- Crear cadena valor aleatorio ";
+        optionGenerateValues = Helper.menuTwoOptions(msg);
+
+        if(optionGenerateValues == 1){
+            msg = "Ingrese una cadena para cifrar: ";
+            stringToEncrypt = Helper.getValidsString(msg);
+        }
+        else{
+            //TODO random string
             stringToEncrypt = "";
         }
-        
-        encryptedString = encryptMethod(keyCodeQueue, stringToEncrypt);
-        System.out.println("La cadena codificada es: " + encryptedString);
+        //end region accion
 
-        msg = "Desea de" //" ha sido pagada? (s/S || n/N)"; */
+            /********separador**********/
+
+        //region realizar codificar/decodificar cadena
+        if (optionAction == 1) {
+            System.out.println("La cadena: \n"
+                                + stringToEncrypt
+                                + " fue encriptada.");
+            System.out.println("Cadena final:\n"
+                                + encryptMethod(keyCodeQueue, stringToEncrypt));
+        }
+        else{
+            System.out.println("La cadena: \n"
+                                + stringToEncrypt
+                                + " fue desencriptada.");
+            System.out.println("Cadena final:\n"
+                                + desencryptMethod(keyCodeQueue, stringToEncrypt));
+        }
+        //end region realizar codificar/decodificar cadena
     }
 
     //////////////////////////////////////METHODS///////////////////////////////////////
+
+    private static String desencryptMethod(Queue_circular<Integer> keyCodeQueue, String stringToEncrypt) {
+        //region variables locales
+        String auxString = "";
+        int intQueueValue;
+        //end region variables
+        for (char charOfString : stringToEncrypt.toCharArray()) {
+            intQueueValue = keyCodeQueue.pool();
+            auxString += (char)((int)charOfString - intQueueValue);
+            keyCodeQueue.add(intQueueValue);
+        }
+        return auxString;
+    }
 
     private static String encryptMethod(Queue_circular<Integer> keyCodeQueue, String stringToEncrypt) {
         //region variables locales
@@ -118,7 +127,7 @@ public class PT4 {
         //end region variables
         for (int i = 0; i < keyCodeSize; i++) {
             if(isManual){
-                String msg = "Ingrese valor numerico para posicion " + (i+1) +" de la clave:";
+                String msg = "Ingrese valor numerico N° " + (i+1) +" de la clave:";
                 intValue = Helper.forcePositiveIntEnter(msg);
             }
             else{
