@@ -1,6 +1,4 @@
 package TP3;
-
-import java.util.Arrays;
  
 public class Queue_generic<ELEMENT> {
  

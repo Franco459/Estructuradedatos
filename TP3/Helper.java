@@ -1,5 +1,6 @@
 package TP3;
 
+import java.lang.reflect.Array;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -67,5 +68,14 @@ public class Helper {
             if ("s".equalsIgnoreCase(resp) || "n".equalsIgnoreCase(resp)) return ("s".equalsIgnoreCase(resp));
             else  System.out.println("Opcion no valida");
         }
+    }
+
+    public static String selectStringOfArray(boolean encryptedValue){
+        String[] arrayNonEncrypted = {"Hola", "HOLA QUE TAL", "Buen dia", "Copa del mundo", "Qatar 2022"};
+        
+        String[] arrayEncrypted = {"Hola", "HOLA QUE TAL", "Buen dia", "Copa del mundo", "Qatar 2022"};
+
+        if (encryptedValue) return arrayNonEncrypted[generateRandomIntegerInRange(0, 4)];
+        return null;
     }
 }
