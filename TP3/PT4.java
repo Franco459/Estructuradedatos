@@ -68,7 +68,7 @@ public class PT4 {
         }
         else{
             //TODO random string
-            stringToEncrypt = "";
+            stringToEncrypt = Helper.selectStringOfArray(true);
         }
         //end region accion
 

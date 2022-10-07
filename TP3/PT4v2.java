@@ -77,7 +77,7 @@ public class PT4v2 {
                 keyCodeQueue = createKeyCode(keyCodeSize, false);
 
                 //TODO random string
-                stringToEncrypt = "";
+                stringToEncrypt = Helper.selectStringOfArray(true);
             }
             System.out.println("La cadena: \n"
                             + stringToEncrypt
