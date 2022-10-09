@@ -32,6 +32,16 @@ public class Queue_velocity<ELEMENT> {
     {
         return this.size;
     }
+
+    public int getAmountItems()
+    {
+        int count = 0;
+        for (ELEMENT element : this.queue) {
+            if (element != null) count++;
+        }
+        return count;
+    }
+
     public boolean isEmpty() {
         return this.front == this.last;
     }
@@ -50,8 +60,8 @@ public class Queue_velocity<ELEMENT> {
 
     public void enqueue(ELEMENT element)
     {
-        if(isFull()) throw new IllegalStateException("Queue is full");
-        if(element == null) throw new NullPointerException("The new is null!");
+        if(isFull()) throw new IllegalStateException("La cola esta llena");
+        if(element == null) throw new NullPointerException("El elemento es nulo");
         else
         {
             

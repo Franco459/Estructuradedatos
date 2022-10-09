@@ -1,8 +1,9 @@
 package TP3;
 
-import java.lang.reflect.Array;
 import java.util.Random;
 import java.util.Scanner;
+
+import javax.management.RuntimeErrorException;
 
 public class Helper {
     static Scanner entrada = new Scanner(System.in);
@@ -70,12 +71,46 @@ public class Helper {
         }
     }
 
-    public static String selectStringOfArray(boolean encryptedValue){
+    public static String randomStringOfArray(){
         String[] arrayNonEncrypted = {"Hola", "HOLA QUE TAL", "Buen dia", "Copa del mundo", "Qatar 2022"};
         
-        String[] arrayEncrypted = {"Hola", "HOLA QUE TAL", "Buen dia", "Copa del mundo", "Qatar 2022"};
+        return arrayNonEncrypted[generateRandomIntegerInRange(0, 4)];
+    }
 
-        if (encryptedValue) return arrayNonEncrypted[generateRandomIntegerInRange(0, 4)];
-        return null;
+    public static int menuOptions(String msg, int amountOfOptions) {
+        while(true){
+            try {
+                int response = Helper.forcePositiveIntEnter(msg);
+                for (int i = 1; i <= amountOfOptions; i++) {
+                    if (i == response) return i;
+                }
+                throw new RuntimeException("La opcion ingresada no es valida");
+            } catch (Exception e) {
+                System.out.println(e);
+            }
+        }
+    }
+
+    //PT1
+    public static char generateRandomChar(){
+        return (char)(random.nextInt(26) + 'a');
+    }
+
+    public static Character getChar(String msg){
+        String valueInput;
+        while(true){
+              try {
+                System.out.println(msg);
+                valueInput = entrada.nextLine();
+                if (!(valueInput.matches("[a-zA-Z]+")) || (valueInput.length() != 1)){
+                    throw new RuntimeException("Solo caracteres ALFABETICOS y longitud MAXIMA 1");
+                }
+                else{  
+                    return Character.toLowerCase(valueInput.charAt(0));
+                }
+              } catch (Exception e) {
+                    System.out.println("Solo caracteres ALFABETICOS y longitud MAXIMA 1");
+              }
+        }
     }
 }
