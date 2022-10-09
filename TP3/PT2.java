@@ -39,15 +39,19 @@ public class PT2 {
             valueToRemove = Helper.forcePositiveIntEnter(msg);
         }
         else{
-            //TODO Random
-            valueToRemove=0;
+            for (int i = 0; i < size; i++) {
+                queue.enqueue(Helper.generateRandomIntegerInRange(1, 15));
+            }
+            valueToRemove=Helper.generateRandomIntegerInRange(1, 9);
+            System.out.println("El numero generado para suprimir apariciones es " + valueToRemove);
+            System.out.println("Cola generada aleatoriamente.");
         }
 
-        System.out.println("La cola es: \n" + queue.toString());
+        System.out.println("La cola obtenida es: \n" + queue.toString());
 
         queue = delNumbersDivisorsMultiples (queue, valueToRemove);
 
-        displayQueueAndVowells(queue);
+        System.out.println("Cola resultante sin apariciones, multiplos o divisores es: \n" + queue.toString());
     }
     
     //////////////////////////////////////METHODS///////////////////////////////////////
@@ -61,17 +65,5 @@ public class PT2 {
         }
 
         return aux_queue;
-    }
-
-    private static void displayQueueAndVowells(Queue_velocity<Integer> queue)
-    {
-        System.out.println("Cola resultante:");
-        String queueString = "[";
-        while(!queue.isEmpty())
-        {
-            int popped = queue.dequeue();
-            queueString += popped + ((queue.isEmpty() ? "]" : " , "));
-        }
-        System.out.println(queueString);
     }
 }
