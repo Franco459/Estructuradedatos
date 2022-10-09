@@ -70,5 +70,24 @@ public class Queue_velocity<ELEMENT> {
         queue[front++] = null;
         return retElement;
     }
+
+    @Override
+    public String toString() {
+ 
+        if (this.getSize() <=0) {
+            return "";
+        }
+ 
+        // from https://docs.oracle.com/en/java/javase/15/docs/api/java.base/java/lang/StringBuilder.html
+        StringBuilder sb = new StringBuilder();
+        sb.append("[" + this.queue[this.front].toString());
+ 
+        for (int cta = 1, pos = this.next(this.front); cta < this.getSize(); ++cta, pos = this.next(pos)) {
+            if(this.queue[pos] != null) sb.append(", " + this.queue[pos].toString());
+        }
+ 
+        sb.append("]");
+        return sb.toString();
+    }
     
 }
