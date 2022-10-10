@@ -113,4 +113,16 @@ public class Helper {
               }
         }
     }
+
+    public static String getRandomName() {
+        String[] arrayNames = {"Daniela", "Florencia", "Raul", "Daniel", "Alvaro", "Marta"};
+        
+        return arrayNames[generateRandomIntegerInRange(0, 5)];
+    }
+
+    public static String getRandomSurname() {
+        String[] arraySurnames = {"Diaz", "Suarez", "Borja", "Martinez", "Gomez", "Rojas"};
+        
+        return arraySurnames[generateRandomIntegerInRange(0, 5)];
+    }
 }
