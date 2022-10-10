@@ -66,7 +66,7 @@ public class PT3 {
         Queue_circular<Integer> aux_Queue = new Queue_circular<Integer>();
 
         while(!first_Queue.isEmpty() || !second_Queue.isEmpty()){
-            int firstItem = -55, secondItem = -55;
+            int firstItem = -55, secondItem = -55; // VALORES POR DEFECTO PARA ASUMIR QUE NO EXISTE EL BUSCADO
             if(!first_Queue.isEmpty()) firstItem = first_Queue.pool();
             if(!second_Queue.isEmpty()) secondItem = second_Queue.pool();
 
