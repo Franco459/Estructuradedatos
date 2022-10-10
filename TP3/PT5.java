@@ -27,17 +27,17 @@ public class PT5 {
         optionGenerateValues = Helper.menuTwoOptions(msg);
 
         if(optionGenerateValues == 1){
-            first_keyCodeQueue = initializeQueue(1);
-            second_keyCodeQueue = initializeQueue(2);
-            third_keyCodeQueue = initializeQueue(3);
+            first_keyCodeQueue = initializeQueue(1, true);
+            second_keyCodeQueue = initializeQueue(2, true);
+            third_keyCodeQueue = initializeQueue(3, true);
 
             msg = "Ingrese una cadena para cifrar: ";
             stringToEncrypt = Helper.getValidsString(msg);
         }
         else{
-            first_keyCodeQueue = initializeQueue(1);
-            second_keyCodeQueue = initializeQueue(2);
-            third_keyCodeQueue = initializeQueue(3);
+            first_keyCodeQueue = initializeQueue(1, false);
+            second_keyCodeQueue = initializeQueue(2, false);
+            third_keyCodeQueue = initializeQueue(3, false);
 
             stringToEncrypt = Helper.randomStringOfArray();
             System.out.println("La cadena generada es " + stringToEncrypt);
@@ -129,7 +129,7 @@ public class PT5 {
         return localkeyCodeQueue;
     }
 
-    private static Queue_circular<Integer> initializeQueue(int position) {
+    private static Queue_circular<Integer> initializeQueue(int position, boolean isManual) {
 
         Queue_circular<Integer> auxQueue;
         int size = 0;
@@ -137,7 +137,8 @@ public class PT5 {
         size = Helper.forcePositiveIntEnter("Ingrese tamaño deseado de la " + position + "° cola");
         auxQueue = new Queue_circular<>(size);
         for (int j = 0; j < size; j++) {
-            auxQueue.add(Helper.forcePositiveIntEnter("Ingrese valor para la posicion " + (j+1) + " de la clave"));
+            if (isManual) auxQueue.add(Helper.forcePositiveIntEnter("Ingrese valor para la posicion " + (j+1) + " de la clave"));
+            else auxQueue.add(Helper.generateRandomIntegerInRange(1, 9));
         }
         return auxQueue;
     }
