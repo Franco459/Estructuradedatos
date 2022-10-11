@@ -10,6 +10,7 @@ El ejercicio debe implementar un mecanismo para seleccionar el ingreso de valore
 generados aleatoriamente. */
 package TP3;
 
+import java.util.IntSummaryStatistics;
 
 public class PT2 {
     public static void main(String[] args) {
@@ -31,20 +32,16 @@ public class PT2 {
         +    "2- Ingresar valores aleatorios ";
         option = Helper.menuTwoOptions(msg);
         if(option == 1){
-            msg = "Ingrese valor para ingresar en la cola";
-            for (int i = 0; i < size; i++) {
-                queue.enqueue(Helper.forcePositiveIntEnter(msg));
-            }
-            msg = "Ingrese valor para quitar de la cola junto a sus divisores y multiplos";
-            valueToRemove = Helper.forcePositiveIntEnter(msg);
+            queue = generateQueue(size, true);
+            
+            valueToRemove = getValue(true);
         }
         else{
-            for (int i = 0; i < size; i++) {
-                queue.enqueue(Helper.generateRandomIntegerInRange(1, 15));
-            }
-            valueToRemove=Helper.generateRandomIntegerInRange(1, 9);
-            System.out.println("El numero generado para suprimir apariciones es " + valueToRemove);
+            queue = generateQueue(size, false);
             System.out.println("Cola generada aleatoriamente.");
+            valueToRemove = getValue(false);  
+            System.out.println("El numero generado para suprimir apariciones es " + valueToRemove);
+
         }
 
         System.out.println("La cola obtenida es: \n" + queue.toString());
@@ -55,6 +52,26 @@ public class PT2 {
     }
     
     //////////////////////////////////////METHODS///////////////////////////////////////
+
+    private static int getValue(boolean isManualInput) {
+        if (isManualInput){
+            String msg = "Ingrese valor para quitar de la cola junto a sus divisores y multiplos";
+            return Helper.forcePositiveIntEnter(msg);
+        }
+        else return Helper.generateRandomIntegerInRange(1, 9);
+    }
+
+    private static Queue_velocity<Integer> generateQueue(int size, boolean isManual) {
+        Queue_velocity<Integer> aux_Queue = new Queue_velocity<>(size);
+        for (int i = 0; i < size; i++) {
+            if(!isManual) aux_Queue.enqueue(Helper.generateRandomIntegerInRange(1, 9));
+            else{
+                String msg = "Ingrese valor para ingresar en la cola";
+                aux_Queue.enqueue(Helper.forcePositiveIntEnter(msg));
+            }
+        }
+        return aux_Queue;
+    }
 
     private static Queue_velocity<Integer> delNumbersDivisorsMultiples(Queue_velocity<Integer> queue, int valueToRemove) {
 
