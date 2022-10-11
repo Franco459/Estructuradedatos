@@ -61,7 +61,7 @@ public class PT2 {
         Queue_velocity<Integer> aux_queue = new Queue_velocity<>(queue.getSize() + 1 );
         while(!queue.isEmpty()){
             int value = queue.dequeue();
-            if (value != valueToRemove && (value % valueToRemove != 0)) aux_queue.enqueue(value);
+            if (value != valueToRemove && (value % valueToRemove != 0) && (valueToRemove % value != 0)) aux_queue.enqueue(value);
         }
 
         return aux_queue;
