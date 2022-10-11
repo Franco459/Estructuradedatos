@@ -10,7 +10,6 @@ El ejercicio debe implementar un mecanismo para seleccionar el ingreso de valore
 generados aleatoriamente. */
 package TP3;
 
-import java.util.IntSummaryStatistics;
 
 public class PT2 {
     public static void main(String[] args) {
