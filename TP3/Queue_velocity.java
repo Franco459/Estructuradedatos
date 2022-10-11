@@ -84,8 +84,8 @@ public class Queue_velocity<ELEMENT> {
     @Override
     public String toString() {
  
-        if (this.getSize() <=0) {
-            return "";
+        if (this.isEmpty()) {
+            return "[(cola vacia)]";
         }
  
         // from https://docs.oracle.com/en/java/javase/15/docs/api/java.base/java/lang/StringBuilder.html
