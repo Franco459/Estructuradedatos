@@ -61,7 +61,7 @@ public class PT2 {
     }
 
     private static Queue_velocity<Integer> generateQueue(int size, boolean isManual) {
-        Queue_velocity<Integer> aux_Queue = new Queue_velocity<>(size);
+        Queue_velocity<Integer> aux_Queue = new Queue_velocity<>(size+1);
         for (int i = 0; i < size; i++) {
             if(!isManual) aux_Queue.enqueue(Helper.generateRandomIntegerInRange(1, 9));
             else{
