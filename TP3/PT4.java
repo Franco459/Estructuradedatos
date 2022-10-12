@@ -15,109 +15,93 @@ generados aleatoriamente.
 package TP3;
 
 public class PT4 {
-    /**
-     * @param args
-     */
+   /**
+ * @param args
+ */
     public static void main(String[] args) {
         //region variables
-        String msg, stringToEncrypt;
-        int optionAction, keyCodeSize, optionGenerateValues;
+        String msg, stringToEncrypt, encryptedString, desencryptedString;
+        int keyCodeSize, optionGenerateValues;
         Queue_circular<Integer> keyCodeQueue;
         //end region variables
 
-         //region eleccion codificar/decodificar cadena
-         msg = "---------------MENU ELECCION ACCION PUNTO 4--------------- \n"
-         +    "1- Codificar cadena \n"
-         +    "2- Decodificar cadena \n"
-         +    "***AVISO: Para decodificar cadenas aleatorias recomendamos elegir claves de cifrado [1,2,3] || [9,7,6,2] || [5,8]\n"
-         +    " para mayor posibilidad de descubrir el mensaje oculto***";
-         optionAction = Helper.menuTwoOptions(msg);
-         //end region eleccion codificar/decodificar cadena
-
-            /********separador**********/
-
-         //region clave de cifrado
         msg = "---------------MENU CREAR CLAVE DE CIFRADO PUNTO 4--------------- \n"
         +    "1- Crear clave con valores manuales \n"
         +    "2- Crear clave con valores aleatorios ";
         optionGenerateValues = Helper.menuTwoOptions(msg);
 
-        msg = "Ingrese tamaño de la clave de cifrado: ";
-        keyCodeSize = Helper.forcePositiveIntEnter(msg);
+        if (optionGenerateValues == 1){            
+            msg = "Ingrese tamaño de la clave de cifrado: ";
+            keyCodeSize = Helper.forcePositiveIntEnter(msg);
 
-        
-        if (optionGenerateValues == 1){
             keyCodeQueue = createKeyCode(keyCodeSize, true);
-        }
-        else{
-            keyCodeQueue = createKeyCode(keyCodeSize, false);
-        }
-        //end region clave de cifrado
 
-            /********separador**********/
-
-        //region cadena para realizar accion
-        msg = "---------------MENU CREAR CADENA PARA CIFRADO PUNTO 4--------------- \n"
-        +    "1- Crear cadena valor manual \n"
-        +    "2- Crear cadena valor aleatorio ";
-        optionGenerateValues = Helper.menuTwoOptions(msg);
-
-        if(optionGenerateValues == 1){
             msg = "Ingrese una cadena para cifrar: ";
             stringToEncrypt = Helper.getValidsString(msg);
         }
         else{
-            //TODO random string
-            stringToEncrypt = Helper.selectStringOfArray(true);
-        }
-        //end region accion
+            keyCodeSize = Helper.generateRandomIntegerInRange(1, 9);
+            System.out.println("La clave generada es de tamaño " + keyCodeSize);
+            
+            keyCodeQueue = createKeyCode(keyCodeSize, false);
+            System.out.println("La clave generada es " + keyCodeQueue.toString());
 
-            /********separador**********/
-
-        //region realizar codificar/decodificar cadena
-        if (optionAction == 1) {
-            System.out.println("La cadena: \n"
-                                + stringToEncrypt
-                                + " fue encriptada.");
-            System.out.println("Cadena final:\n"
-                                + encryptMethod(keyCodeQueue, stringToEncrypt));
+            stringToEncrypt = Helper.randomStringOfArray();
+            System.out.println("La cadena generada es " + stringToEncrypt);
         }
-        else{
-            System.out.println("La cadena: \n"
-                                + stringToEncrypt
-                                + " fue desencriptada.");
-            System.out.println("Cadena final:\n"
-                                + desencryptMethod(keyCodeQueue, stringToEncrypt));
-        }
-        //end region realizar codificar/decodificar cadena
-    }
+        
+        encryptedString = encryptMethod(keyCodeQueue, stringToEncrypt);
+        System.out.println("La cadena encriptada es: " + encryptedString);
+        
+        desencryptedString = desencryptMethod(keyCodeQueue, encryptedString);
+        System.out.println("Desencriptando la cadena ingresada: " + desencryptedString);
+    } 
 
     //////////////////////////////////////METHODS///////////////////////////////////////
 
-    private static String desencryptMethod(Queue_circular<Integer> keyCodeQueue, String stringToEncrypt) {
+    private static String desencryptMethod(Queue_circular<Integer> localkeyCodeQueue, String stringToEncrypt) {
         //region variables locales
         String auxString = "";
-        int intQueueValue;
+        int intQueueValue, countMoves = 0;
         //end region variables
         for (char charOfString : stringToEncrypt.toCharArray()) {
-            intQueueValue = keyCodeQueue.pool();
-            auxString += (char)((int)charOfString - intQueueValue);
-            keyCodeQueue.add(intQueueValue);
+            countMoves++;
+            intQueueValue = localkeyCodeQueue.pool();
+            auxString += (char)((int) charOfString - intQueueValue);
+            localkeyCodeQueue.add(intQueueValue);
+            if (countMoves == localkeyCodeQueue.size()) countMoves = 0;
         }
+
+        localkeyCodeQueue = reOrderQueue(localkeyCodeQueue, countMoves);
+        
         return auxString;
     }
 
-    private static String encryptMethod(Queue_circular<Integer> keyCodeQueue, String stringToEncrypt) {
+    private static String encryptMethod(Queue_circular<Integer> localkeyCodeQueue, String stringToEncrypt) {
         //region variables locales
         String auxString = "";
-        int intQueueValue;
+        int intQueueValue, countMoves = 0;
         //end region variables
         for (char charOfString : stringToEncrypt.toCharArray()) {
-            intQueueValue = keyCodeQueue.pool();
+            countMoves++;
+            intQueueValue = localkeyCodeQueue.pool();
             auxString += (char)((int)charOfString + intQueueValue);
-            keyCodeQueue.add(intQueueValue);
+            localkeyCodeQueue.add(intQueueValue);
+            if (countMoves == localkeyCodeQueue.size()) countMoves = 0;
         }
+
+        localkeyCodeQueue = reOrderQueue(localkeyCodeQueue, countMoves);
+
         return auxString;
+    }
+
+    private static Queue_circular<Integer> reOrderQueue(Queue_circular<Integer> localkeyCodeQueue, int countMoves) {
+        while(localkeyCodeQueue.size() > countMoves){
+
+            localkeyCodeQueue.add(localkeyCodeQueue.pool());
+            countMoves++;
+        }
+        return localkeyCodeQueue;
     }
 
     private static Queue_circular<Integer> createKeyCode(int keyCodeSize, Boolean isManual) {
