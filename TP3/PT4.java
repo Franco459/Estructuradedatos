@@ -26,8 +26,8 @@ public class PT4 {
         //end region variables
 
         msg = "---------------MENU CREAR CLAVE DE CIFRADO PUNTO 4--------------- \n"
-        +    "1- Crear clave con valores manuales \n"
-        +    "2- Crear clave con valores aleatorios ";
+        +    "1- Crear clave y mensaje con valores manuales \n"
+        +    "2- Crear clave y mensaje con valores aleatorios ";
         optionGenerateValues = Helper.menuTwoOptions(msg);
 
         if (optionGenerateValues == 1){            

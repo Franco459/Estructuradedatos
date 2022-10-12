@@ -23,7 +23,7 @@ public class PT2 {
         
         msg = "Ingrese tamaño de la cola";
         size = Helper.forcePositiveIntEnter(msg);
-        queue = new Queue_velocity<>(size + 1);
+        queue = new Queue_velocity<>(size + 1 );
 
 
         msg = "---------------MENU--------------- \n"
@@ -61,7 +61,7 @@ public class PT2 {
     }
 
     private static Queue_velocity<Integer> generateQueue(int size, boolean isManual) {
-        Queue_velocity<Integer> aux_Queue = new Queue_velocity<>(size+1);
+        Queue_velocity<Integer> aux_Queue = new Queue_velocity<>(size + 1);
         for (int i = 0; i < size; i++) {
             if(!isManual) aux_Queue.enqueue(Helper.generateRandomIntegerInRange(1, 9));
             else{
@@ -74,7 +74,7 @@ public class PT2 {
 
     private static Queue_velocity<Integer> delNumbersDivisorsMultiples(Queue_velocity<Integer> queue, int valueToRemove) {
 
-        Queue_velocity<Integer> aux_queue = new Queue_velocity<>(queue.getSize() + 1 );
+        Queue_velocity<Integer> aux_queue = new Queue_velocity<>(queue.getSize() + 1);
         while(!queue.isEmpty()){
             int value = queue.dequeue();
             if (value != valueToRemove && (value % valueToRemove != 0) && (valueToRemove % value != 0)) aux_queue.enqueue(value);
