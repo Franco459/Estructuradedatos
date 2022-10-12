@@ -3,7 +3,6 @@ package TP3;
 import java.util.Random;
 import java.util.Scanner;
 
-import javax.management.RuntimeErrorException;
 
 public class Helper {
     static Scanner entrada = new Scanner(System.in);
