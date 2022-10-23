@@ -49,7 +49,7 @@ public class Videos_pt6 {
     
     @Override
     public String toString() {
-        return "Videos_pt6 [video_ID=" + video_ID + ", video_Title=" + video_Title + ", video_Creator=" + video_Author
-                + ", video_Duration=" + video_Duration + "]";
+        return "ID:" + video_ID + ", Titulo:" + video_Title + ", Creador=" + video_Author
+                + ", Duracion en minutos:" + video_Duration + "\n";
     }
 }
