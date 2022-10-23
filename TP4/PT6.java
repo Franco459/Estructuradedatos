@@ -34,6 +34,11 @@ public class PT6 {
         //definicion de variables
 
         SimpleLinkedList<Videos_pt6> allVideosList = new SimpleLinkedList<>();
+        SimpleLinkedList<Videos_pt6> filterTopicVideosList = new SimpleLinkedList<>();
+        SimpleLinkedList<Videos_pt6> filterTimeVideosList = new SimpleLinkedList<>();
+        SimpleLinkedList<Videos_pt6> filterRandomVideosList = new SimpleLinkedList<>();
+        SimpleLinkedList<Videos_pt6> filterAuthorVideosList = new SimpleLinkedList<>();
+
         int option, inputTime_Video, inputID_Video;
         String msg, inputTitle_Video, inputAuthor_Video;
         boolean isManualInput;
@@ -59,10 +64,32 @@ public class PT6 {
 
             if (!Helper.continueProgram("")) break;
         }
+        System.out.println("Todos los videos: \n" + allVideosList.toString());
+        filterTopicVideosList = filterListByTopic(isManualInput, allVideosList);
+        System.out.println("Todos los videos filtrados: \n" + filterTopicVideosList.toString());
+
     }
 
 
     /////////////////////////////////////////////METHODS/////////////////////////////////////////////
+
+
+    private static SimpleLinkedList<Videos_pt6> filterListByTopic(boolean isManualInput, SimpleLinkedList<Videos_pt6> allVideosList) {
+        SimpleLinkedList<Videos_pt6> localAuxList = new SimpleLinkedList<>();
+        String inputFilter = "";
+        
+        inputFilter = (isManualInput) ? Helper.getValidsString("Ingrese cadena para filtrar videos por tema del video (No distingue entre mayusculas y minisculas)") : Helper.generateRandomTitle();
+
+        System.out.println("La palabra para filtrar es : " + inputFilter);
+
+        for (Videos_pt6 eachVideo : allVideosList) {
+            if(eachVideo.getVideo_Title().contains(inputFilter.toLowerCase()) || eachVideo.getVideo_Title().contains(inputFilter.toUpperCase()) || eachVideo.getVideo_Title().equalsIgnoreCase(inputFilter)){
+                localAuxList.addLast(eachVideo);
+            }
+        }
+
+        return localAuxList;
+    }
 
 
     private static int getID(SimpleLinkedList<Videos_pt6> videosList) {
