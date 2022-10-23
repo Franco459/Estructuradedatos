@@ -25,9 +25,6 @@ generados aleatoriamente.
 
 package TP4;
 
-import java.util.Collection;
-import java.util.Collections;
-
 public class PT6 {
     /**
      * @param args
@@ -36,11 +33,11 @@ public class PT6 {
         
         //definicion de variables
 
-        SimpleLinkedList<Videos_pt6> allVideosList = new SimpleLinkedList<>();
-        SimpleLinkedList<Videos_pt6> filterTopicVideosList = new SimpleLinkedList<>();
-        SimpleLinkedList<Videos_pt6> filterTimeVideosList = new SimpleLinkedList<>();
-        SimpleLinkedList<Videos_pt6> filterRandomVideosList = new SimpleLinkedList<>();
-        SimpleLinkedList<Videos_pt6> filterAuthorVideosList = new SimpleLinkedList<>();
+        SimpleLinkedList_pt6<Videos_pt6> allVideosList = new SimpleLinkedList_pt6<>();
+        SimpleLinkedList_pt6<Videos_pt6> filterTopicVideosList = new SimpleLinkedList_pt6<>();
+        SimpleLinkedList_pt6<Videos_pt6> filterTimeVideosList = new SimpleLinkedList_pt6<>();
+        SimpleLinkedList_pt6<Videos_pt6> filterRandomVideosList = new SimpleLinkedList_pt6<>();
+        SimpleLinkedList_pt6<Videos_pt6> filterAuthorVideosList = new SimpleLinkedList_pt6<>();
 
         int option, inputTime_Video, inputID_Video, totalDurationByFilter;
         String msg, inputTitle_Video, inputAuthor_Video;
@@ -96,7 +93,7 @@ public class PT6 {
     /////////////////////////////////////////////METHODS/////////////////////////////////////////////
 
 
-    private static int getTotalTime(boolean isManualInput, SimpleLinkedList<Videos_pt6> allVideosList) {
+    private static int getTotalTime(boolean isManualInput, SimpleLinkedList_pt6<Videos_pt6> allVideosList) {
         int totalSum = 0;
         String inputFilter = "";
 
@@ -112,9 +109,9 @@ public class PT6 {
     }
 
 
-    private static SimpleLinkedList<Videos_pt6> filterListByAuthor(boolean isManualInput, SimpleLinkedList<Videos_pt6> allVideosList) {
+    private static SimpleLinkedList_pt6<Videos_pt6> filterListByAuthor(boolean isManualInput, SimpleLinkedList_pt6<Videos_pt6> allVideosList) {
         
-        SimpleLinkedList<Videos_pt6> localAuxList = new SimpleLinkedList<>(); 
+        SimpleLinkedList_pt6<Videos_pt6> localAuxList = new SimpleLinkedList_pt6<>(); 
         String inputFilter;
 
         inputFilter = (isManualInput) ? Helper.getValidsString("Ingrese nombre del autor para filtrar videos del mismo. (No distingue entre mayusculas y minisculas)") : Helper.generateRandomAuthor();
@@ -131,8 +128,8 @@ public class PT6 {
     }
 
 
-    private static SimpleLinkedList<Videos_pt6> filterListByRandom(SimpleLinkedList<Videos_pt6> allVideosList) {
-        SimpleLinkedList<Videos_pt6> localAuxList = new SimpleLinkedList<>();
+    private static SimpleLinkedList_pt6<Videos_pt6> filterListByRandom(SimpleLinkedList_pt6<Videos_pt6> allVideosList) {
+        SimpleLinkedList_pt6<Videos_pt6> localAuxList = new SimpleLinkedList_pt6<>();
 
         for (Videos_pt6 eachVideo : allVideosList) {
             if (Helper.generateRandomIntegerInRange(1,2) == 1) localAuxList.addLast(eachVideo);
@@ -142,8 +139,8 @@ public class PT6 {
     }
 
 
-    private static SimpleLinkedList<Videos_pt6> filterListByTime(boolean isManualInput, SimpleLinkedList<Videos_pt6> allVideosList) {
-        SimpleLinkedList<Videos_pt6> localAuxList = new SimpleLinkedList<>();
+    private static SimpleLinkedList_pt6<Videos_pt6> filterListByTime(boolean isManualInput, SimpleLinkedList_pt6<Videos_pt6> allVideosList) {
+        SimpleLinkedList_pt6<Videos_pt6> localAuxList = new SimpleLinkedList_pt6<>();
         int inputFilter;
 
         inputFilter = (isManualInput) ? Helper.forcePositiveIntEnter("Ingrese valor numerico para filtrar videos con duracion MENOR") : Helper.generateRandomIntegerInRange(1 ,150);
@@ -158,8 +155,8 @@ public class PT6 {
         return localAuxList;
     }
 
-    private static SimpleLinkedList<Videos_pt6> filterListByTopic(boolean isManualInput, SimpleLinkedList<Videos_pt6> allVideosList) {
-        SimpleLinkedList<Videos_pt6> localAuxList = new SimpleLinkedList<>();
+    private static SimpleLinkedList_pt6<Videos_pt6> filterListByTopic(boolean isManualInput, SimpleLinkedList_pt6<Videos_pt6> allVideosList) {
+        SimpleLinkedList_pt6<Videos_pt6> localAuxList = new SimpleLinkedList_pt6<>();
         String inputFilter = "";
         
         inputFilter = obtainStringFilter(isManualInput);
@@ -179,7 +176,7 @@ public class PT6 {
         return (isManualInput) ? Helper.getValidsString("Ingrese cadena para filtrar videos por tema del video (No distingue entre mayusculas y minisculas)") : Helper.generateRandomTitle();
     }
 
-    private static int getID(SimpleLinkedList<Videos_pt6> videosList) {
+    private static int getID(SimpleLinkedList_pt6<Videos_pt6> videosList) {
         return videosList.count + 1;
     }
 

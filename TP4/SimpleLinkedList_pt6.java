@@ -2,7 +2,7 @@ package TP4;
 
 import java.util.Iterator;
  
-public class SimpleLinkedList<ELEMENT extends Videos_pt6> implements ILinkedList<ELEMENT> {
+public class SimpleLinkedList_pt6<ELEMENT extends Videos_pt6> implements ILinkedList<ELEMENT> {
  
     //region Node Class
  
@@ -37,7 +37,7 @@ public class SimpleLinkedList<ELEMENT extends Videos_pt6> implements ILinkedList
  
     //region Constructors
  
-    public SimpleLinkedList() {
+    public SimpleLinkedList_pt6() {
         this.head = null;
         this.count = 0;
         this.tail = null;
