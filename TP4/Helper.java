@@ -74,4 +74,14 @@ public class Helper {
             }
         }
     }
+
+    public static String generateRandomAuthor() {
+        String[] authors = {"J tentor", "Franco", "Alvaro99", "Leo", "Daniel_A", "Emma", "_Cesar_", "-Raul-"};
+        return authors[generateRandomIntegerInRange(0, 8)].toString();
+    }
+
+    public static String generateRandomTitle() {
+        String[] titles = {"Programacion orientada a objetos", "Mejores canciones de 2022", "2022 Remix", "Programacion web con Spring Boot e Hibernate", "Rock nacional - mejores canciones", "Programacion desde cero", "Mejores goles Messi 2007 - 2022", "Mejores jugadas Cristiano Ronaldo 2022"};
+        return titles[generateRandomIntegerInRange(0, 8)].toString();
+    }
 }
