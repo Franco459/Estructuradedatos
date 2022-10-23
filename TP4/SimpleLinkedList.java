@@ -2,7 +2,7 @@ package TP4;
 
 import java.util.Iterator;
  
-public class SimpleLinkedList<ELEMENT> implements ILinkedList<ELEMENT> {
+public class SimpleLinkedList<ELEMENT extends Videos_pt6> implements ILinkedList<ELEMENT> {
  
     //region Node Class
  
@@ -152,6 +152,37 @@ public class SimpleLinkedList<ELEMENT> implements ILinkedList<ELEMENT> {
     }
     //endregion
  
+    public void addInOrder(ELEMENT item) {
+        if (this.size() == 0) {
+            this.head = this.tail = new Node<ELEMENT>(item, null);
+            ++this.count;
+        }
+        else {
+            if (item.compareTo(this.head.item) <= 0) {
+                this.addFirst(item);
+            }
+            else {
+                if (item.compareTo(this.tail.item) > 0) {
+                    this.addLast(item);
+                }
+                else {
+                    Node<ELEMENT> skip = this.head;
+                    while ((skip != null) && (skip.next != null) && (item.compareTo(skip.next.item) > 0)) {
+                        skip = skip.next;
+                    }
+                    if (skip == null) {
+                        throw new RuntimeException("Algo está mal en el orden de los elementos de la lista...");
+                    }
+                    else {
+                        Node<ELEMENT> temp = new Node<ELEMENT>(item, skip.next);
+                        skip.next = temp;
+                        ++this.count;
+                    }
+                }
+            }
+        }
+ 
+    }
  
     //region Iterable Methods
     @Override

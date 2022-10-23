@@ -9,11 +9,11 @@ necesarias a fin de cargar correctamente los datos de un video. HECHO
     ○ Lista de videos de un tema a elección, la cual debe estar ordenada alfabéticamente por
     título. Por ejemplo, si el tema es “objetos” y existen videos cuyo título contiene la
     palabra objetos como ser “Definición de clases y objetos” o “Instanciación de objetos
-    en java”, ambos videos deben ser agregados a la lista.
-    ○ Lista de videos que no superen una duración dada.
-    ○ Lista de videos seleccionados aleatoriamente.
-    ○ Lista de videos de un determinado creador de contenido.
-● Informar la duración total (en minutos) de los videos correspondientes a un tema dado.
+    en java”, ambos videos deben ser agregados a la lista.HECHO
+    ○ Lista de videos que no superen una duración dada.HECHO
+    ○ Lista de videos seleccionados aleatoriamente. HECHO
+    ○ Lista de videos de un determinado creador de contenido. HECHO
+● Informar la duración total (en minutos) de los videos correspondientes a un tema dado. HECHO
 Indicaciones:
 Este ejercicio necesita del objeto scanner para ingresar datos por la consola o teclado, se espera que el
 código controle los problemas que normalmente ocurren al operar con la consola o teclado.
@@ -24,6 +24,9 @@ generados aleatoriamente.
  */
 
 package TP4;
+
+import java.util.Collection;
+import java.util.Collections;
 
 public class PT6 {
     /**
@@ -39,7 +42,7 @@ public class PT6 {
         SimpleLinkedList<Videos_pt6> filterRandomVideosList = new SimpleLinkedList<>();
         SimpleLinkedList<Videos_pt6> filterAuthorVideosList = new SimpleLinkedList<>();
 
-        int option, inputTime_Video, inputID_Video;
+        int option, inputTime_Video, inputID_Video, totalDurationByFilter;
         String msg, inputTitle_Video, inputAuthor_Video;
         boolean isManualInput;
 
@@ -64,9 +67,28 @@ public class PT6 {
 
             if (!Helper.continueProgram("")) break;
         }
-        System.out.println("Todos los videos: \n" + allVideosList.toString());
+        System.out.println("Todos los videos son: \n" + allVideosList.toString());
+        
         filterTopicVideosList = filterListByTopic(isManualInput, allVideosList);
-        System.out.println("Todos los videos filtrados: \n" + filterTopicVideosList.toString());
+        if(filterTopicVideosList.count > 0) System.out.println("Todos los videos filtrados son: \n" + filterTopicVideosList.toString());
+        else System.out.println("No hay videos con el filtro elegido");
+        
+        filterTimeVideosList = filterListByTime(isManualInput, allVideosList);
+        if(filterTimeVideosList.count > 0) System.out.println("Todos los videos filtrados por el tiempo elegido anteriormente son: \n" + filterTimeVideosList.toString());
+        else System.out.println("No hay videos con el filtro elegido");
+
+        filterRandomVideosList = filterListByRandom(allVideosList);
+        if(filterRandomVideosList.count > 0) System.out.println("Todos los videos filtrados anteriormente son: \n" + filterRandomVideosList.toString());
+        else System.out.println("No hay videos con el filtro elegido");
+
+        filterAuthorVideosList  = filterListByAuthor(isManualInput, allVideosList);
+        if(filterAuthorVideosList.count > 0) System.out.println("Todos los videos filtrados anteriormente son: \n" + filterRandomVideosList.toString());
+        else System.out.println("No hay videos con el filtro elegido");
+
+        totalDurationByFilter = getTotalTime(isManualInput, allVideosList);
+        if(totalDurationByFilter > 0) System.out.println("El total en minutos de los videos filtrados anteriormente es: \n" + totalDurationByFilter);
+        else System.out.println("La duracion es 0, porque no hay videos con el filtro elegido");
+
 
     }
 
@@ -74,16 +96,33 @@ public class PT6 {
     /////////////////////////////////////////////METHODS/////////////////////////////////////////////
 
 
-    private static SimpleLinkedList<Videos_pt6> filterListByTopic(boolean isManualInput, SimpleLinkedList<Videos_pt6> allVideosList) {
-        SimpleLinkedList<Videos_pt6> localAuxList = new SimpleLinkedList<>();
+    private static int getTotalTime(boolean isManualInput, SimpleLinkedList<Videos_pt6> allVideosList) {
+        int totalSum = 0;
         String inputFilter = "";
-        
-        inputFilter = (isManualInput) ? Helper.getValidsString("Ingrese cadena para filtrar videos por tema del video (No distingue entre mayusculas y minisculas)") : Helper.generateRandomTitle();
 
-        System.out.println("La palabra para filtrar es : " + inputFilter);
+        inputFilter = obtainStringFilter(isManualInput);
 
         for (Videos_pt6 eachVideo : allVideosList) {
             if(eachVideo.getVideo_Title().contains(inputFilter.toLowerCase()) || eachVideo.getVideo_Title().contains(inputFilter.toUpperCase()) || eachVideo.getVideo_Title().equalsIgnoreCase(inputFilter)){
+                totalSum++;
+            }
+        }
+
+        return totalSum;
+    }
+
+
+    private static SimpleLinkedList<Videos_pt6> filterListByAuthor(boolean isManualInput, SimpleLinkedList<Videos_pt6> allVideosList) {
+        
+        SimpleLinkedList<Videos_pt6> localAuxList = new SimpleLinkedList<>(); 
+        String inputFilter;
+
+        inputFilter = (isManualInput) ? Helper.getValidsString("Ingrese nombre del autor para filtrar videos del mismo. (No distingue entre mayusculas y minisculas)") : Helper.generateRandomAuthor();
+
+        System.out.println("Creador elegido para filtrar sus videos es: " + inputFilter);
+
+        for (Videos_pt6 eachVideo : allVideosList) {
+            if(eachVideo.getvideo_Author().equalsIgnoreCase(inputFilter)){
                 localAuxList.addLast(eachVideo);
             }
         }
@@ -91,6 +130,54 @@ public class PT6 {
         return localAuxList;
     }
 
+
+    private static SimpleLinkedList<Videos_pt6> filterListByRandom(SimpleLinkedList<Videos_pt6> allVideosList) {
+        SimpleLinkedList<Videos_pt6> localAuxList = new SimpleLinkedList<>();
+
+        for (Videos_pt6 eachVideo : allVideosList) {
+            if (Helper.generateRandomIntegerInRange(1,2) == 1) localAuxList.addLast(eachVideo);
+        }
+
+        return localAuxList;
+    }
+
+
+    private static SimpleLinkedList<Videos_pt6> filterListByTime(boolean isManualInput, SimpleLinkedList<Videos_pt6> allVideosList) {
+        SimpleLinkedList<Videos_pt6> localAuxList = new SimpleLinkedList<>();
+        int inputFilter;
+
+        inputFilter = (isManualInput) ? Helper.forcePositiveIntEnter("Ingrese valor numerico para filtrar videos con duracion MENOR") : Helper.generateRandomIntegerInRange(1 ,350);
+
+        System.out.println("La palabra para filtrar es : " + inputFilter);
+
+        for (Videos_pt6 eachVideo : allVideosList) {
+            if(eachVideo.getVideo_Duration() < inputFilter){
+                localAuxList.addLast(eachVideo);
+            }
+        }
+        return localAuxList;
+    }
+
+    private static SimpleLinkedList<Videos_pt6> filterListByTopic(boolean isManualInput, SimpleLinkedList<Videos_pt6> allVideosList) {
+        SimpleLinkedList<Videos_pt6> localAuxList = new SimpleLinkedList<>();
+        String inputFilter = "";
+        
+        inputFilter = obtainStringFilter(isManualInput);
+
+        System.out.println("La palabra para filtrar es : " + inputFilter);
+
+        for (Videos_pt6 eachVideo : allVideosList) {
+            if(eachVideo.getVideo_Title().contains(inputFilter.toLowerCase()) || eachVideo.getVideo_Title().contains(inputFilter.toUpperCase()) || eachVideo.getVideo_Title().equalsIgnoreCase(inputFilter)){
+                localAuxList.addInOrder(eachVideo);
+            }
+        }
+
+        return localAuxList;
+    }
+
+    private static String obtainStringFilter(boolean isManualInput) {
+        return (isManualInput) ? Helper.getValidsString("Ingrese cadena para filtrar videos por tema del video (No distingue entre mayusculas y minisculas)") : Helper.generateRandomTitle();
+    }
 
     private static int getID(SimpleLinkedList<Videos_pt6> videosList) {
         return videosList.count + 1;

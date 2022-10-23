@@ -1,11 +1,17 @@
 package TP4;
 
-public class Videos_pt6 {
+
+public class Videos_pt6 implements Comparable {
+
     int video_ID;
     String video_Title;
     String video_Author;
     int video_Duration;
 
+    @Override
+    public boolean equals(Object obj){
+        return super.equals(obj);
+    }
 
     public Videos_pt6() {
     }
@@ -51,5 +57,12 @@ public class Videos_pt6 {
     public String toString() {
         return "ID:" + video_ID + ", Titulo:" + video_Title + ", Creador=" + video_Author
                 + ", Duracion en minutos:" + video_Duration + "\n";
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        // TODO Auto-generated method stub
+        Videos_pt6 video = (Videos_pt6) o;
+        return this.getVideo_Title().compareTo(video.getVideo_Title());
     }
 }

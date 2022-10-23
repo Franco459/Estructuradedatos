@@ -58,7 +58,7 @@ public class PT6 {
         int option, amountOfBales = 0, amountOfOrders = 0;
         String msg, nameCityValue = "", storeCityValue = "";
 
-        //fin definicion de variables
+       //fin definicion de variables
 
             System.out.println("RECOMENDACION PARA GENERAR ALEATORIOS:\n"
                                 + "solo hay 9 ciudades pre cargadas,"
