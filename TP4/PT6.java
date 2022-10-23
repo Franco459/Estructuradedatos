@@ -104,7 +104,7 @@ public class PT6 {
 
         for (Videos_pt6 eachVideo : allVideosList) {
             if(eachVideo.getVideo_Title().contains(inputFilter.toLowerCase()) || eachVideo.getVideo_Title().contains(inputFilter.toUpperCase()) || eachVideo.getVideo_Title().equalsIgnoreCase(inputFilter)){
-                totalSum++;
+                totalSum+= eachVideo.getVideo_Duration();
             }
         }
 
@@ -146,9 +146,9 @@ public class PT6 {
         SimpleLinkedList<Videos_pt6> localAuxList = new SimpleLinkedList<>();
         int inputFilter;
 
-        inputFilter = (isManualInput) ? Helper.forcePositiveIntEnter("Ingrese valor numerico para filtrar videos con duracion MENOR") : Helper.generateRandomIntegerInRange(1 ,350);
+        inputFilter = (isManualInput) ? Helper.forcePositiveIntEnter("Ingrese valor numerico para filtrar videos con duracion MENOR") : Helper.generateRandomIntegerInRange(1 ,150);
 
-        System.out.println("La palabra para filtrar es : " + inputFilter);
+        System.out.println("****El tiempo generado para filtrar videos de duracion menor es: " + inputFilter);
 
         for (Videos_pt6 eachVideo : allVideosList) {
             if(eachVideo.getVideo_Duration() < inputFilter){
