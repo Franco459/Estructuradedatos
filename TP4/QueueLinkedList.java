@@ -15,7 +15,7 @@ public class QueueLinkedList<ELEMENT extends Comparable> {
     }
 
     public Object dequeue(){
-        if(queue.count > 0) return queue.removeFirst();
+        if(queue.size() > 0) return queue.removeFirst();
         throw new RuntimeException("La lista de la cola está vacia");
     }
 
