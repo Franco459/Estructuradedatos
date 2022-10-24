@@ -47,7 +47,26 @@ public class Helper {
     public static int generateRandomIntegerInRange(int min, int max){
         return  min + (int)(Math.random() * max);
     }
+
+    public static int generateRandomNumbersInRange(int max, int min){
+        return  -10 + (int) (Math.random() * ((10 - (-10)) + 1));
+        
+    }
     
+    public static int forceInteger(String msg){
+        int n = 0;
+        while(true){
+            System.out.println(msg);
+            try{
+                n = Integer.parseInt(entrada.nextLine());
+                break;
+            }
+            catch(NumberFormatException e){
+                System.out.println("SOLAMENTE VALIDOS NUMEROS ENTEROS. "+e);
+            }
+        }
+        return n;
+    }
   
     public static boolean continueProgram(String msg){
         while (true){
