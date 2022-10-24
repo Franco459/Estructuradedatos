@@ -51,6 +51,10 @@ public class PT1 {
         
     }
 
+
+    /////////////////////////////////////////////METHODS/////////////////////////////////////////////
+
+
     private static int countZeros(QueueLinkedList<Integer> queue) {
         int size = queue.size(), count = 0;
         for (int i = 0; i < size; i++) {

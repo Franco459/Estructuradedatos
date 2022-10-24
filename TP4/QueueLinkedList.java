@@ -4,10 +4,10 @@ import javax.lang.model.element.Element;
 import javax.management.RuntimeErrorException;
 
 public class QueueLinkedList<ELEMENT extends Comparable> {
-    SimpleLinkedList queue;
+    private SimpleLinkedList<ELEMENT> queue;
 
     public QueueLinkedList(){
-        queue = new SimpleLinkedList<>();
+        this.queue = new SimpleLinkedList<ELEMENT>();
     }
 
     public void enqueue(ELEMENT element){
@@ -28,10 +28,12 @@ public class QueueLinkedList<ELEMENT extends Comparable> {
     }
 
     public ELEMENT peek(){
-        return (ELEMENT) queue.head;
+        if (queue.size() <= 0 ) return null;
+        return (ELEMENT) queue.tail;
     }
 
     public String toString(){
+        if (queue.size() <= 0 ) return "[Cola vacia]";
         return queue.toString();
     }
 
