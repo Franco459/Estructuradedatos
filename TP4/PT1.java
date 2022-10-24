@@ -18,9 +18,11 @@ public class PT1 {
     public static void main(String[] args) {
         
         QueueLinkedList<Integer> queue = new QueueLinkedList<>();
+        //region variables
         String msg;
         boolean isManualInput;
         int option, inputNumber;
+        //end region variables
 
         msg = "-----------MENU PROGRAMA CALCULA DE POSFIJA----------- \n"
         +    "1- Ingresar valores manuales \n"

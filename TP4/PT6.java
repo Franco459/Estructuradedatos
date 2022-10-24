@@ -31,7 +31,7 @@ public class PT6 {
      */
     public static void main(String[] args) {
         
-        //definicion de variables
+        //region variables
 
         SimpleLinkedList_pt6<Videos_pt6> allVideosList = new SimpleLinkedList_pt6<>();
         SimpleLinkedList_pt6<Videos_pt6> filterTopicVideosList = new SimpleLinkedList_pt6<>();
@@ -43,7 +43,7 @@ public class PT6 {
         String msg, inputTitle_Video, inputAuthor_Video;
         boolean isManualInput;
 
-       //definicion de variables
+       //end region variables
 
         msg = "-----------MENU PROGRAMA CALCULA DE POSFIJA----------- \n"
         +    "1- Ingresar valores manuales \n"

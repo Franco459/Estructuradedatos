@@ -12,10 +12,13 @@ public class PT2 {
      * @param args
      */
     public static void main(String[] args) {
+
+        //region variables
         StackLinkedList<Character> stack = new StackLinkedList<>();
         String msg, inputString;
         boolean isManualInput;
         int option;
+        //end region variables
 
         msg = "-----------MENU PROGRAMA CALCULA DE POSFIJA----------- \n"
         +    "1- Ingresar valores manuales \n"
