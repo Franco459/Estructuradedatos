@@ -103,4 +103,9 @@ public class Helper {
         String[] titles = {"Programacion orientada a objetos", "Mejores canciones de 2022", "2022 Remix", "Programacion web con Spring Boot e Hibernate", "Rock nacional - mejores canciones", "Programacion desde cero", "Mejores goles Messi 2007 - 2022", "Mejores jugadas Cristiano Ronaldo 2022"};
         return titles[generateRandomIntegerInRange(0, 8)].toString();
     }
+
+    public static String generateRandomOperation() {
+        String[] operations = {"{5[3+10-3]}", "{-4[-5(-12-7)]}", "10÷(5–3)", "-{45-28-(3-9)+(2+3)}", "4+28)(2+3)}", "(((4+28))(2/3)}", "4+9)", "{5*[4-(2*3))]}"};
+        return operations[generateRandomIntegerInRange(0, 8)].toString();
+    }
 }
