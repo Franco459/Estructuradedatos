@@ -108,4 +108,22 @@ public class Helper {
         String[] operations = {"{5[3+10-3]}", "{-4[-5(-12-7)]}", "10÷(5–3)", "-{45-28-(3-9)+(2+3)}", "4+28)(2+3)}", "(((4+28))(2/3)}", "4+9)", "{5*[4-(2*3))]}"};
         return operations[generateRandomIntegerInRange(0, 8)].toString();
     }
+
+    public static Character getChar(String msg){
+        String valueInput;
+        while(true){
+              try {
+                System.out.println(msg);
+                valueInput = entrada.nextLine();
+                if ((valueInput.length() != 1)){
+                    throw new RuntimeException("Solo caracteres ALFABETICOS y longitud MAXIMA 1");
+                }
+                else{  
+                    return Character.toLowerCase(valueInput.charAt(0));
+                }
+              } catch (Exception e) {
+                    System.out.println("Solo caracteres ALFABETICOS y longitud MAXIMA 1");
+              }
+        }
+    }
 }
