@@ -94,6 +94,6 @@ public class PT1 {
     }
 
     private static int getNumber(boolean isManualInput) {
-        return (isManualInput) ? Helper.forceInteger("Ingrese valor entero para encolar (99 para dejar de cargar)") : Helper.generateRandomNumbersInRange(10, -10);
+        return (isManualInput) ? Helper.forceInteger("Ingrese valor entero para encolar (99 para dejar de cargar)\n RECOMENDACION: No poner numeros excesivamente grandes para evitar problemas en calculo de Factorial") : Helper.generateRandomNumbersInRange(10, -10);
     }
 }
