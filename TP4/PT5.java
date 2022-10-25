@@ -18,7 +18,7 @@ public class PT5 {
         boolean isManualInput = (option == 1) ? true : false;
 
         if (!isManualInput) amountRandomUser = Helper.generateRandomIntegerInRange(3, 10);
-        System.out.println(amountRandomUser);
+        
         do{
             inputName = getName(isManualInput);
             inputSurname = getSurname(isManualInput);
@@ -74,7 +74,7 @@ public class PT5 {
         String inputFilter = Helper.getValidsString("Ingrese nombre o apellido: ");
 
         System.out.println("La palabra para filtrar es : " + inputFilter);
-        
+
         for (UsuarioDeServicio each : list) {
             if(each.getApellido().toLowerCase().contains(inputFilter.toLowerCase()) || each.getApellido().toLowerCase().contains(inputFilter.toUpperCase()) || each.getApellido().toLowerCase().equalsIgnoreCase(inputFilter)){
                 localAuxList.addInOrder(each);
