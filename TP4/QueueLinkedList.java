@@ -1,8 +1,5 @@
 package TP4;
 
-import javax.lang.model.element.Element;
-import javax.management.RuntimeErrorException;
-
 public class QueueLinkedList<ELEMENT extends Comparable> {
     private SimpleLinkedList<ELEMENT> queue;
 
@@ -25,11 +22,6 @@ public class QueueLinkedList<ELEMENT extends Comparable> {
 
     public boolean isEmpty(){
         return (queue.count == 0) ? true : false;
-    }
-
-    public ELEMENT peek(){
-        if (queue.size() <= 0 ) return null;
-        return (ELEMENT) queue.head.item;
     }
 
     public String toString(){
