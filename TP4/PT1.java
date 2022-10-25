@@ -62,11 +62,10 @@ public class PT1 {
         else{
            
             while(!queue.isEmpty()){
-                int element = (int) queue.peek();
+                int element = (int) queue.dequeue();
                 if ( element == 0 ) countZeros++;
                 else if ( element < 0 ) sumnegatives += element;
                 else System.out.println("El factorial del numero positivo encolado '" + element + "', es:" + getFactorial(element));
-                queue.dequeue();
             }
 
             msg += (countZeros > 0) ? "La cantidad de 0 encolados es: " + countZeros + ".\n" : "No se encontraron '0' encolados.\n";

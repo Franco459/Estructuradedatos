@@ -5,7 +5,7 @@ import java.util.Iterator;
 public class SimpleLinkedList_pt5<ELEMENT extends UsuarioDeServicio> implements ILinkedList<ELEMENT>  {
  
     //region Node Class
-    class Node<ELEMENT> {
+    private class Node<ELEMENT> {
         public ELEMENT item;
         public Node<ELEMENT> next;
  

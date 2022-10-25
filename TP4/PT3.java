@@ -17,6 +17,7 @@ public class PT3 {
         SimpleLinkedList<Character> listConsonantes = new SimpleLinkedList<Character>();
         SimpleLinkedList<Character> listSobrantes = new SimpleLinkedList<Character>();
         String msg;
+        int amountOfChar;
         Character inputChar;
         boolean isManualInput;
         //end region variables
@@ -28,22 +29,17 @@ public class PT3 {
         int option = Helper.menuTwoOptions(msg);
 
         isManualInput = (option == 1) ? true : false;
+        
+        amountOfChar =  (!isManualInput) ? Helper.generateRandomIntegerInRange(5, 20) : Helper.forcePositiveIntEnter("Ingrese cantidad de caracteres a cargar");
 
-        if (isManualInput){
-            do{
-                inputChar = getInputChar(isManualInput);	
-                listCaracteres.addFirst(inputChar);
-                System.out.println(listCaracteres.toString());
-            }while(Helper.continueProgram(""));
-        }    
-        else{
-            int amountOfChar = Helper.generateRandomIntegerInRange(5, 20);
-            for (int j = 0; j < amountOfChar; j++) {
-                inputChar = getInputChar(isManualInput);
-                System.out.println(inputChar);
-                listCaracteres.addFirst(inputChar);
-            }
-        }
+        do{
+            inputChar = getInputChar(isManualInput);	
+            System.out.println((int) inputChar + " : " + inputChar);
+            listCaracteres.addFirst(inputChar);
+            if (isManualInput) System.out.println("Items dentro de la lista : " + listCaracteres.toString());
+            amountOfChar--;
+        }while(amountOfChar > 0);
+
         readList(listCaracteres, "todos los caracteres");
         
         vowelConsonantOther(listCaracteres,listVocales,listConsonantes,listSobrantes);
@@ -58,7 +54,7 @@ public class PT3 {
 
 
     private static Character getInputChar(boolean isManualInput) {
-        return (isManualInput) ? Helper.getChar("Ingrese un caracter (Longitud maxima 1)") : (char) Helper.generateRandomIntegerInRange(33, 126);
+        return (isManualInput) ? Helper.getChar("Ingrese un caracter (Longitud maxima 1)") : (char) Helper.generateRandomIntegerInRange(33, 125);
         
     }
 
@@ -68,18 +64,19 @@ public class PT3 {
             letra=list.removeLast();
             if(isVowel(letra)) {
                 listVocales.addFirst(letra);
-            }else if ((letra >= 'a' && letra <= 'z')){
+            }else if ((letra >= 'a' && letra <= 'z' || letra >= 'A' && letra <= 'Z')){
                     listConsonantes.addFirst(letra);
             }else listSobrantes.addFirst(letra);
         }
     }
 
     private static boolean isVowel(Character letra) {
-        return (letra == 'a' || letra == 'e' || letra== 'i' || letra == 'o' || letra == 'u');
+        return (Character.toLowerCase(letra) == 'a' || Character.toLowerCase(letra) == 'e' || Character.toLowerCase(letra) == 'i' || Character.toLowerCase(letra) == 'o' || Character.toLowerCase(letra) == 'u');
     }
 
-    public static void readList(SimpleLinkedList<Character> listVocales, String string){
-        System.out.println("La lista con "+ string +" es:" + listVocales.toString());
+    public static void readList(SimpleLinkedList<Character> receivedList, String string){
+        if(receivedList.count == 0) System.out.println("La lista con "+ string +", no obtuvo ningun valor valido para almacenarse");
+        else System.out.println("La lista con "+ string +" es:" + receivedList.toString());
     }
 
 }

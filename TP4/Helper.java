@@ -116,14 +116,15 @@ public class Helper {
               try {
                 System.out.println(msg);
                 valueInput = entrada.nextLine();
+                if(valueInput.isBlank()) throw new RuntimeException("No se admiten espacios en blanco");
                 if ((valueInput.length() != 1)){
-                    throw new RuntimeException("Solo caracteres ALFABETICOS y longitud MAXIMA 1");
+                    throw new RuntimeException("Longitud MAXIMA 1");
                 }
                 else{  
-                    return Character.toLowerCase(valueInput.charAt(0));
+                    return valueInput.charAt(0);
                 }
               } catch (Exception e) {
-                    System.out.println("Solo caracteres ALFABETICOS y longitud MAXIMA 1");
+                    System.out.println(e);
               }
         }
     }

@@ -45,11 +45,10 @@ public class PT2 {
             if(inputString.charAt(i) == ')' || inputString.charAt(i) == ']' || inputString.charAt(i) == '}'){
                 char value = ' ';
 
-                if (!stack.isEmpty()) value = (char) stack.peek();
+                if (!stack.isEmpty()) value = (char) stack.pop();
                 else return true;
                 
                 if(((value) != getInverse(inputString.charAt(i)))) return true;
-                else stack.pop();
 
             }
         }
