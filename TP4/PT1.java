@@ -24,7 +24,7 @@ public class PT1 {
         int option, inputNumber;
         //end region variables
 
-        msg = "-----------MENU PROGRAMA CALCULA DE POSFIJA----------- \n"
+        msg = "-----------MENU PROGRAMA COLA LINKED LIST----------- \n"
         +    "1- Ingresar valores manuales \n"
         +    "2- Ingresar valores aleatorios ";
         option = Helper.menuTwoOptions(msg);
@@ -46,10 +46,7 @@ public class PT1 {
             }
         }
         System.out.println("La cola es: " + queue.toString());
-
-        getPositives(queue);
-        System.out.println("La suma de los numeros negativos es: " + sumNegatives(queue));
-        System.out.println("La cantidad de 0 en la cola es: " + countZeros(queue));
+        System.out.println(getResults(queue));
         
     }
 
@@ -57,38 +54,22 @@ public class PT1 {
     /////////////////////////////////////////////METHODS/////////////////////////////////////////////
 
 
-    private static int countZeros(QueueLinkedList<Integer> queue) {
-        int size = queue.size(), count = 0;
-        for (int i = 0; i < size; i++) {
-            int element = (int) queue.dequeue();
-            if ( element == 0 ) count++;
-            queue.enqueue(element);
-        }
-        return count;
-    }
+    private static String getResults(QueueLinkedList<Integer> queue) {
+        int countZeros = 0, sumnegatives = 0;
+        String msg = "";
 
-    private static int sumNegatives(QueueLinkedList<Integer> queue) {
-        int size = queue.size(), sum = 0;
-        for (int i = 0; i < size; i++) {
-            int element = (int) queue.dequeue();
-            if ( element < 0 ) sum += element;
-            queue.enqueue(element);
-        }
-        return sum;
-    }
-
-    private static void getPositives(QueueLinkedList<Integer> queue) {
-        int size = queue.size();
-        boolean existPositive = false;
-        for (int i = 0; i < size; i++) {
-            int element = (int) queue.dequeue();
-            if ( element > 0 ) {
-                System.out.println("El factorial de " + element + " es:" + getFactorial(element));
-                existPositive = true;
+        if(queue.isEmpty()) msg = "La cola está vacia. No se realizaran calculos";
+        else{
+            while(!queue.isEmpty()){
+                int element = (int) queue.dequeue();
+                if ( element == 0 ) countZeros++;
+                else if ( element < 0 ) sumnegatives += element;
+                else System.out.println("El factorial del numero positivo encolado '" + element + "', es:" + getFactorial(element));
             }
-            queue.enqueue(element);
+            msg += (countZeros > 0) ? "La cantidad de 0 encolados es: " + countZeros + ".\n" : "No se encontraron '0' encolados.\n";
+            msg += (sumnegatives < 0) ? "La suma de numeros negativos es: " + sumnegatives + ".\n" : "No se encontraron 'numeros negativos' encolados.\n";
         }
-        if(!existPositive) System.out.println("No se generaron numeros enteros positivos");
+        return msg;
     }
 
     private static long getFactorial(int element) {
