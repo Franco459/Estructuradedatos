@@ -2,22 +2,24 @@ package TP4;
 
 public class PT5 {
     public static void main(String [] args ){
-        SimpleLinkedList<UsuarioDeServicio> listUsuarios = new SimpleLinkedList<>();
+
+        //region variables
+        SimpleLinkedList_pt5<UsuarioDeServicio> listUsuarios = new SimpleLinkedList_pt5<>();
         int amountRandomUser = 0;
         String msg;
         String inputName, inputSurname, inputUser, inputPassword, inputMail, inputTypeAccount;
-            //menu 2 opciones
+        //end region variables
+            
         msg = "---------------MENU--------------- \n"
-        +    "1- Ingresar valores manuales \n"
-        +    "2- Ingresar valores aleatorios ";
+        +    "1- Crear usuarios con valores manuales \n"
+        +    "2- Crear usuarios con valores aleatorios ";
         int option = Helper.menuTwoOptions(msg);
 
         boolean isManualInput = (option == 1) ? true : false;
 
         if (!isManualInput) amountRandomUser = Helper.generateRandomIntegerInRange(3, 10);
-
+        System.out.println(amountRandomUser);
         do{
-
             inputName = getName(isManualInput);
             inputSurname = getSurname(isManualInput);
             inputUser = getUser(isManualInput);
@@ -26,7 +28,8 @@ public class PT5 {
             inputTypeAccount = getTypeAccount(isManualInput);
 
             listUsuarios.addLast(new UsuarioDeServicio(inputName, inputSurname, inputUser, inputPassword, inputMail, inputTypeAccount));
-
+            if(!isManualInput) amountRandomUser--;
+            
         }while((isManualInput) ? Helper.continueProgram("Desea agregar otro usuario mas? (S/N||s/n)") : amountRandomUser > 0);
         
         System.out.println(listUsuarios.toString());
@@ -37,6 +40,10 @@ public class PT5 {
         String opcion= (Helper.menuTwoOptions("Que lista desea ver? 1-Premium 2-Gratuita") == 1) ?  "Premium": "Gratuita";
         mostrarPremiGratu(listUsuarios, opcion);
     }
+
+
+    /////////////////////////////////////////////METHODS/////////////////////////////////////////////
+
 
     private static String getTypeAccount(boolean isManualInput) {
         return (isManualInput) ? (Helper.menuTwoOptions("Desea cuenta premium o gratuita? 1-Premium 2-Gratuita") == 1) ?  "Premium": "Gratuita" : Helper.generateRandomTypeOfAccount();
@@ -62,8 +69,8 @@ public class PT5 {
         return (isManualInput) ? Helper.getStringOnlyLetters("Ingrese el Nombre: (No se admiten numeros ni caracteres especiales) ") : Helper.generateRandomNames();
     }
     
-    private static SimpleLinkedList<UsuarioDeServicio> filterList( SimpleLinkedList<UsuarioDeServicio> list) {
-        SimpleLinkedList<UsuarioDeServicio> localAuxList = new SimpleLinkedList<>();
+    private static SimpleLinkedList_pt5<UsuarioDeServicio> filterList( SimpleLinkedList_pt5<UsuarioDeServicio> list) {
+        SimpleLinkedList_pt5<UsuarioDeServicio> localAuxList = new SimpleLinkedList_pt5<>();
         String inputFilter = Helper.getValidsString("Ingrese nombre o apellido: ");
 
         System.out.println("La palabra para filtrar es : " + inputFilter);
@@ -79,7 +86,7 @@ public class PT5 {
         return localAuxList;
     }
 
-    public static void mostrarPremiGratu(SimpleLinkedList<UsuarioDeServicio> list, String opcion){
+    public static void mostrarPremiGratu(SimpleLinkedList_pt5<UsuarioDeServicio> list, String opcion){
         for(UsuarioDeServicio a: list){
             if(opcion == a.getTipo_de_cuenta()){
                 System.out.println(a.toString());
