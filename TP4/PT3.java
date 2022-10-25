@@ -29,12 +29,11 @@ public class PT3 {
         int option = Helper.menuTwoOptions(msg);
 
         isManualInput = (option == 1) ? true : false;
-        
+
         amountOfChar =  (!isManualInput) ? Helper.generateRandomIntegerInRange(5, 20) : Helper.forcePositiveIntEnter("Ingrese cantidad de caracteres a cargar");
 
         do{
-            inputChar = getInputChar(isManualInput);	
-            System.out.println((int) inputChar + " : " + inputChar);
+            inputChar = getInputChar(isManualInput);
             listCaracteres.addFirst(inputChar);
             if (isManualInput) System.out.println("Items dentro de la lista : " + listCaracteres.toString());
             amountOfChar--;
