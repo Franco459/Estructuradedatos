@@ -9,7 +9,6 @@ clase SimpleLinkedList<ELEMENT>.
  */
 package TP4;
 
-import javax.swing.text.StyledEditorKit.BoldAction;
 
 public class PT1 {
     /**
@@ -25,8 +24,8 @@ public class PT1 {
         //end region variables
 
         msg = "-----------MENU PROGRAMA COLA LINKED LIST----------- \n"
-        +    "1- Ingresar valores manuales \n"
-        +    "2- Ingresar valores aleatorios ";
+        +    "1- Cargar cola con valores manuales \n"
+        +    "2- Cargar cola con valores aleatorios ";
         option = Helper.menuTwoOptions(msg);
 
         isManualInput = (option == 1) ? true : false;
@@ -45,6 +44,7 @@ public class PT1 {
                 queue.enqueue(inputNumber);
             }
         }
+        System.out.println("-----------------RESULTADOS DE LA OPERACION-----------------");
         System.out.println("La cola es: " + queue.toString());
         System.out.println(getResults(queue));
         
@@ -60,23 +60,29 @@ public class PT1 {
 
         if(queue.isEmpty()) msg = "La cola está vacia. No se realizaran calculos";
         else{
+           
             while(!queue.isEmpty()){
-                int element = (int) queue.dequeue();
+                int element = (int) queue.peek();
                 if ( element == 0 ) countZeros++;
                 else if ( element < 0 ) sumnegatives += element;
                 else System.out.println("El factorial del numero positivo encolado '" + element + "', es:" + getFactorial(element));
+                queue.dequeue();
             }
+
             msg += (countZeros > 0) ? "La cantidad de 0 encolados es: " + countZeros + ".\n" : "No se encontraron '0' encolados.\n";
             msg += (sumnegatives < 0) ? "La suma de numeros negativos es: " + sumnegatives + ".\n" : "No se encontraron 'numeros negativos' encolados.\n";
+        
         }
         return msg;
     }
 
     private static long getFactorial(int element) {
         long factorial = 1;
+        
         for (long i = element; i > 0; i--) {
             factorial = factorial * i; 
         }
+        
         return factorial;
     }
 

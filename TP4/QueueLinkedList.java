@@ -29,7 +29,7 @@ public class QueueLinkedList<ELEMENT extends Comparable> {
 
     public ELEMENT peek(){
         if (queue.size() <= 0 ) return null;
-        return (ELEMENT) queue.tail;
+        return (ELEMENT) queue.head.item;
     }
 
     public String toString(){
