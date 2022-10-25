@@ -46,7 +46,7 @@ public class Helper {
 
     //PT
     public static int generateRandomIntegerInRange(int min, int max){
-        return  min + (int)(Math.random() * max);
+        return  random.nextInt((max - min) + 1) + min;
     }
 
     public static int generateRandomNumbersInRange(int max, int min){

@@ -53,7 +53,7 @@ public class PT3 {
 
 
     private static Character getInputChar(boolean isManualInput) {
-        return (isManualInput) ? Helper.getChar("Ingrese un caracter (Longitud maxima 1)") : (char) Helper.generateRandomIntegerInRange(33, 125);
+        return (isManualInput) ? Helper.getChar("Ingrese un caracter (Longitud maxima 1)") : (char) Helper.generateRandomIntegerInRange(33, 126);
         
     }
 
