@@ -45,7 +45,7 @@ public class PT6 {
 
        //end region variables
 
-        msg = "-----------MENU PROGRAMA CALCULA DE POSFIJA----------- \n"
+        msg = "-----------MENU PROGRAMA FILTRO VIDEOS----------- \n"
         +    "1- Ingresar valores manuales \n"
         +    "2- Ingresar valores aleatorios ";
         option = Helper.menuTwoOptions(msg);
