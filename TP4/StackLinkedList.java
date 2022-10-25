@@ -18,7 +18,7 @@ public class StackLinkedList<ELEMENT extends Comparable> {
 
     public Object peek(){
         if (stack.size() <= 0 ) return null;
-        return stack.tail;
+        return (Object) stack.tail.item;
     }
 
     public int size(){

@@ -45,13 +45,11 @@ public class PT2 {
             if(inputString.charAt(i) == ')' || inputString.charAt(i) == ']' || inputString.charAt(i) == '}'){
                 char value = ' ';
 
-                if (!stack.isEmpty()) value = (char) stack.pop();
+                if (!stack.isEmpty()) value = (char) stack.peek();
                 else return true;
-                System.out.println(value + " compare " + inputString.charAt(i));
                 
-                System.out.println((int)value + " compare " + (int) inputString.charAt(i));
-                System.out.println(value == inputString.charAt(i));
                 if(((value) != getInverse(inputString.charAt(i)))) return true;
+                else stack.pop();
 
             }
         }

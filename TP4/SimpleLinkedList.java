@@ -6,7 +6,7 @@ public class SimpleLinkedList<ELEMENT> implements ILinkedList<ELEMENT> {
  
     //region Node Class
  
-    private class Node<ELEMENT> {
+    public class Node<ELEMENT> {
         public ELEMENT item;
         public Node<ELEMENT> next;
  
