@@ -38,7 +38,7 @@ public class PT5 {
         System.out.println(filterList(listUsuarios).toString());
 
         String opcion= (Helper.menuTwoOptions("Que lista desea ver? 1-Premium 2-Gratuita") == 1) ?  "Premium": "Gratuita";
-        mostrarPremiGratu(listUsuarios, opcion);
+        showPremiumFreeAccount(listUsuarios, opcion);
     }
 
 
@@ -74,6 +74,7 @@ public class PT5 {
         String inputFilter = Helper.getValidsString("Ingrese nombre o apellido: ");
 
         System.out.println("La palabra para filtrar es : " + inputFilter);
+        
         for (UsuarioDeServicio each : list) {
             if(each.getApellido().toLowerCase().contains(inputFilter.toLowerCase()) || each.getApellido().toLowerCase().contains(inputFilter.toUpperCase()) || each.getApellido().toLowerCase().equalsIgnoreCase(inputFilter)){
                 localAuxList.addInOrder(each);
@@ -86,10 +87,10 @@ public class PT5 {
         return localAuxList;
     }
 
-    public static void mostrarPremiGratu(SimpleLinkedList_pt5<UsuarioDeServicio> list, String opcion){
-        for(UsuarioDeServicio a: list){
-            if(opcion == a.getTipo_de_cuenta()){
-                System.out.println(a.toString());
+    public static void showPremiumFreeAccount(SimpleLinkedList_pt5<UsuarioDeServicio> listUsuarios, String opcion){
+        for(UsuarioDeServicio user: listUsuarios){
+            if(opcion == user.getTipo_de_cuenta()){
+                System.out.println(user.toString());
             }
         }
     }
