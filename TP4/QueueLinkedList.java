@@ -1,6 +1,6 @@
 package TP4;
 
-public class QueueLinkedList<ELEMENT extends Comparable> {
+public class QueueLinkedList<ELEMENT> {
     private SimpleLinkedList<ELEMENT> queue;
 
     public QueueLinkedList(){
