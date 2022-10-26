@@ -5,10 +5,10 @@ vocales, en la segunda las consonantes y en la tercera los símbolos restantes.
  */
 package TP4;
 
-import java.util.Scanner;
-
 public class PT3 {
-    static Scanner input = new Scanner(System.in);
+    /**
+     * @param args
+     */
     public static void main(String [] args ){
 
         //region variables
@@ -51,10 +51,13 @@ public class PT3 {
 
     /////////////////////////////////////////////METHODS/////////////////////////////////////////////
 
-
+    
     private static Character getInputChar(boolean isManualInput) {
         return (isManualInput) ? Helper.getChar("Ingrese un caracter (Longitud maxima 1)") : (char) Helper.generateRandomIntegerInRange(33, 126);
-        
+    }
+
+    private static boolean isVowel(Character letra) {
+        return (Character.toLowerCase(letra) == 'a' || Character.toLowerCase(letra) == 'e' || Character.toLowerCase(letra) == 'i' || Character.toLowerCase(letra) == 'o' || Character.toLowerCase(letra) == 'u');
     }
 
     public static void vowelConsonantOther(SimpleLinkedList<Character> list, SimpleLinkedList<Character> listVocales,SimpleLinkedList<Character> listConsonantes, SimpleLinkedList<Character> listSobrantes){
@@ -67,10 +70,6 @@ public class PT3 {
                     listConsonantes.addFirst(letra);
             }else listSobrantes.addFirst(letra);
         }
-    }
-
-    private static boolean isVowel(Character letra) {
-        return (Character.toLowerCase(letra) == 'a' || Character.toLowerCase(letra) == 'e' || Character.toLowerCase(letra) == 'i' || Character.toLowerCase(letra) == 'o' || Character.toLowerCase(letra) == 'u');
     }
 
     public static void readList(SimpleLinkedList<Character> receivedList, String string){
