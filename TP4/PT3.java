@@ -51,7 +51,7 @@ public class PT3 {
 
     /////////////////////////////////////////////METHODS/////////////////////////////////////////////
 
-    
+
     private static Character getInputChar(boolean isManualInput) {
         return (isManualInput) ? Helper.getChar("Ingrese un caracter (Longitud maxima 1)") : (char) Helper.generateRandomIntegerInRange(33, 126);
     }
@@ -73,7 +73,7 @@ public class PT3 {
     }
 
     public static void readList(SimpleLinkedList<Character> receivedList, String string){
-        if(receivedList.count == 0) System.out.println("La lista con "+ string +", no obtuvo ningun valor valido para almacenarse");
+        if(receivedList.count == 0) System.out.println("La lista con "+ string +", no obtuvo ningun valor valido para almacenarse en esta cola.");
         else System.out.println("La lista con "+ string +" es:" + receivedList.toString());
     }
 
