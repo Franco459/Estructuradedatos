@@ -2,14 +2,14 @@ package TP5;
 
 import java.time.LocalDate;
 
-public class Compra {
+public class Compra implements Comparable{
 
     int nro_factura;
     int cuit_comercio;
-    float importe;
+    Double importe;
     LocalDate date;
 
-    public Compra(int nro_factura, int cuit_comercio, float importe, LocalDate date) {
+    public Compra(int nro_factura, int cuit_comercio, Double importe, LocalDate date) {
         this.nro_factura = nro_factura;
         this.cuit_comercio = cuit_comercio;
         this.importe = importe;
@@ -34,10 +34,10 @@ public class Compra {
     public void setCuit_comercio(int cuit_comercio) {
         this.cuit_comercio = cuit_comercio;
     }
-    public float getImporte() {
+    public Double getImporte() {
         return importe;
     }
-    public void setImporte(float importe) {
+    public void setImporte(Double importe) {
         this.importe = importe;
     }
     public LocalDate getDate() {
@@ -45,5 +45,10 @@ public class Compra {
     }
     public void setDate(LocalDate date) {
         this.date = date;
+    }
+    @Override
+    public int compareTo(Object obj) {
+        Compra user = (Compra) obj;
+        return Double.compare(this.getImporte(), user.getImporte());
     }
 }
