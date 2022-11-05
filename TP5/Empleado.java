@@ -1,20 +1,15 @@
 package TP5;
 
-public class Empleado {
-    int legajo;
-    int apellido;
-    int nombre;
-    int departamento;
-    float sueldo;
+public class Empleado implements Comparable{
+    public int legajo;
+    public String apellido;
+    public String nombre;
+    public int departamento;
+    public int sueldo;
 
-    @Override
-    public String toString() {
-        String departamento_String = (departamento == 1) ? "administracion" : (departamento == 2) ? "contabilidad" : "gerencia";
-        return "Empleado [legajo=" + legajo + ", apellido=" + apellido + ", nombre=" + nombre + ", departamento="
-                + departamento_String + ", sueldo=" + String.format(java.util.Locale.US,"%.2f", sueldo) + "]";
-    }
+    public Empleado(){}
 
-    public Empleado(int legajo, int apellido, int nombre, int departamento, float sueldo) {
+    public Empleado(int legajo, String apellido, String nombre, int departamento, int sueldo) {
         this.legajo = legajo;
         this.apellido = apellido;
         this.nombre = nombre;
@@ -28,16 +23,16 @@ public class Empleado {
     public void setLegajo(int legajo) {
         this.legajo = legajo;
     }
-    public int getApellido() {
+    public String getApellido() {
         return apellido;
     }
-    public void setApellido(int apellido) {
+    public void setApellido(String apellido) {
         this.apellido = apellido;
     }
-    public int getNombre() {
+    public String getNombre() {
         return nombre;
     }
-    public void setNombre(int nombre) {
+    public void setNombre(String nombre) {
         this.nombre = nombre;
     }
     public int getDepartamento() {
@@ -46,10 +41,22 @@ public class Empleado {
     public void setDepartamento(int departamento) {
         this.departamento = departamento;
     }
-    public float getSueldo() {
+    public int getSueldo() {
         return sueldo;
     }
-    public void setSueldo(float sueldo) {
+    public void setSueldo(int sueldo) {
         this.sueldo = sueldo;
+    }
+    @Override
+    public int compareTo(Object obj) {
+        Empleado user = (Empleado) obj;
+        return Integer.compare(this.getLegajo(), user.getLegajo());
+    }
+
+    @Override
+    public String toString() {
+        String departamento_String = (departamento == 1) ? "administracion" : (departamento == 2) ? "contabilidad" : "gerencia";
+        return "Empleado [legajo=" + legajo + ", apellido=" + apellido + ", nombre=" + nombre + ", departamento="
+                + departamento_String + ", sueldo=" + sueldo + "]";
     }
 }

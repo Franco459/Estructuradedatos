@@ -1,5 +1,5 @@
 package TP5;
-public class AVLTree<ELEMENT extends Comparable<ELEMENT>> {
+public class AVLTree<ELEMENT extends Empleado>{
  
     protected class AVLNode<ELEMENT> {
         public ELEMENT item;
@@ -60,7 +60,7 @@ public class AVLTree<ELEMENT extends Comparable<ELEMENT>> {
             //sb.append("[" + root.balance.toString() + "]");
             sb.append((root.balance < 0) ? "[-]" : (root.balance == 0) ? "[.]" : "[+]" );
             if (root.left != null) {
-                sb.append("(" + toString(root.left));
+                sb.append("\n(" + toString(root.left));
                 if (root.right != null) {
                     sb.append(", " + toString(root.right));
                 }
