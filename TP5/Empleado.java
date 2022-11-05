@@ -11,7 +11,7 @@ public class Empleado {
     public String toString() {
         String departamento_String = (departamento == 1) ? "administracion" : (departamento == 2) ? "contabilidad" : "gerencia";
         return "Empleado [legajo=" + legajo + ", apellido=" + apellido + ", nombre=" + nombre + ", departamento="
-                + departamento_String + ", sueldo=" + sueldo + "]";
+                + departamento_String + ", sueldo=" + String.format(java.util.Locale.US,"%.2f", sueldo) + "]";
     }
 
     public Empleado(int legajo, int apellido, int nombre, int departamento, float sueldo) {
