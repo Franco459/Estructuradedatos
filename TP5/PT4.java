@@ -16,16 +16,52 @@ public class PT4 {
         Compra compra5 = new Compra(60, 5555555, 9.5, LocalDate.of(2010, 10, 30));
         Compra compra6 = new Compra(40, 66666699, 15.5, LocalDate.of(2010, 10, 30));
         
-        AVLTree_pt4<Compra> buyTree = new AVLTree_pt4<Compra>();
-        buyTree.add(compra);
-        buyTree.add(compra1);
-        buyTree.add(compra2);
-        buyTree.add(compra3);
-        buyTree.add(compra4);
-        buyTree.add(compra5);
-        buyTree.add(compra6);
-        System.out.println(buyTree.toString());
+
+        //region variables
+        AVLTree_pt4<Compra> buysTree = new AVLTree_pt4<Compra>();
+        int inputNumber;
+        String msg;
+        boolean isManualInput;
+        int buy_NumberTicket;
+        //end region variables
+
+        msg = "---------------MENU--------------- \n"
+        +    "1- Ingresar valores manuales \n"
+        +    "2- Ingresar valores aleatorios ";
+        int option = Helper.menuTwoOptions(msg);
+        
+        isManualInput = (option == 1) ? true : false;
+
+        inputNumber = getNumber(isManualInput, "Ingrese la cantidad de compras a cargar");
+
+        do{
+            buy_NumberTicket = getNumberTicket(isManualInput, buysTree); 
+        }while(inputNumber > 0);
+
+
+        System.out.println(buysTree.toString());
         System.out.println("/************************/");
-        buyTree.InOrder();
+        buysTree.InOrder();
+    }
+
+
+    /////////////////////////////////////////////METHODS/////////////////////////////////////////////
+
+
+    private static int getNumberTicket(boolean isManualInput, AVLTree_pt4<Compra> buysTree) {
+        int inputNumber;
+        while(true){
+            inputNumber = getNumber(isManualInput, "Ingrese el nro de Factura");
+            if (buysTree.NodeCount() == 0) return inputNumber;
+            else{
+                
+            }
+            return 0;
+        }
+    }
+
+
+    private static int getNumber(boolean isManualInput,String msg) {
+        return (isManualInput) ? Helper.forceInteger(msg) : Helper.generateRandomIntegerInRange(1, 99);
     }
 }

@@ -7,7 +7,7 @@ public class Helper {
     
     //region Static Objects
     static Random random = new Random();
-    static Scanner scanner = new Scanner(System.in);
+    static Scanner entrada = new Scanner(System.in);
     //endregion
 
        //region Integer Helpers
@@ -16,7 +16,7 @@ public class Helper {
         while(true){
             System.out.println(msg);
             try{
-                n = Integer.parseInt(scanner.nextLine());
+                n = Integer.parseInt(entrada.nextLine());
                 break;
             }
             catch(NumberFormatException e){
@@ -27,4 +27,25 @@ public class Helper {
     }
     //endregion
     
+
+    public static int menuTwoOptions(String msg) {
+        int option = 0;
+        while (true){
+            try{
+                //mostrar e ingresar valores para el menu
+                System.out.println(msg);
+                option = Integer.parseInt(entrada.nextLine());
+                //corroborar si es correcta la opcion elegida
+                if (option != 1 && option != 2) System.out.println("Valor no contemplado en las opciones del menu");
+                else return option;
+            }
+            catch (NumberFormatException e){
+                System.out.println("Ingrese valor NUMERICO valido" + e);
+            }
+        }
+    }
+    
+    public static int generateRandomIntegerInRange(int min, int max){
+        return  random.nextInt((max - min) + 1) + min;
+    }
 }
