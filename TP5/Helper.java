@@ -48,4 +48,32 @@ public class Helper {
     public static int generateRandomIntegerInRange(int min, int max){
         return  random.nextInt((max - min) + 1) + min;
     }
+
+
+    public static Double randomDoubleGenerator(int rangeMin, int rangeMax) {
+        return rangeMin + (rangeMax - rangeMin) * random.nextDouble();
+    }
+
+    public static Float getFloat(Scanner entrada, String inputMessage, String errorMessage) {
+        Float floatValuer = 0f;
+        while (true) {
+            try {
+                System.out.print(inputMessage);
+                floatValuer = Float.parseFloat(entrada.nextLine());
+                return ((int) ((floatValuer + 0.005f) * 100)) / 100f;
+            }
+            catch (Exception exception) {
+                System.out.println(errorMessage);
+            }
+        }
+    }
+    public static Float getFloat(Scanner entrada, String inputMessage) {
+        return getFloat(entrada, inputMessage, "Ingrese un número válido\n");
+    }
+    public static Float getFloat(String inputMessage, String errorMessage) {
+        return getFloat(entrada, inputMessage, errorMessage);
+    }
+    public static Float getFloat(String inputMessage) {
+        return getFloat(entrada, inputMessage, "Ingrese un número válido\n");
+    }
 }

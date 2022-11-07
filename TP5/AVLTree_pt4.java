@@ -29,6 +29,9 @@ public class AVLTree_pt4<ELEMENT extends Compra>{
         public void Visit() {
             System.out.printf("%s ", this.item.toString());
         }
+        public void VisitEspecific(int e) {
+            System.out.printf("%s ", e);
+        }
     }
  
  
@@ -94,6 +97,7 @@ public class AVLTree_pt4<ELEMENT extends Compra>{
         if (root != null) {
             InOrder(root.left);
             root.Visit();
+            System.out.println();
             InOrder(root.right);
         }
     }
@@ -473,4 +477,5 @@ public class AVLTree_pt4<ELEMENT extends Compra>{
     }
     //endregion
  
+   
 }
