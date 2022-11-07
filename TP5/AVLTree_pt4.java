@@ -476,6 +476,23 @@ public class AVLTree_pt4<ELEMENT extends Compra>{
         return n;
     }
     //endregion
+
+    public boolean containsTicket(int item) {
+        return containsTicket(this.root, item);
+    }
+    private boolean containsTicket(AVLNode<ELEMENT> root, int item) {
+        if (root == null) {
+            return false;
+        }
+        if(Integer.compare(this.root.item.getNro_factura(), item) == 0) return true;
+        if (Integer.compare(this.root.item.getNro_factura(), item) < 0) {
+            return containsTicket(root.left, item);
+        }
+        if (Integer.compare(this.root.item.getNro_factura(), item) > 0) {
+            return containsTicket(root.right, item);
+        }
+        return false; 
+    }
  
    
 }

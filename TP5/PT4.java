@@ -1,6 +1,5 @@
 package TP5;
 
-import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -29,6 +28,9 @@ public class PT4 {
         isManualInput = (option == 1) ? true : false;
 
         inputNumber = getAmount(isManualInput, "Ingrese la cantidad de compras a cargar");
+        
+        if(!isManualInput) System.out.println("Se generaran " + inputNumber + " compras");
+        
         do {
             buy_NumberTicket = getNumberTicket(isManualInput, buysTree, ticketNumbers);
             cuit_number = getNumber(isManualInput, "Ingrese el numero CUIT");
@@ -37,7 +39,7 @@ public class PT4 {
             Compra buy = new Compra(buy_NumberTicket, cuit_number, inputPrice, inputDate);
             buysTree.add(buy);
             inputNumber--;
-        } while (inputNumber > 1);
+        } while (inputNumber > 0);
         buysTree.InOrder();
     }
 
@@ -85,11 +87,11 @@ public class PT4 {
                 if (buysTree.NodeCount() == 0) {
                     ticketNumbers.add(inputNumber);
                     return inputNumber;
-                } else {
-                    if (!ticketNumbers.contains(inputNumber)) {
+                } else { 
+                    if(!buysTree.containsTicket(inputNumber)){
                         ticketNumbers.add(inputNumber);
                         return inputNumber;
-                    } else if (isManualInput){
+                    }else if (isManualInput){
                         throw new RuntimeException("Numero de factura ya existente");
                     }
                 }

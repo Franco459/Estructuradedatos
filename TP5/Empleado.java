@@ -47,6 +47,7 @@ public class Empleado implements Comparable{
     public void setSueldo(int sueldo) {
         this.sueldo = sueldo;
     }
+    
     @Override
     public int compareTo(Object obj) {
         Empleado user = (Empleado) obj;
