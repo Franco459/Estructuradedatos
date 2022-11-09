@@ -1,3 +1,8 @@
+/*
+ Realice manualmente la inserción de los siguientes valores en un árbol AVL de enteros inicialmente vacío: 5,
+10, 20, 30, 40, 50, 60. Indique el tipo y cantidad de rotaciones hechas en caso de haberlas realizado.
+Verifique con una aplicación.
+ */
 package TP5;
 
 public class PT10 {
@@ -7,7 +12,7 @@ public class PT10 {
     public static void main(String[] args) {
         AVLTree_pt8_10<Integer> tree = new AVLTree_pt8_10<Integer>();
 
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < 7; i++) {
             tree.add(Helper.forceInteger("Ingrese el valor"));   
         }
 

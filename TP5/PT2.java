@@ -1,22 +1,21 @@
 package TP5;
 
-public class PT1 {
+public class PT2 {
     public static void main(String[] args) {
         exec();
     }
 
     public static void exec() {
-        System.out.println("Ejercicio Propuesto 1 - Arbol Binario");
+        System.out.println("Ejercicio 2 - Arbol Binario");
  
-        BinaryTree<Character> rightSubTree1 = new BinaryTree<Character>('J', null, new BinaryTree<Character>('K'));
-        BinaryTree<Character> rightSubTree2 = new BinaryTree<Character>('F', rightSubTree1, null);
-        BinaryTree<Character> rightSubTree3 = new BinaryTree<Character>('C', null, rightSubTree2);
+        BinaryTree<Character> rightSubTree1 = new BinaryTree<Character>('W', null, new BinaryTree<Character>('Z'));
+        BinaryTree<Character> rightSubTree2 = new BinaryTree<Character>('P', new BinaryTree<Character>('Q'), new BinaryTree<Character>('R'));
+        BinaryTree<Character> rightSubTree3 = new BinaryTree<Character>('L', rightSubTree2, rightSubTree1);
 
-        BinaryTree<Character> leftSubTree1 = new BinaryTree<Character>('D', new BinaryTree<Character>('G'), null);
-        BinaryTree<Character> leftSubTree2 = new BinaryTree<Character>('F', new BinaryTree<Character>('H'), new BinaryTree<Character>('I'));
-        BinaryTree<Character> leftSubTree3 = new BinaryTree<Character>('B', leftSubTree1, leftSubTree2);
+        BinaryTree<Character> leftSubTree1 = new BinaryTree<Character>('F', new BinaryTree<Character>('G'), new BinaryTree<Character>('H'));
+        BinaryTree<Character> leftSubTree2 = new BinaryTree<Character>('D', leftSubTree1 ,new BinaryTree<Character>('K'));
 
-        BinaryTree<Character> finalTree = new BinaryTree<>('A', leftSubTree3, rightSubTree3);
+        BinaryTree<Character> finalTree = new BinaryTree<>('A', leftSubTree2, rightSubTree3);
 
  
         System.out.print("Pre Orden.. ");

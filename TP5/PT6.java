@@ -1,18 +1,16 @@
-/*
-Realice manualmente la inserción de los siguientes valores en un árbol AVL de enteros inicialmente vacío: 1,
-11, 2, 3, 4, 5, 6, 7, 15, 14, 13, 12, 10, 9, 8. Indique el tipo y cantidad de rotaciones hechas en caso de
-haberlas realizado. Verifique con una aplicación.
- */
+/*Dado un árbol equilibrado (AVL) de enteros, inicialmente vacío, realice (manualmente) la inserción de los
+siguientes valores: 6, 51, 11, 31, 7, 8, 3, 21, 10, 5, 4. Indique cuándo se debe hacer rotaciones y qué tipo.
+Verifique con una aplicación. */
 package TP5;
 
-public class PT8 {
+public class PT6 {
     /**
      * @param args
      */
     public static void main(String[] args) {
         AVLTree_pt8_10<Integer> tree = new AVLTree_pt8_10<Integer>();
 
-        for (int i = 1; i <= 15; i++) {
+        for (int i = 0; i < 14; i++) {
             tree.add(Helper.forceInteger("Ingrese el valor"));   
         }
 
